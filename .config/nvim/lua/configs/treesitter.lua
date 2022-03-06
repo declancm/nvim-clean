@@ -5,7 +5,7 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     disable = {},
-    -- Use treesitter with 'syntax on'.
+    -- To use treesitter with 'syntax on':
     -- additional_vim_regex_highlighting = true,
   },
 }
@@ -16,7 +16,7 @@ require('refactoring').setup {}
 
 local keymap = vim.api.nvim_set_keymap
 
--- Keymaps for refactoring operations.
+-- Refactoring operations:
 
 -- NOTE: Use the telescope extension for these commands (visual mode: <Leader>fr).
 
@@ -29,7 +29,7 @@ local keymap = vim.api.nvim_set_keymap
 -- keymap('v', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
 -- keymap('n', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
 
--- Keymaps for debug operations.
+-- Debug operations:
 
 local opts = { noremap = true }
 local debug = ":lua require('refactoring').debug"
@@ -38,7 +38,7 @@ keymap('n', '<Leader>rp', debug .. '.printf({below = false})<CR>', opts)
 keymap('v', '<Leader>rv', debug .. '.print_var({})<CR>', opts)
 keymap('n', '<Leader>rc', debug .. '.cleanup({})<CR>', opts)
 
--- Prompt type operations.
+-- Prompt type operations:
 require('refactoring').setup {
   prompt_func_return_type = {
     go = true,

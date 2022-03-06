@@ -95,3 +95,17 @@ keymap('v', '<Leader>d', '"*d', opts)
 
 -- Delete start of word for command line with ctrl-backspace.
 keymap('c', '<C-H>', '<C-w>', { noremap = true })
+
+-- Buffer movement.
+keymap('n', '<Leader>bn', '<Cmd>bnext<CR>', opts)
+keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
+
+-- Show list of current buffers and select one.
+keymap('n', 'B', '<Cmd>ls | exec input("\\nEnter buffer: ") . "b"<CR>', opts)
+
+-- TODO: create keymaps for tabs
+-- tabnew = create an empty tab.
+-- tab split = create an empty tab with the same file.
+-- tabclose/tabc = close current tab.
+-- <C-PgUp> = prev. tab.
+-- <C-PgDown> = next tab.

@@ -69,13 +69,13 @@ lsp.vimls.setup(coq.lsp_ensure_capabilities {})
 -- clangd:          To use clangd for a cpp project, add this to the CMakeLists.txt:
 --                  set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
--- LSP dianostic keymaps.
+-- LSP dianostic keymaps:
 keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
 keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
--- LSP buffer keymaps.
+-- LSP buffer keymaps:
 keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -107,17 +107,17 @@ keymap(
 
 -- LSPCONFIG-UI:
 
--- Setting dianostic symbols.
+-- Diagnostic symbols:
 local signs = { Error = '▶ ', Warn = '▶ ', Hint = '▶ ', Info = '▶ ' }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Symbol before diagnostics.
+-- Virtual text symbol:
 vim.diagnostic.config { virtual_text = { prefix = '•' } }
 
--- Floating window border outline.
+-- Floating window border outlines:
 local border = {
   { '╭', 'FloatBorder' },
   { '─', 'FloatBorder' },

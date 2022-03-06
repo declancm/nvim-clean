@@ -5,6 +5,14 @@ if vim.fn.empty(vim.fn.glob(path)) > 0 then
   PackerBootstrap = vim.fn.system(command)
 end
 
+require('packer').init {
+  display = {
+    open_fn = function()
+      return require('packer.util').float { border = 'rounded' }
+    end,
+  },
+}
+
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 

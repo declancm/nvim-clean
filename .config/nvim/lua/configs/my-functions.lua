@@ -64,10 +64,13 @@ end
 
 keymap('n', '<Leader>nt', '<Cmd>call NotesToggle()<CR>', opts)
 
+-- TODO: dont change directory and just check if file is notes.txt or not
+-- TODO: convert to lua?
+
 vim.cmd [[
 " Add the file to keep synced.
 let g:notes_full_path = expand("~/notes/notes.txt")
-let g:notes_dir = expand(g:notes_full_path, ":h")
+let g:notes_dir = fnamemodify(g:notes_full_path, ":h")
 
 function! NotesToggle()
     " Check if current directory is the notes directory.
