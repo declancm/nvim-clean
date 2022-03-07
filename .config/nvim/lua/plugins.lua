@@ -1,3 +1,4 @@
+-- Clone packer if it doesn't already exist.
 local path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
   local remote = 'https://github.com/wbthomason/packer.nvim'
@@ -5,6 +6,7 @@ if vim.fn.empty(vim.fn.glob(path)) > 0 then
   PackerBootstrap = vim.fn.system(command)
 end
 
+-- Make packer into a floating window with rounded borders.
 require('packer').init {
   display = {
     open_fn = function()
@@ -13,6 +15,7 @@ require('packer').init {
   },
 }
 
+-- Installing plugins.
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
@@ -48,9 +51,10 @@ return require('packer').startup(function(use)
   -- TREESITTER:
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'ThePrimeagen/refactoring.nvim'
   -- use 'nvim-treesitter/nvim-treesitter-textobjects'
   -- use 'nvim-treesitter/playground'
+  use 'ThePrimeagen/refactoring.nvim'
+  use 'simrat39/symbols-outline.nvim'
 
   -- DEBUGGING:
 
@@ -73,6 +77,8 @@ return require('packer').startup(function(use)
   use 'b3nj5m1n/kommentary'
   use 'dkarter/bullets.vim'
   use 'arthurxavierx/vim-caser'
+  -- use 'rstacruz/vim-closer'
+  -- use 'ggandor/lightspeed.nvim'
 
   -- MISC:
 
@@ -89,13 +95,16 @@ return require('packer').startup(function(use)
 
   -- MY_PLUGINS:
 
-  use '~/Git/vim-cinnamon'
   -- use 'declancm/vim-cinnamon'
-  use '~/Git/vim2vscode'
   -- use 'declancm/vim2vscode'
-  use '~/Git/git-scripts.nvim'
   -- use 'declancm/git-scripts.nvim'
 
+  -- Local files.
+  use '~/Git/vim-cinnamon'
+  use '~/Git/vim2vscode'
+  use '~/Git/git-scripts.nvim'
+
+  -- Install packer if it was just git cloned.
   if PackerBootstrap then
     require('packer').sync()
   end

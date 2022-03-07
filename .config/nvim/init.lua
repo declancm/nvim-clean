@@ -25,7 +25,7 @@ require 'configs.my-plugins'
 
 -- KEYMAPS:
 require 'configs.keymaps'
-require 'configs.my-functions'
+require 'configs.functions'
 
 -- OPTIONS:
 vim.opt.swapfile = false

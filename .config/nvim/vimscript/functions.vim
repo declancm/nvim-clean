@@ -77,3 +77,36 @@ function! DeleteEndWord(endKey)
     call feedkeys("\<Space>\<Esc>v" . a:endKey . "c")
 endfunction
 
+" Toggle your notes file and keep it synced with the github remote.
+
+" Add the file to keep synced.
+let g:notes_full_path = expand("~/notes/notes.txt")
+let g:notes_dir = fnamemodify(g:notes_full_path, ":h")
+function! NotesToggle()
+    " Check if current directory is the notes directory.
+    let l:currentDir = getcwd(0)
+    if l:currentDir ==# g:notes_dir
+        if exists("b:notes_modified") && b:notes_modified == 1
+            " Commit and push when file has been modified.
+            silent exec "w"
+            echom "Your changes to " . bufname("%") . " are being committed."
+            lua require("git-scripts").async_commit('',vim.g.notes_dir)
+            silent exec "e# | lcd -"
+        else
+            " Only return when nothing has been modified.
+            silent exec "w | e# | lcd -"
+        endif
+        " set nolbr nobri nowrap cc=80
+        set fo-=t
+    else
+        silent exec "lcd " . g:notes_dir
+        lua require("git-scripts").async_pull(vim.g.notes_dir)
+        silent exec "edit " . g:notes_full_path
+        " set wrap lbr bri cc=0
+        set fo+=t
+        let &showbreak=repeat(' ',6)
+    endif
+endfunction
+" Check if modified every time the buffer is saved.
+exec "autocmd BufEnter " . g:notes_full_path . " let b:notes_modified = 0"
+exec "autocmd BufWritePre " . g:notes_full_path . " if &modified | let b:notes_modified = 1 | endif"

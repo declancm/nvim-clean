@@ -1,12 +1,4 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-
 -- MAXIMIZE_WINDOW:
-
--- Toggle maximizing the current window.
-
-keymap('n', '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
-keymap('x', '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
 
 function MaximizeWindow()
   if vim.b.maxWinStatus == nil or vim.b.maxWinStatus == 0 then
@@ -27,10 +19,6 @@ end
 -- NATIVE_TERMINAL:
 
 -- Toggle the native terminal.
-
-keymap('t', '<C-N>', '<C-\\><C-N>', opts)
-keymap('n', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
-keymap('t', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
 
 vim.cmd 'autocmd TermOpen * startinsert'
 vim.cmd "autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif"
@@ -62,46 +50,28 @@ end
 
 -- Toggle your notes file and keep it synced with the github remote.
 
-keymap('n', '<Leader>nt', '<Cmd>call NotesToggle()<CR>', opts)
-
--- TODO: dont change directory and just check if file is notes.txt or not
--- TODO: convert to lua?
-
-vim.cmd [[
-" Add the file to keep synced.
-let g:notes_full_path = expand("~/notes/notes.txt")
-let g:notes_dir = fnamemodify(g:notes_full_path, ":h")
-
-function! NotesToggle()
-    " Check if current directory is the notes directory.
-    let l:currentDir = getcwd(0)
-    if l:currentDir ==# g:notes_dir
-        if exists("b:notes_modified") && b:notes_modified == 1
-            " Commit and push when file has been modified.
-            silent exec "w"
-            echom "Your changes to " . bufname("%") . " are being committed."
-            lua require("git-scripts").async_commit('',vim.g.notes_dir)
-            silent exec "e# | lcd -"
-        else
-            " Only return when nothing has been modified.
-            silent exec "w | e# | lcd -"
-        endif
-        " set nolbr nobri nowrap cc=80
-        set fo-=t
-    else
-        silent exec "lcd " . g:notes_dir
-        lua require("git-scripts").async_pull(vim.g.notes_dir)
-        silent exec "edit " . g:notes_full_path
-        " set wrap lbr bri cc=0
-        set fo+=t
-        let &showbreak=repeat(' ',6)
-    endif
-endfunction
-
-" Check if modified every time the buffer is saved.
-exec "autocmd BufEnter " . g:notes_full_path . " let b:notes_modified = 0"
-exec "autocmd BufWritePre " . g:notes_full_path . " if &modified | let b:notes_modified = 1 | endif"
-]]
+function ToggleNotes(notesPath)
+  notesPath = vim.fn.expand(notesPath)
+  local notesDirectory = vim.fn.fnamemodify(notesPath, ':h')
+  if notesPath == vim.fn.expand '%' then
+    if vim.bo.modified or vim.b.notes_modified == 1 then
+      vim.cmd 'write'
+      local notesTail = vim.fn.fnamemodify(notesPath, ':t')
+      print("Your changes to '" .. notesTail .. "' are being committed.")
+      require('git-scripts').async_commit('', notesDirectory)
+    end
+    vim.cmd 'edit #'
+  else
+    require('git-scripts').async_pull(notesDirectory)
+    vim.b.notes_modified = 0
+    vim.cmd('edit ' .. notesPath)
+    vim.cmd(
+      'au BufWritePre '
+        .. notesPath
+        .. ' if &modified | let b:notes_modified = 1 | endif'
+    )
+  end
+end
 
 -- CTRL-BS:
 
@@ -109,9 +79,6 @@ exec "autocmd BufWritePre " . g:notes_full_path . " if &modified | let b:notes_m
 -- If at the start of the line, will delete all the whitespace.
 -- Works with plugins that change what a word is such as wordmotion (recognizes
 -- camelCase etc. as separate words).
-
-keymap('i', '<C-H>', '<Cmd>call DeleteStartWord("b")<CR>', opts)
-keymap('i', '<M-BS>', '<Cmd>call DeleteStartWord("B")<CR>', opts)
 
 vim.cmd [[
 function! DeleteStartWord(backKey)
@@ -134,11 +101,8 @@ endfunction
 -- CTRL-DEL:
 
 -- Delete the end of the word.
--- Works with plugins that change what a word is such as wordmotion (recognizes
--- camelCase etc. as separate words).
-
-keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("e")<CR>', opts)
-keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("E")<CR>', opts)
+-- Works with plugins that change what a word is such as wordmotion ( which
+-- recognizes camelCase etc. as separate words).
 
 function DeleteEndWord(endKey)
   vim.cmd('call feedkeys("\\<Space>\\<Esc>v' .. endKey .. 'c")')
@@ -148,16 +112,6 @@ end
 
 -- Paste from the global register '*'.
 -- If pasting a visual line selection of text, perform automatic indentation.
-
-keymap('n', 'p', '<Cmd>call GlobalPaste("p")<CR>', opts)
-keymap('n', 'P', '<Cmd>call GlobalPaste("P")<CR>', opts)
-keymap('n', 'gp', '<Cmd>call GlobalPaste("gp")<CR>', opts)
-keymap('n', 'gP', '<Cmd>call GlobalPaste("gP")<CR>', opts)
-keymap('n', '<M-p>', '<Cmd>call GlobalPaste("p")<CR>a', opts)
-keymap('n', '<M-P>', '<Cmd>call GlobalPaste("P")<CR>a', opts)
-keymap('i', '<M-p>', '<Esc><Cmd>call GlobalPaste("p")<CR>a', opts)
-keymap('i', '<M-P>', '<Esc><Cmd>call GlobalPaste("P")<CR>a', opts)
-keymap('n', 'op', 'o<Esc><Cmd>call GlobalPaste("p")<CR>', opts)
 
 vim.cmd [[
 function! GlobalPaste(pasteMode)
@@ -177,9 +131,6 @@ endfunction
 -- Yank to the default register.
 -- Append to the '*' register using the same type as the '*' register.
 
-keymap('v', '<Leader>y', '<Cmd>call AppendYank("y")<CR>', opts)
-keymap('n', '<Leader>Y', '<Cmd>call AppendYank("yg_")<CR>', opts)
-
 vim.cmd [[
 function! AppendYank(yankMode)
     silent exec "normal! \"0" . a:yankMode
@@ -191,8 +142,6 @@ endfunction
 
 -- Switch to previous vim window.
 -- If no previous vim window exists, switch to last tmux pane.
-
-keymap('n', '<Leader>;', '<Cmd>lua PreviousWindow()<CR>', opts)
 
 function PreviousWindow()
   local win1 = vim.fn.winnr()
@@ -206,15 +155,6 @@ end
 -- CLOSE_OTHER_WINDOW:
 
 -- Save and close the window in the direction selected.
-
-keymap('n', 'ql', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', 'qh', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', 'qk', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', 'qj', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
-keymap('n', 'q<Right>', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', 'q<Left>', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', 'q<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', 'q<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 
 function CloseOtherWindow(direction)
   local win1 = vim.fn.winnr()
@@ -230,8 +170,6 @@ end
 
 -- Close all buffers but the current.
 
-keymap('n', '<Leader>bd', '<Cmd>call ClearBuffers()<CR>', opts)
-
 vim.cmd [[
 function! ClearBuffers()
     let l:cursorPos = getcurpos()
@@ -245,8 +183,6 @@ endfunction
 -- Enter pattern to get a count for total matches in file.
 -- Prepend a ' (single quotation mark) to the pattern for an exact match.
 -- Use 'n' to go to the next match or 'N' to go to the previous.
-
-keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 
 vim.cmd [[
 function! Search(cmd = '')
@@ -268,9 +204,6 @@ endfunction
 -- Jump to the next line with the same indent size.
 -- Will only find a match after the indent has changed, stopping it from jumping
 -- just one line at a time.
-
-keymap('', '<Leader>iu', "<Cmd>lua FindSameIndent('Up')<CR>", opts)
-keymap('', '<Leader>id', "<Cmd>lua FindSameIndent('Down')<CR>", opts)
 
 function FindSameIndent(direction)
   local indentChanged = false
