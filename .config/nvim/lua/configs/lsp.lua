@@ -19,7 +19,7 @@ inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ?
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 
-" Ignore popup window.
+" Arrow keys ignore popup window.
 inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>" : "\<Up>"
 inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
 ]]
