@@ -14,12 +14,12 @@ vim.g.cinnamon_centered = 1
 
 -- vim.g.cinnamon_no_defaults = 1
 
--- vim.g.cinnamon_extras = 1
-keymap('n', 'gg', '<Cmd>Cinnamon gg 0 1 3 <CR>', opts)
-keymap('n', 'G', '<Cmd>Cinnamon G 0 1 3 <CR>', opts)
-keymap('n', 'G', '<Cmd>Cinnamon G 0 1 3 <CR>', opts)
+vim.g.cinnamon_extras = 1
+-- keymap('n', 'gg', '<Cmd>Cinnamon gg 0 1 3 <CR>', opts)
+-- keymap('n', 'G', '<Cmd>Cinnamon G 0 1 3 <CR>', opts)
+-- keymap('n', 'G', '<Cmd>Cinnamon G 0 1 3 <CR>', opts)
 
-keymap('n', 'n', '<Cmd>Cinnamon n 1 0 3 <CR>zv', opts)
-keymap('n', 'N', '<Cmd>Cinnamon N 1 0 3 <CR>zv', opts)
-keymap('n', '*', '<Cmd>Cinnamon * 1 0 3 <CR>zv', opts)
-keymap('n', '#', '<Cmd>Cinnamon # 1 0 3 <CR>zv', opts)
+-- keymap('n', 'n', '<Cmd>Cinnamon n 1 0 3 <CR>zv', opts)
+-- keymap('n', 'N', '<Cmd>Cinnamon N 1 0 3 <CR>zv', opts)
+-- keymap('n', '*', '<Cmd>Cinnamon * 1 0 3 <CR>zv', opts)
+-- keymap('n', '#', '<Cmd>Cinnamon # 1 0 3 <CR>zv', opts)

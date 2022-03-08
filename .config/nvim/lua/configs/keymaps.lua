@@ -33,6 +33,14 @@ keymap('i', '<C-j>', '<Esc>:m .+1<CR>==a', opts)
 keymap('n', '<C-k>', ':m .-2<CR>==', opts)
 keymap('n', '<C-j>', ':m .+1<CR>==', opts)
 
+-- Moving text with arrows.
+keymap('v', '<C-Up>', ":m '<-2<CR>gv=gv", opts)
+keymap('v', '<C-Down>', ":m '>+1<CR>gv=gv", opts)
+keymap('i', '<C-Up>', '<Esc>:m .-2<CR>==a', opts)
+keymap('i', '<C-Down>', '<Esc>:m .+1<CR>==a', opts)
+keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
+keymap('n', '<C-Down>', ':m .+1<CR>==', opts)
+
 -- Improve the <Home> key.
 keymap('', '<Home>', '^<Cmd>normal! zH<CR>', opts)
 keymap('i', '<Home>', '<Esc>zHI', opts)
@@ -50,14 +58,6 @@ keymap('i', '.', '.<C-g>u', opts)
 keymap('i', '!', '!<C-g>u', opts)
 keymap('i', '?', '?<C-g>u', opts)
 
--- Moving text with arrows.
-keymap('v', '<C-Up>', ":m '<-2<CR>gv=gv", opts)
-keymap('v', '<C-Down>', ":m '>+1<CR>gv=gv", opts)
-keymap('i', '<C-Up>', '<Esc>:m .-2<CR>==a', opts)
-keymap('i', '<C-Down>', '<Esc>:m .+1<CR>==a', opts)
-keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
-keymap('n', '<C-Down>', ':m .+1<CR>==', opts)
-
 -- Highlight after indenting.
 keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
@@ -74,9 +74,12 @@ keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("E")<CR>', opts)
 -- TERMINAL:
 
 -- Toggle the native terminal.
-keymap('t', '<C-N>', '<C-\\><C-N>', opts)
+keymap('t', '<C-n>', '<C-Bslash><C-N>', opts)
 keymap('n', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
 keymap('t', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
+
+-- Open lazygit:
+keymap('n', '<C-g>', "<Cmd>lua ToggleTerminal('lazygit')<CR>", opts)
 
 -- COPY_AND_PASTE:
 
@@ -172,16 +175,20 @@ keymap('n', '<Leader>bn', '<Cmd>bNext<CR>', opts)
 keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
 
 -- Show list of current buffers and select one.
-keymap('n', 'B', '<Cmd>ls | exec input("\\nEnter buffer: ") . "b"<CR>', opts)
+keymap(
+  'n',
+  '<Leader>bl',
+  '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>',
+  opts
+)
 
 -- Close all buffers but the current one.
 keymap('n', '<Leader>bd', '<Cmd>call ClearBuffers()<CR>', opts)
 
 -- TABS:
 
--- TODO: create keymaps for tabs
--- tabnew = create an empty tab.
--- tab split = create an empty tab with the same file.
--- tabclose/tabc = close current tab.
+keymap('n', '<Leader>tn', '<Cmd>tabnew<CR>', opts)
+keymap('n', '<Leader>ts', '<Cmd>tab split<CR>', opts)
+keymap('n', '<Leader>tc', '<Cmd>tabclose<CR>', opts)
 -- <C-PgUp> = prev. tab.
 -- <C-PgDown> = next tab.

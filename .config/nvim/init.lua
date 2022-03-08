@@ -24,8 +24,8 @@ require 'configs.misc'
 require 'configs.my-plugins'
 
 -- KEYMAPS:
-require 'configs.keymaps'
 require 'configs.functions'
+require 'configs.keymaps'
 
 -- OPTIONS:
 vim.opt.swapfile = false
@@ -64,11 +64,11 @@ vim.opt.pastetoggle = '<F9>'
 
 -- Unmapping the arrow keys for practice.
 local keymap = vim.api.nvim_set_keymap
-keymap('', '<Up>', '<Nul>', { noremap = true })
-keymap('', '<Down>', '<Nul>', { noremap = true })
-keymap('', '<Left>', '<Nul>', { noremap = true })
-keymap('', '<Right>', '<Nul>', { noremap = true })
-keymap('i', '<Up>', '<Nul>', { noremap = true })
-keymap('i', '<Down>', '<Nul>', { noremap = true })
-keymap('i', '<Left>', '<Nul>', { noremap = true })
-keymap('i', '<Right>', '<Nul>', { noremap = true })
+keymap('', '<Up>', '', { noremap = true })
+keymap('', '<Down>', '', { noremap = true })
+keymap('', '<Left>', '', { noremap = true })
+keymap('', '<Right>', '', { noremap = true })
+keymap('i', '<Up>', '', { noremap = true })
+keymap('i', '<Down>', '', { noremap = true })
+keymap('i', '<Left>', '', { noremap = true })
+keymap('i', '<Right>', '', { noremap = true })

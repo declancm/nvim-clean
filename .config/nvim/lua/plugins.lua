@@ -6,7 +6,7 @@ if vim.fn.empty(vim.fn.glob(path)) > 0 then
   PackerBootstrap = vim.fn.system(command)
 end
 
--- Make packer into a floating window with rounded borders.
+-- Packer outputs to a floating window.
 require('packer').init {
   display = {
     open_fn = function()
@@ -77,7 +77,6 @@ return require('packer').startup(function(use)
   use 'b3nj5m1n/kommentary'
   use 'dkarter/bullets.vim'
   use 'arthurxavierx/vim-caser'
-  -- use 'rstacruz/vim-closer'
   -- use 'ggandor/lightspeed.nvim'
 
   -- MISC:
@@ -95,12 +94,15 @@ return require('packer').startup(function(use)
 
   -- MY_PLUGINS:
 
+  -- Remote repository files.
+  -- use 'declancm/cinnamon.nvim'
   -- use 'declancm/vim-cinnamon'
   -- use 'declancm/vim2vscode'
   -- use 'declancm/git-scripts.nvim'
 
   -- Local files.
-  use '~/Git/vim-cinnamon'
+  use '~/Git/cinnamon.nvim'
+  -- use '~/Git/vim-cinnamon'
   use '~/Git/vim2vscode'
   use '~/Git/git-scripts.nvim'
 

@@ -20,7 +20,7 @@ vim.g.kommentary_create_default_mappings = false
 -- keymap('x', '<C-_>', '<Plug>kommentary_visual_default<Esc>', {})
 keymap('i', '<C-_>', "<Cmd>lua SavePosComment('Line')<CR>", opts)
 keymap('n', '<C-_>', "<Cmd>lua SavePosComment('Line')<CR>", opts)
-keymap('x', '<C-_>', "<Cmd>lua SavePosComment('Selection')<CR>", opts)
+keymap('x', '<C-_>', "<Cmd>lua SavePosComment('Selection')<CR><Esc>", opts)
 
 -- Keymaps to increase or decrease the comment depth level.
 keymap('n', '<Leader>cic', '<Plug>kommentary_line_increase', {})

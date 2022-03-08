@@ -23,7 +23,7 @@ end
 vim.cmd 'autocmd TermOpen * startinsert'
 vim.cmd "autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif"
 
-function ToggleTerminal()
+function ToggleTerminal(command)
   if vim.bo.buftype == 'terminal' then
     vim.g.term_bufnr = vim.fn.bufnr()
     MaximizeWindow()
@@ -34,7 +34,11 @@ function ToggleTerminal()
     end
   else
     vim.g.term_prev = vim.fn.bufnr()
-    if vim.g.term_bufnr == nil or vim.fn.bufname(vim.g.term_bufnr) == '' then
+    if command ~= nil then
+      vim.cmd('keepalt terminal ' .. command)
+    elseif
+      vim.g.term_bufnr == nil or vim.fn.bufname(vim.g.term_bufnr) == ''
+    then
       vim.cmd 'keepalt terminal'
     else
       vim.cmd('keepalt buffer ' .. vim.g.term_bufnr)
@@ -49,6 +53,7 @@ end
 -- NOTES:
 
 -- Toggle your notes file and keep it synced with the github remote.
+-- Requires 'declancm/git-scripts.nvim'.
 
 function ToggleNotes(notesPath)
   notesPath = vim.fn.expand(notesPath)
@@ -163,7 +168,7 @@ function CloseOtherWindow(direction)
   if win1 == win2 then
     return
   end
-  vim.cmd [[exec &modifiable ? 'wq' : 'q']]
+  vim.cmd [[exec (&modifiable && &modified) ? 'wq' : 'q']]
 end
 
 -- CLEAR_BUFFERS:
