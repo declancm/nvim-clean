@@ -40,7 +40,7 @@ local keymap = vim.api.nvim_set_keymap
 
 -- keymap('v', '<Leader>re', refactor .. "('Extract Function')<CR>", opts)
 -- keymap('v', '<Leader>rf', refactor .. "('Extract Function To File')<CR>", opts)
--- keymap('v', '<Leader>rev', refactor .. "('Extract Variable')<CR>", opts)
+-- keymap('v', '<Leader>rv', refactor .. "('Extract Variable')<CR>", opts)
 -- keymap('v', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
 -- keymap('n', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
 

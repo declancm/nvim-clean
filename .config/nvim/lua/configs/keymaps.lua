@@ -10,12 +10,6 @@ keymap('n', '<Leader>nt', '<Cmd>lua ToggleNotes("~/notes/notes.txt")<CR>', opts)
 
 -- MOVEMENT:
 
--- Add j and k to jump list if count greater than 10
--- opts = { noremap = true, silent = true, expr = true }
--- keymap('n', 'k', '(v:count1 > 10 ? "m\'" . v:count1 : "") . \'k\'', opts)
--- keymap('n', 'j', '(v:count1 > 10 ? "m\'" . v:count1 : "") . \'j\'', opts)
--- opts = { noremap = true, silent = true }
-
 -- Replace a word then press '.' to change next occurence.
 keymap('n', 'cn', '<Cmd>let @/=expand("<cword>")<CR>"_cgn', opts)
 keymap('n', 'cN', '<Cmd>let @/=expand("<cword>")<CR>"_cgN', opts)

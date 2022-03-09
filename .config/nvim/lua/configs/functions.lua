@@ -245,7 +245,10 @@ end
 function SetJump()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
-  if vim.bo.buftype ~= '' or (cursor[2] <= 1 and cursor[3] <= 1) then
+  if vim.bo.buftype ~= '' then
+    return
+  end
+  if vim.b.jumpTextChanged ~= 1 then
     return
   end
   local prevCursor = vim.b.prevJumpCursor
@@ -263,12 +266,15 @@ function SetJump()
   if cursor[2] > prevCursor[2] - 15 and cursor[2] < prevCursor[2] + 15 then
     return
   end
+  print 'Setting a jump!'
   vim.cmd "normal! m'"
 end
 
 vim.cmd [[
 augroup jump_list
-autocmd!
-autocmd InsertLeave * lua SetJump()
+  autocmd!
+  autocmd InsertEnter * let b:jumpTextChanged = 0
+  autocmd TextChangedI * let b:jumpTextChanged = 1
+  autocmd InsertLeave * lua SetJump()
 augroup END
 ]]
