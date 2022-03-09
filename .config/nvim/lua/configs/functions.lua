@@ -256,7 +256,7 @@ function SetJump()
       or cursor[2] > vim.b.prevJumpCursor[2] + 15
     )
   then
-    print 'Setting jump.'
+    -- print 'Setting jump.'
     vim.b.prevJumpCursor = cursor
     vim.b.prevJumpBuffer = buffer
     vim.b.jumpTextChanged = 0
