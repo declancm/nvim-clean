@@ -63,7 +63,7 @@ return require('packer').startup(function(use)
 
   -- DEBUGGING:
 
-  -- use 'mfussenegger/nvim-dap'
+  -- use 'mfussenegger/nvim-dap' -- debugging
 
   -- VISUALS:
 

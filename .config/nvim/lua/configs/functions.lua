@@ -235,3 +235,40 @@ function FindSameIndent(direction)
     end
   end
 end
+
+-- JUMP_LIST:
+
+-- An autocmd runs the function when insert mode is left.
+-- If the distance between this InsertLeave and the last InsertLeave is
+-- greater than 15 lines, set this position in the jump list.
+
+function SetJump()
+  local cursor = vim.fn.getcurpos()
+  local buffer = vim.fn.bufnr()
+  if vim.bo.buftype ~= '' or (cursor[2] <= 1 and cursor[3] <= 1) then
+    return
+  end
+  local prevCursor = vim.b.prevJumpCursor
+  local prevBuffer = vim.b.prevJumpBuffer
+  vim.b.prevJumpCursor = cursor
+  vim.b.prevJumpBuffer = buffer
+  if prevCursor == nil or prevBuffer == nil then
+    vim.cmd "normal! m'"
+    return
+  end
+  if buffer ~= prevBuffer then
+    vim.cmd "normal! m'"
+    return
+  end
+  if cursor[2] > prevCursor[2] - 15 and cursor[2] < prevCursor[2] + 15 then
+    return
+  end
+  vim.cmd "normal! m'"
+end
+
+vim.cmd [[
+augroup jump_list
+autocmd!
+autocmd InsertLeave * lua SetJump()
+augroup END
+]]
