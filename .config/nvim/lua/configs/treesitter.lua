@@ -8,6 +8,21 @@ require('nvim-treesitter.configs').setup {
     -- To use treesitter with 'syntax on':
     -- additional_vim_regex_highlighting = true,
   },
+
+  -- TREESITTER_TEXTOBJECTS:
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['a/'] = '@comment.outer',
+      },
+    },
+  },
 }
 
 -- REFACTORING:

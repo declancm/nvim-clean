@@ -33,8 +33,8 @@ return require('packer').startup(function(use)
     branch = 'coq',
     requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
   }
-  -- use 'tami5/lspsaga.nvim'
-  -- use 'folke/trouble.nvim'
+  -- use 'tami5/lspsaga.nvim' -- lsp functions
+  -- use 'folke/trouble.nvim' -- pretty lists
   -- use 'folke/lsp-colors.nvim' -- add lsp colors to unsupported colorschemes
   -- use 'L3MON4D3/LuaSnip -- snippets
 
@@ -50,10 +50,15 @@ return require('packer').startup(function(use)
 
   -- TREESITTER:
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  -- use 'nvim-treesitter/nvim-treesitter-textobjects'
-  -- use 'nvim-treesitter/playground'
-  use 'ThePrimeagen/refactoring.nvim'
+  use {
+    'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
+    run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
+    },
+  }
+  use 'ThePrimeagen/refactoring.nvim' -- extract, inline and print debug
   use 'simrat39/symbols-outline.nvim'
 
   -- DEBUGGING:
@@ -95,10 +100,10 @@ return require('packer').startup(function(use)
   -- MY_PLUGINS:
 
   -- Remote repository files.
-  -- use 'declancm/cinnamon.nvim'
-  -- use 'declancm/vim-cinnamon'
-  -- use 'declancm/vim2vscode'
-  -- use 'declancm/git-scripts.nvim'
+  -- use 'declancm/cinnamon.nvim' -- smooth scrolling
+  -- use 'declancm/vim-cinnamon' -- smoothe scrolling
+  -- use 'declancm/vim2vscode' -- open current buffers in vscode
+  -- use 'declancm/git-scripts.nvim' -- async git functions
 
   -- Local files.
   use '~/Git/cinnamon.nvim'
