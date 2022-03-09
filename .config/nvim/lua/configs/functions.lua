@@ -245,28 +245,22 @@ end
 function SetJump()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
-  if vim.bo.buftype ~= '' then
+  if vim.bo.buftype ~= '' or vim.b.jumpTextChanged ~= 1 then
     return
   end
-  if vim.b.jumpTextChanged ~= 1 then
+  if
+    vim.b.prevJumpCursor ~= nil
+    and vim.b.prevJumpBuffer ~= nil
+    and buffer == vim.b.prevJumpBuffer
+    and cursor[2] > vim.b.prevJumpCursor[2] - 15
+    and cursor[2] < vim.b.prevJumpCursor[2] + 15
+  then
     return
   end
-  local prevCursor = vim.b.prevJumpCursor
-  local prevBuffer = vim.b.prevJumpBuffer
+  -- print 'Setting jump.'
   vim.b.prevJumpCursor = cursor
   vim.b.prevJumpBuffer = buffer
-  if prevCursor == nil or prevBuffer == nil then
-    vim.cmd "normal! m'"
-    return
-  end
-  if buffer ~= prevBuffer then
-    vim.cmd "normal! m'"
-    return
-  end
-  if cursor[2] > prevCursor[2] - 15 and cursor[2] < prevCursor[2] + 15 then
-    return
-  end
-  print 'Setting a jump!'
+  vim.b.jumpTextChanged = 0
   vim.cmd "normal! m'"
 end
 
