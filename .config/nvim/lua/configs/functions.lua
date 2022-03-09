@@ -245,23 +245,24 @@ end
 function SetJump()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
-  if vim.bo.buftype ~= '' or vim.b.jumpTextChanged ~= 1 then
-    return
-  end
   if
-    vim.b.prevJumpCursor ~= nil
-    and vim.b.prevJumpBuffer ~= nil
-    and buffer == vim.b.prevJumpBuffer
-    and cursor[2] > vim.b.prevJumpCursor[2] - 15
-    and cursor[2] < vim.b.prevJumpCursor[2] + 15
+    vim.bo.buftype == ''
+    and vim.b.jumpTextChanged == 1
+    and (
+      vim.b.prevJumpCursor == nil
+      or vim.b.prevJumpBuffer == nil
+      or buffer ~= vim.b.prevJumpBuffer
+      or cursor[2] < vim.b.prevJumpCursor[2] - 15
+      or cursor[2] > vim.b.prevJumpCursor[2] + 15
+    )
   then
-    return
+    print 'Setting jump.'
+    vim.b.prevJumpCursor = cursor
+    vim.b.prevJumpBuffer = buffer
+    vim.b.jumpTextChanged = 0
+    -- vim.cmd "normal! m'" -- only save the line number
+    vim.cmd 'normal! m`' -- save the column position too
   end
-  -- print 'Setting jump.'
-  vim.b.prevJumpCursor = cursor
-  vim.b.prevJumpBuffer = buffer
-  vim.b.jumpTextChanged = 0
-  vim.cmd "normal! m'"
 end
 
 vim.cmd [[
