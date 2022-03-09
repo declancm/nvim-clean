@@ -17,31 +17,31 @@ require('packer').init {
 
 -- Installing plugins.
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use 'wbthomason/packer.nvim' -- plugin manager
 
   -- DEPENDENCIES:
 
-  use 'nvim-lua/plenary.nvim'
-  use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-lua/plenary.nvim' -- lua functions
+  use 'kyazdani42/nvim-web-devicons' -- icons library
 
   -- LSP:
 
-  use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'neovim/nvim-lspconfig' -- collection of lsp configurations
+  use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
   use {
-    'ms-jpq/coq_nvim',
+    'ms-jpq/coq_nvim', -- completion
     branch = 'coq',
     requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
   }
   -- use 'tami5/lspsaga.nvim'
-  -- use 'folke/trouble.nvim
-  -- use 'folke/lsp-colors.nvim'
-  -- use 'L3MON4D3/LuaSnip
+  -- use 'folke/trouble.nvim'
+  -- use 'folke/lsp-colors.nvim' -- add lsp colors to unsupported colorschemes
+  -- use 'L3MON4D3/LuaSnip -- snippets
 
   -- TELESCOPE:
 
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim', -- fuzzy finder
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'jvgrootveld/telescope-zoxide',
@@ -62,35 +62,35 @@ return require('packer').startup(function(use)
 
   -- VISUALS:
 
-  use 'folke/tokyonight.nvim'
-  use 'navarasu/onedark.nvim'
-  use 'luisiacc/gruvbox-baby'
-  use 'hoob3rt/lualine.nvim'
-  use { 'lewis6991/gitsigns.nvim', tag = 'release' }
-  use 'folke/todo-comments.nvim'
-  use 'norcalli/nvim-colorizer.lua'
+  use 'folke/tokyonight.nvim' -- colorscheme
+  use 'navarasu/onedark.nvim' -- colorscheme
+  use 'luisiacc/gruvbox-baby' -- colorscheme
+  use 'hoob3rt/lualine.nvim' -- better status line
+  use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git column icons
+  use 'folke/todo-comments.nvim' -- better todo comments
+  use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
 
   -- SPEED:
 
-  use 'unblevable/quick-scope'
-  use 'machakann/vim-sandwich'
-  use 'b3nj5m1n/kommentary'
-  use 'dkarter/bullets.vim'
-  use 'arthurxavierx/vim-caser'
-  -- use 'ggandor/lightspeed.nvim'
+  use 'unblevable/quick-scope' -- highlight for f, F, t, T movements
+  use 'machakann/vim-sandwich' -- change surrounding chars
+  use 'b3nj5m1n/kommentary' -- comments
+  use 'dkarter/bullets.vim' -- bullets
+  use 'arthurxavierx/vim-caser' -- word coercion
+  -- use 'ggandor/lightspeed.nvim' -- added movement
 
   -- MISC:
 
-  use 'chaoren/vim-wordmotion'
-  use 'mbbill/undotree'
+  use 'chaoren/vim-wordmotion' -- change what a word is
+  use 'mbbill/undotree' -- tree view of undo history
   use { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' }
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
   use {
-    'tpope/vim-fugitive',
+    'tpope/vim-fugitive', -- git
     requires = { 'tpope/git-bump', 'junegunn/gv.vim' },
   }
-  use 'tpope/vim-obsession'
-  use 'tpope/vim-capslock'
+  use 'tpope/vim-obsession' -- sessions
+  use 'tpope/vim-capslock' -- software capslock
 
   -- MY_PLUGINS:
 

@@ -10,10 +10,11 @@ keymap('n', '<Leader>nt', '<Cmd>lua ToggleNotes("~/notes/notes.txt")<CR>', opts)
 
 -- MOVEMENT:
 
--- Enter pattern to get a count for total matches in file.
--- Prepend a ' (single quotation mark) to the pattern for an exact match.
--- Use 'n' to go to the next match or 'N' to go to the previous.
-keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
+-- Add j and k to jump list if count greater than 5
+opts = { noremap = true, silent = true, expr = true }
+keymap('n', 'k', '(v:count1 > 5 ? "m\'" . v:count1 : "") . \'k\'', opts)
+keymap('n', 'j', '(v:count1 > 5 ? "m\'" . v:count1 : "") . \'j\'', opts)
+opts = { noremap = true, silent = true }
 
 -- Replace a word then press '.' to change next occurence.
 keymap('n', 'cn', '<Cmd>let @/=expand("<cword>")<CR>"_cgn', opts)
@@ -70,6 +71,11 @@ keymap('c', '<C-H>', '<C-w>', { noremap = true })
 -- Delete the end of the word.
 keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("e")<CR>', opts)
 keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("E")<CR>', opts)
+
+-- Enter pattern to get a count for total matches in file.
+-- Prepend a ' (single quotation mark) to the pattern for an exact match.
+-- Use 'n' to go to the next match or 'N' to go to the previous.
+keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 
 -- TERMINAL:
 

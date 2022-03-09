@@ -64,6 +64,7 @@ function ToggleNotes(notesPath)
       local notesTail = vim.fn.fnamemodify(notesPath, ':t')
       print("Your changes to '" .. notesTail .. "' are being committed.")
       require('git-scripts').async_commit('', notesDirectory)
+      vim.b.notes_modified = 0
     end
     vim.cmd 'edit #'
   else
