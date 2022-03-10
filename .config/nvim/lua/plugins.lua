@@ -1,8 +1,7 @@
 -- Clone packer if it doesn't already exist.
 local path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
-  local remote = 'https://github.com/wbthomason/packer.nvim'
-  local command = { 'git', 'clone', '--depth', '1', remote, path }
+  local command = { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path }
   PackerBootstrap = vim.fn.system(command)
 end
 
@@ -29,10 +28,10 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- collection of lsp configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
   use {
-    'ms-jpq/coq_nvim', -- completion
+    'ms-jpq/coq_nvim',
     branch = 'coq',
     requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
-  }
+  } -- completion
   -- use 'tami5/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
   -- use 'folke/lsp-colors.nvim' -- add lsp colors to unsupported colorschemes
@@ -41,12 +40,12 @@ return require('packer').startup(function(use)
   -- TELESCOPE:
 
   use {
-    'nvim-telescope/telescope.nvim', -- fuzzy finder
+    'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'jvgrootveld/telescope-zoxide',
     },
-  }
+  } -- fuzzy finder
 
   -- TREESITTER:
 
@@ -88,12 +87,16 @@ return require('packer').startup(function(use)
 
   use 'chaoren/vim-wordmotion' -- change what a word is
   use 'mbbill/undotree' -- tree view of undo history
-  use { 'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps' }
+  use {
+    'ms-jpq/chadtree',
+    branch = 'chad',
+    run = 'python3 -m chadtree deps',
+  } -- filetree
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
   use {
-    'tpope/vim-fugitive', -- git
+    'tpope/vim-fugitive',
     requires = { 'tpope/git-bump', 'junegunn/gv.vim' },
-  }
+  } -- Git
   use 'tpope/vim-obsession' -- sessions
   use 'tpope/vim-capslock' -- software capslock
 

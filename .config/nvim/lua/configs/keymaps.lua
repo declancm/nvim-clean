@@ -36,9 +36,10 @@ keymap('i', '<C-Down>', '<Esc>:m .+1<CR>==a', opts)
 keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
 keymap('n', '<C-Down>', ':m .+1<CR>==', opts)
 
--- Improve the <Home> key.
-keymap('', '<Home>', '^<Cmd>normal! zH<CR>', opts)
+-- Improve the <Home> and <End> keys.
+keymap('', '<Home>', 'g^<Cmd>normal! zH<CR>', opts)
 keymap('i', '<Home>', '<Esc>zHI', opts)
+keymap('', '<End>', 'g$', opts)
 
 -- Stay centered during word search (replaced by vim-cinnamon).
 -- keymap('n', 'n', 'nzzzv', opts)
@@ -92,8 +93,8 @@ keymap('v', 'y', '"*y', opts)
 
 -- Yank to the default register.
 -- Append to the '*' register using the same type as the '*' register.
-keymap('v', '<Leader>y', '<Cmd>call AppendYank("y")<CR>', opts)
-keymap('n', '<Leader>Y', '<Cmd>call AppendYank("yg_")<CR>', opts)
+keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
+keymap('x', '<Leader>y', "\"0y<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
 
 -- Paste from global clipboard and highlight.
 keymap('n', '<Leader>p', '"*p`[v`]', opts)
@@ -175,12 +176,7 @@ keymap('n', '<Leader>bn', '<Cmd>bNext<CR>', opts)
 keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
 
 -- Show list of current buffers and select one.
-keymap(
-  'n',
-  '<Leader>bl',
-  '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>',
-  opts
-)
+keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
 
 -- Close all buffers but the current one.
 keymap('n', '<Leader>bd', '<Cmd>call ClearBuffers()<CR>', opts)

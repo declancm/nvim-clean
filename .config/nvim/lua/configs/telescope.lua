@@ -82,9 +82,4 @@ keymap('n', '<Leader>fp', builtin .. '.builtin()<CR>', opts)
 keymap('n', '<Leader>fz', '<Cmd>Telescope zoxide list<CR>', opts)
 
 -- Refactoring.
-keymap(
-  'v',
-  '<Leader>fr',
-  "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-  opts
-)
+keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)

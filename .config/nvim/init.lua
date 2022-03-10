@@ -8,7 +8,8 @@ vim.opt.termguicolors = true
 vim.cmd 'let mapleader = "\\<BS>"'
 
 -- Autocommands.
-vim.cmd 'source $HOME/.config/nvim/vimscript/autocmd.vim'
+vim.cmd 'source $HOME/.config/nvim/vimscript/autocmds.vim'
+-- require 'configs.autocmds'
 
 -- Packer.
 require 'plugins'

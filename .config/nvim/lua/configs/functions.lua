@@ -36,9 +36,7 @@ function ToggleTerminal(command)
     vim.g.term_prev = vim.fn.bufnr()
     if command ~= nil then
       vim.cmd('keepalt terminal ' .. command)
-    elseif
-      vim.g.term_bufnr == nil or vim.fn.bufname(vim.g.term_bufnr) == ''
-    then
+    elseif vim.g.term_bufnr == nil or vim.fn.bufname(vim.g.term_bufnr) == '' then
       vim.cmd 'keepalt terminal'
     else
       vim.cmd('keepalt buffer ' .. vim.g.term_bufnr)
@@ -59,23 +57,19 @@ function ToggleNotes(notesPath)
   notesPath = vim.fn.expand(notesPath)
   local notesDirectory = vim.fn.fnamemodify(notesPath, ':h')
   if notesPath == vim.fn.expand '%' then
-    if vim.bo.modified or vim.b.notes_modified == 1 then
-      vim.cmd 'write'
-      local notesTail = vim.fn.fnamemodify(notesPath, ':t')
-      print("Your changes to '" .. notesTail .. "' are being committed.")
-      require('git-scripts').async_commit('', notesDirectory)
-      vim.b.notes_modified = 0
-    end
+    -- if vim.bo.modified or vim.b.notes_modified == 1 then
+    --   vim.cmd 'write'
+    --   local notesTail = vim.fn.fnamemodify(notesPath, ':t')
+    --   print("Your changes to '" .. notesTail .. "' are being committed.")
+    --   require('git-scripts').async_commit('', notesDirectory)
+    --   vim.b.notes_modified = 0
+    -- end
     vim.cmd 'edit #'
   else
     require('git-scripts').async_pull(notesDirectory)
     vim.b.notes_modified = 0
     vim.cmd('edit ' .. notesPath)
-    vim.cmd(
-      'au BufWritePre '
-        .. notesPath
-        .. ' if &modified | let b:notes_modified = 1 | endif'
-    )
+    vim.cmd('au BufWritePre ' .. notesPath .. ' if &modified | let b:notes_modified = 1 | endif')
   end
 end
 
@@ -129,18 +123,6 @@ function! GlobalPaste(pasteMode)
             silent exec "normal! \"*" . a:pasteMode
         endif
     endif
-endfunction
-]]
-
--- APPEND_YANK:
-
--- Yank to the default register.
--- Append to the '*' register using the same type as the '*' register.
-
-vim.cmd [[
-function! AppendYank(yankMode)
-    silent exec "normal! \"0" . a:yankMode
-    call setreg('*', getreg('*') . getreg('0'), getregtype('*'))
 endfunction
 ]]
 
@@ -241,6 +223,7 @@ end
 -- An autocmd runs the function when insert mode is left.
 -- If the distance between this InsertLeave and the last InsertLeave is
 -- greater than 15 lines, set this position in the jump list.
+-- Use ctrl-o and ctrl-i to go back and forth on the jump list.
 
 function SetJump()
   local cursor = vim.fn.getcurpos()

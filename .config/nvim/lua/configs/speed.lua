@@ -18,9 +18,9 @@ vim.g.kommentary_create_default_mappings = false
 -- Set <C-/> keymaps.
 -- keymap('n', '<C-_>', '<Plug>kommentary_line_default', {})
 -- keymap('x', '<C-_>', '<Plug>kommentary_visual_default<Esc>', {})
-keymap('i', '<C-_>', "<Cmd>lua SavePosComment('Line')<CR>", opts)
-keymap('n', '<C-_>', "<Cmd>lua SavePosComment('Line')<CR>", opts)
-keymap('x', '<C-_>', "<Cmd>lua SavePosComment('Selection')<CR><Esc>", opts)
+keymap('i', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
+keymap('n', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
+keymap('x', '<C-_>', "<Cmd>lua SavePosComment('selection')<CR><Esc>", opts)
 
 -- Keymaps to increase or decrease the comment depth level.
 keymap('n', '<Leader>cic', '<Plug>kommentary_line_increase', {})
@@ -33,11 +33,15 @@ keymap('x', '<Leader>cd', '<Plug>kommentary_visual_decrease', {})
 function SavePosComment(mode)
   local column = vim.fn.getcurpos()[3]
   local lengthBefore = vim.fn.strdisplaywidth(vim.fn.getline '.')
-  if mode == 'Line' then
-    require('kommentary').toggle_comment(vim.fn.line '.', vim.fn.line '.')
-  elseif mode == 'Selection' then
-    require('kommentary').toggle_comment(vim.fn.line 'v', vim.fn.line '.')
+  local start
+  if mode == 'line' then
+    start = vim.fn.line '.'
+  elseif mode == 'selection' then
+    start = vim.fn.line 'v'
+  else
+    return
   end
+  require('kommentary').toggle_comment(start, vim.fn.line '.')
   local lengthAfter = vim.fn.strdisplaywidth(vim.fn.getline '.')
   -- Keep the cursor in the same position if it's in the indent.
   if column > vim.fn.indent '.' then

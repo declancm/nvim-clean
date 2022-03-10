@@ -85,24 +85,9 @@ keymap('n', 'H', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 keymap('n', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
 keymap('n', '<Leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-keymap(
-  'n',
-  '<Leader>wa',
-  '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-  opts
-)
-keymap(
-  'n',
-  '<Leader>wr',
-  '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-  opts
-)
-keymap(
-  'n',
-  '<Leader>wl',
-  '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-  opts
-)
+keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 -- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 -- LSPCONFIG-UI:

@@ -6,7 +6,7 @@ augroup END
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
+    autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({timeout = 150})
 augroup END
 
 autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' |  clip.exe')
@@ -44,12 +44,11 @@ endfunction
 
 augroup setting_options
     autocmd!
-    autocmd BufEnter * :call SetTabSize() | set fo-=t fo-=r fo-=o scl=yes:1
-    autocmd BufWritePost * :call SetTabSize() | set fo-=t fo-=r fo-=o scl=yes:1
+    autocmd BufEnter,BufWritePost * :call SetTabSize() | set fo-=t fo-=r fo-=o scl=yes:1
 augroup END
 
 " Open chadtree when opening nvim at a directory.
-augroup chadtree_on_directory
+augroup open_chadtree
     autocmd!
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
