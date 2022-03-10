@@ -36,10 +36,9 @@ keymap('i', '<C-Down>', '<Esc>:m .+1<CR>==a', opts)
 keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
 keymap('n', '<C-Down>', ':m .+1<CR>==', opts)
 
--- Improve the <Home> and <End> keys.
-keymap('', '<Home>', 'g^<Cmd>normal! zH<CR>', opts)
+-- Improve the <Home> key.
+keymap('', '<Home>', '^<Cmd>normal! zH<CR>', opts)
 keymap('i', '<Home>', '<Esc>zHI', opts)
-keymap('', '<End>', 'g$', opts)
 
 -- Stay centered during word search (replaced by vim-cinnamon).
 -- keymap('n', 'n', 'nzzzv', opts)
@@ -76,11 +75,11 @@ keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 
 -- Toggle the native terminal.
 keymap('t', '<C-n>', '<C-Bslash><C-N>', opts)
-keymap('n', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
-keymap('t', '<C-Bslash>', '<Cmd>lua ToggleTerminal()<CR>', opts)
+keymap('n', '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
+keymap('t', '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
 
 -- Open lazygit:
-keymap('n', '<C-g>', "<Cmd>lua ToggleTerminal('lazygit')<CR>", opts)
+keymap('n', '<C-g>', "<Cmd>lua TerminalToggle('lazygit')<CR>", opts)
 
 -- COPY_AND_PASTE:
 

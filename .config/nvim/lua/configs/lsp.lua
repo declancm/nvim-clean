@@ -1,6 +1,9 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- COQ:
 
 vim.g.coq_settings = {
@@ -25,12 +28,11 @@ inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
 ]]
 
 -- Automatically compile snippets when saving.
-vim.cmd [[
-augroup coq_custom_snippets
-    autocmd!
-    autocmd BufWritePost */coq-user-snippets/*.snip COQsnips compile
-augroup end
-]]
+autocmd('BufWritePost', {
+  command = 'COQsnips compile',
+  pattern = '*/coq-user-snippets/*.snip',
+  group = augroup('coq_custom_snippets', {}),
+})
 
 -- LSPCONFIG:
 local lsp = require 'lspconfig'

@@ -1,3 +1,6 @@
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- MAXIMIZE_WINDOW:
 
 function MaximizeWindow()
@@ -20,10 +23,13 @@ end
 
 -- Toggle the native terminal.
 
-vim.cmd 'autocmd TermOpen * startinsert'
-vim.cmd "autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif"
+autocmd('TermOpen', { command = 'startinsert', group = augroup('terminal_toggle', {}) })
+autocmd('BufEnter', {
+  command = "if &buftype == 'terminal' | startinsert | endif",
+  group = augroup('terminal_toggle', {}),
+})
 
-function ToggleTerminal(command)
+function TerminalToggle(command)
   if vim.bo.buftype == 'terminal' then
     vim.g.term_bufnr = vim.fn.bufnr()
     MaximizeWindow()
@@ -248,11 +254,6 @@ function SetJump()
   end
 end
 
-vim.cmd [[
-augroup jump_list
-  autocmd!
-  autocmd InsertEnter * let b:jumpTextChanged = 0
-  autocmd TextChangedI * let b:jumpTextChanged = 1
-  autocmd InsertLeave * lua SetJump()
-augroup END
-]]
+autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', {}) })
+autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', {}) })
+autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', {}) })
