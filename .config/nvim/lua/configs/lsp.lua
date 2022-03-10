@@ -187,11 +187,11 @@ end
 null_ls.setup {
   debug = false,
   sources = {
-    require('null-ls').builtins.formatting.black,
-    -- require('null-ls').builtins.formatting.clang_format,
-    -- require('null-ls').builtins.formatting.cmake_format,
-    require('null-ls').builtins.formatting.prettier,
-    require('null-ls').builtins.formatting.stylua,
+    null_ls.builtins.formatting.black,
+    -- null_ls.builtins.formatting.clang_format,
+    -- null_ls.builtins.formatting.cmake_format,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.stylua,
   },
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then

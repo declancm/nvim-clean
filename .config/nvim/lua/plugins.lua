@@ -85,7 +85,7 @@ return require('packer').startup(function(use)
 
   -- MISC:
 
-  use 'chaoren/vim-wordmotion' -- change what a word is
+  use 'chaoren/vim-wordmotion' -- camel case, snake case etc. become separate words
   use 'mbbill/undotree' -- tree view of undo history
   use {
     'ms-jpq/chadtree',
@@ -104,7 +104,7 @@ return require('packer').startup(function(use)
 
   -- Remote repository files.
   -- use 'declancm/cinnamon.nvim' -- smooth scrolling
-  -- use 'declancm/vim-cinnamon' -- smoothe scrolling
+  -- use 'declancm/vim-cinnamon' -- smooth scrolling
   -- use 'declancm/vim2vscode' -- open current buffers in vscode
   -- use 'declancm/git-scripts.nvim' -- async git functions
 
