@@ -1,8 +1,14 @@
 -- TELESCOPE:
 
+local telescope_status, telescope = pcall(require, 'telescope')
+if not telescope_status then
+  print "'telescope' executed with errors."
+  return
+end
+
 local actions = require 'telescope.actions'
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     layout_config = {
       horizontal = { prompt_position = 'top' },
@@ -46,9 +52,9 @@ require('telescope').setup {
     },
   },
 }
-require('telescope').load_extension 'fzf'
-require('telescope').load_extension 'zoxide'
-require('telescope').load_extension 'refactoring'
+telescope.load_extension 'fzf'
+telescope.load_extension 'zoxide'
+telescope.load_extension 'refactoring'
 
 -- KEYMAPS:
 

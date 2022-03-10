@@ -35,8 +35,18 @@ autocmd('BufWritePost', {
 })
 
 -- LSPCONFIG:
-local lsp = require 'lspconfig'
-local coq = require 'coq'
+
+local lsp_status, lsp = pcall(require, 'lspconfig')
+if not lsp_status then
+  print "'lsp' executed with errors."
+  return
+end
+
+local coq_status, coq = pcall(require, 'coq')
+if not coq_status then
+  print "'coq' executed with errors."
+  return
+end
 
 -- INSTALLATION
 
@@ -153,6 +163,12 @@ vim.lsp.handlers['textDocument/definition'] = goto_definition 'vertical split'
 
 -- NULL-LS:
 
+local null_ls_status, null_ls = pcall(require, 'null-ls')
+if not null_ls_status then
+  print "'null-ls' executed with errors."
+  return
+end
+
 function LspFormat()
   vim.lsp.buf.formatting_sync()
   -- Fix tabs after formatting.
@@ -168,7 +184,7 @@ end
 -- stylua:          cargo install stylua
 --                  (Make sure '~/.cargo/bin' is added to path)
 
-require('null-ls').setup {
+null_ls.setup {
   debug = false,
   sources = {
     require('null-ls').builtins.formatting.black,

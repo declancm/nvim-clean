@@ -22,8 +22,14 @@ end
 
 -- ONEDARK:
 
+local onedark_status, onedark = pcall(require, 'onedark')
+if not onedark_status then
+  print "'onedark' executed with errors."
+  return
+end
+
 if theme == 'onedark' then
-  require('onedark').setup {
+  onedark.setup {
     style = 'dark',
     transparent = true,
     -- code_style = { comments = 'none' },
@@ -53,7 +59,13 @@ vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
 
 -- LUALINE:
 
-require('lualine').setup {
+local lualine_status, lualine = pcall(require, 'lualine')
+if not lualine_status then
+  print "'lualine' executed with errors."
+  return
+end
+
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = theme,
@@ -96,7 +108,13 @@ require('lualine').setup {
 
 -- GITSIGNS:
 
-require('gitsigns').setup {
+local gitsigns_status, gitsigns = pcall(require, 'gitsigns')
+if not gitsigns_status then
+  print "'gitsigns' executed with errors."
+  return
+end
+
+gitsigns.setup {
   signs = {
     add = { text = '+' },
     change = { text = '~' },
@@ -112,7 +130,13 @@ require('gitsigns').setup {
 
 -- TODO-COMMENTS:
 
-require('todo-comments').setup {
+local todo_status, todo = pcall(require, 'todo-comments')
+if not todo_status then
+  print "'todo-comments' executed with errors."
+  return
+end
+
+todo.setup {
   -- signs = false,
 }
 
@@ -124,4 +148,10 @@ keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>', opts)
 
 -- COLORIZER:
 
-require('colorizer').setup()
+local colorizer_status, colorizer = pcall(require, 'colorizer')
+if not colorizer_status then
+  print 'colorizer executed with errors.'
+  return
+end
+
+colorizer.setup()

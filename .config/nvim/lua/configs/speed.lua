@@ -13,6 +13,12 @@ vim.g.bullets_enable_in_empty_buffers = 0
 
 -- KOMMENTARY:
 
+local kommentary_status, kommentary = pcall(require, 'kommentary.config')
+if not kommentary_status then
+  print "'kommentary' executed with errors."
+  return
+end
+
 vim.g.kommentary_create_default_mappings = false
 
 -- Set <C-/> keymaps.
@@ -29,6 +35,25 @@ keymap('n', '<Leader>ci', '<Plug>kommentary_motion_increase', {})
 keymap('n', '<Leader>cd', '<Plug>kommentary_motion_decrease', {})
 keymap('x', '<Leader>ci', '<Plug>kommentary_visual_increase', {})
 keymap('x', '<Leader>cd', '<Plug>kommentary_visual_decrease', {})
+
+-- Configure the languages.
+kommentary.configure_language('default', {
+  prefer_single_line_comments = true,
+  use_consistent_indentation = true,
+  ignore_whitespace = true,
+})
+kommentary.configure_language('lua', {
+  single_line_comment_string = '--',
+})
+kommentary.configure_language('vim', {
+  single_line_comment_string = '"',
+})
+kommentary.configure_language('cpp', {
+  single_line_comment_string = '//',
+})
+kommentary.configure_language('python', {
+  single_line_comment_string = '#',
+})
 
 function SavePosComment(mode)
   local column = vim.fn.getcurpos()[3]
@@ -48,22 +73,3 @@ function SavePosComment(mode)
     vim.fn.cursor(vim.fn.line '.', column + lengthAfter - lengthBefore)
   end
 end
-
--- Configure the languages.
-require('kommentary.config').configure_language('default', {
-  prefer_single_line_comments = true,
-  use_consistent_indentation = true,
-  ignore_whitespace = true,
-})
-require('kommentary.config').configure_language('lua', {
-  single_line_comment_string = '--',
-})
-require('kommentary.config').configure_language('vim', {
-  single_line_comment_string = '"',
-})
-require('kommentary.config').configure_language('cpp', {
-  single_line_comment_string = '//',
-})
-require('kommentary.config').configure_language('python', {
-  single_line_comment_string = '#',
-})
