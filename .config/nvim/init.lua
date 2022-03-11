@@ -23,7 +23,7 @@ require 'configs.speed'
 require 'configs.misc'
 require 'configs.my-plugins'
 
--- KEYMAPS:
+-- CONFIGS:
 require 'configs.functions'
 require 'configs.keymaps'
 

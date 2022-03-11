@@ -23,12 +23,6 @@ end
 
 -- Toggle the native terminal.
 
-autocmd('TermOpen', { command = 'startinsert', group = augroup('terminal_toggle', {}) })
-autocmd('BufEnter', {
-  command = "if &buftype == 'terminal' | startinsert | endif",
-  group = augroup('terminal_toggle', {}),
-})
-
 function TerminalToggle(command)
   if vim.bo.buftype == 'terminal' then
     vim.g.term_bufnr = vim.fn.bufnr()
@@ -50,6 +44,7 @@ function TerminalToggle(command)
     vim.opt_local.relativenumber = false
     vim.opt_local.number = false
     vim.opt_local.signcolumn = 'no'
+    vim.cmd 'startinsert'
     MaximizeWindow()
   end
 end
@@ -231,6 +226,8 @@ end
 -- greater than 15 lines, set this position in the jump list.
 -- Use ctrl-o and ctrl-i to go back and forth on the jump list.
 
+-- FIX: stop setting jumps in terminal.
+
 function SetJump()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
@@ -262,11 +259,11 @@ autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', 
 
 vim.cmd [[
 function! ClangFormat()
-let l:savedView = winsaveview()
-let l:file = fnamemodify(bufname(), ":p")
-silent exec "!clang-format -i -style=file " . l:file
-silent exec "e"
-call winrestview(l:savedView)
+  let l:savedView = winsaveview()
+  let l:file = fnamemodify(bufname(), ":p")
+  silent exec "!clang-format -i -style=file " . l:file
+  silent exec "e"
+  call winrestview(l:savedView)
 endfunction
 ]]
 
