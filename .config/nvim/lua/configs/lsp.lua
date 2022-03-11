@@ -48,19 +48,30 @@ if not coq_status then
   return
 end
 
--- INSTALLATION
+--[[
 
--- bashls:          npm i -g bash-language-server
--- clangd:          sudo apt-get install clangd-12
--- cmake:           pip3 install cmake-language-server
--- powershell_es:   https://github.com/PowerShell/PowerShellEditorServices/releases
---                  Extract the zip file to '~/lsp/PowerShellEditorServices'.
---                  (Set 'bundle_path' to PowerShellEditorServices root directory)
--- pyright:         pip3 install pyright
--- sumneko_lua:     https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
---                  Clone to '~/lsp/lua-language-server'.
---                  (Make sure '/lua-language-server/bin' is added to path)
--- vimls:           npm install -g vim-language-server
+~ INSTALLATION ~
+
+bashls:             npm i -g bash-language-server
+clangd:             sudo apt-get install clangd-12
+cmake:              pip3 install cmake-language-server
+powershell_es:      https://github.com/PowerShell/PowerShellEditorServices/releases
+                    Extract the zip file to '~/lsp/PowerShellEditorServices'.
+                    (Set 'bundle_path' to PowerShellEditorServices root directory)
+pyright:            pip3 install pyright
+sumneko_lua:        https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
+                    Clone to '~/lsp/lua-language-server'.
+                    (Make sure '/lua-language-server/bin' is added to path)
+vimls:              npm install -g vim-language-server
+
+~ NOTES ~
+
+clangd:             To use clangd for a cpp project, add this to the CMakeLists.txt:
+                    set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+coq:                Requires python3-venv:
+                    sudo apt install -y python3-venv
+
+]]
 
 vim.cmd 'let g:powershell_es_path = expand("$HOME/lsp/PowerShellEditorServices")'
 
@@ -75,11 +86,6 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
   settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
 })
 lsp.vimls.setup(coq.lsp_ensure_capabilities {})
-
--- NOTES
-
--- clangd:          To use clangd for a cpp project, add this to the CMakeLists.txt:
---                  set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 -- LSP dianostic keymaps:
 keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -175,14 +181,25 @@ function LspFormat()
   vim.cmd 'retab'
 end
 
--- INSTALLATION
+--[[
 
--- black:           pip3 install black
--- clang_format:    sudo apt install clang-format
--- cmake_format:    pip3 install cmakelang
--- prettier:        npm install --save-dev --save-exact prettier
--- stylua:          cargo install stylua
---                  (Make sure '~/.cargo/bin' is added to path)
+~ INSTALLATION ~
+
+black:              pip3 install black
+clang_format:       sudo apt install clang-format
+cmake_format:       pip3 install cmakelang
+prettier:           npm install --save-dev --save-exact prettier
+stylua:             cargo install stylua
+                    (Make sure '~/.cargo/bin' is added to path)
+
+~ NOTES ~
+
+clang_format:       Currently not able to be run simultaneously with clangd
+                    language server.
+cmake_format:       Currently not able to be run simultaneously with cmake
+                    language server.
+
+]]
 
 null.setup {
   debug = false,
@@ -207,10 +224,3 @@ null.setup {
     end
   end,
 }
-
--- NOTES
-
--- clang_format:    Currently not able to be run simultaneously with clangd
---                  language server.
--- cmake_format:    Currently not able to be run simultaneously with cmake
---                  language server.

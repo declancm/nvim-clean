@@ -102,17 +102,17 @@ return require('packer').startup(function(use)
 
   -- MY_PLUGINS:
 
-  -- Remote repository files.
-  -- use 'declancm/cinnamon.nvim' -- smooth scrolling
-  -- use 'declancm/vim-cinnamon' -- smooth scrolling
-  -- use 'declancm/vim2vscode' -- open current buffers in vscode
-  -- use 'declancm/git-scripts.nvim' -- async git functions
-
-  -- Local files.
-  use '~/Git/cinnamon.nvim'
-  -- use '~/Git/vim-cinnamon'
-  use '~/Git/vim2vscode'
-  use '~/Git/git-scripts.nvim'
+  if vim.fn.getenv 'USER' == 'declancm' then
+    -- Local files.
+    use '~/plugins/cinnamon.nvim'
+    -- use '~/plugins/vim-cinnamon'
+    use '~/plugins/vim2vscode'
+    use '~/plugins/git-scripts.nvim'
+  else
+    use 'declancm/cinnamon.nvim' -- neovim smooth scrolling
+    use 'declancm/vim2vscode' -- open current buffers in vscode
+    use 'declancm/git-scripts.nvim' -- async git functions
+  end
 
   -- Install packer if it was just git cloned.
   if PackerBootstrap then

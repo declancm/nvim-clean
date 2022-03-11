@@ -8,6 +8,20 @@ end
 
 local actions = require 'telescope.actions'
 
+--[[
+
+~ INSTALLATION ~
+
+fzf:                sudo apt-get install fzf
+zoxide:             sudo apt install zoxide
+
+~ NOTES ~
+
+zoxide:             Add to your .bashrc (or .zshrc etc.):
+                    eval "$(zoxide init bash)"
+
+]]
+
 telescope.setup {
   defaults = {
     layout_config = {

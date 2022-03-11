@@ -6,6 +6,14 @@ if not treesitter_status then
   return
 end
 
+--[[
+
+~ INSTALLATION ~
+
+treesitter:         npm install treesitter
+
+]]
+
 treesitter.setup {
   ensure_installed = 'maintained',
   highlight = {
