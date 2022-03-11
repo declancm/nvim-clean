@@ -14,12 +14,6 @@ autocmd('TextYankPost', {
   group = augroup('highlight_yank', {}),
 })
 
--- Make the clipboard work in WSL.
-autocmd('TextYankPost', {
-  command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",
-  group = augroup('clipboard', {}),
-})
-
 -- Packer.
 autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
@@ -33,40 +27,44 @@ autocmd('BufWritePre', {
   group = augroup('format_on_save', {}),
 })
 
--- Clang format.
-autocmd('BufWritePost', {
-  command = 'call ClangFormat()',
-  pattern = { '*.h', '*.hpp', '*.c', '*.cpp' },
-  group = augroup('format_on_save', {}),
-})
-
-vim.cmd [[
-function! ClangFormat()
-let l:savedView = winsaveview()
-let l:file = fnamemodify(bufname(), ":p")
-silent exec "!clang-format -i -style=file " . l:file
-silent exec "e"
-call winrestview(l:savedView)
-endfunction
-]]
-
 -- Setting options.
 autocmd({ 'BufEnter', 'BufWritePost' }, {
-  command = 'call SetTabSize() | set fo-=t fo-=r fo-=o scl=yes:1',
+  callback = function()
+    local fts = { 'html', 'javascript', 'json', 'lua', 'markdown', 'ps1' }
+    local size = 4
+    for _, value in ipairs(fts) do
+      if value == vim.bo.ft then
+        size = 2
+      end
+    end
+    vim.opt_local.shiftwidth = size
+    vim.opt_local.tabstop = size
+    vim.opt_local.softtabstop = size
+    vim.opt.fo = vim.opt.fo - 'r' - 'o' - 't'
+    vim.opt.scl = 'yes:1'
+  end,
   group = augroup('setting_options', {}),
 })
 
-vim.cmd [[
-function! SetTabSize()
-let l:fts = ['html','javascript','json','lua','markdown','ps1']
-if index(l:fts, &ft) >= 0 | setlocal shiftwidth=2 tabstop=2 softtabstop=2
-else | setlocal shiftwidth=4 tabstop=4 softtabstop=4 | endif
-  endfunction
-  ]]
-
--- Opening nvim with a directory input will open chadtree.
+-- Opening nvim at a directory will open chadtree.
 autocmd('StdinReadPre', { command = 'let s:std_in=1', group = augroup('open_chadtree', {}) })
 autocmd('VimEnter', {
   command = "if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exec 'CHADopen' | exec 'cd '.argv()[0] | endif",
   group = augroup('open_chadtree', {}),
+})
+
+-- Make the clipboard work in WSL.
+autocmd('VimEnter', {
+  callback = function()
+    if vim.fn.has 'unix' then
+      local lines = vim.fn.readfile '/proc/version'
+      if lines[1]:find('microsoft', 1, true) then
+        autocmd('TextYankPost', {
+          command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",
+          group = augroup('clipboard', {}),
+        })
+      end
+    end
+  end,
+  group = augroup('clipboard', {}),
 })

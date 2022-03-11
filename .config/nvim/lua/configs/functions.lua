@@ -257,3 +257,21 @@ end
 autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', {}) })
 autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', {}) })
 autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', {}) })
+
+-- CLANG_FORMAT:
+
+vim.cmd [[
+function! ClangFormat()
+let l:savedView = winsaveview()
+let l:file = fnamemodify(bufname(), ":p")
+silent exec "!clang-format -i -style=file " . l:file
+silent exec "e"
+call winrestview(l:savedView)
+endfunction
+]]
+
+autocmd('BufWritePost', {
+  command = 'call ClangFormat()',
+  pattern = { '*.h', '*.hpp', '*.c', '*.cpp' },
+  group = augroup('format_on_save', {}),
+})

@@ -22,13 +22,12 @@ end
 
 -- ONEDARK:
 
-local onedark_status, onedark = pcall(require, 'onedark')
-if not onedark_status then
-  print "'onedark' executed with errors."
-  return
-end
-
 if theme == 'onedark' then
+  local onedark_status, onedark = pcall(require, 'onedark')
+  if not onedark_status then
+    print "'onedark' executed with errors."
+    return
+  end
   onedark.setup {
     style = 'dark',
     transparent = true,

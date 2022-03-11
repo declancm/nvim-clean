@@ -163,8 +163,8 @@ vim.lsp.handlers['textDocument/definition'] = goto_definition 'vertical split'
 
 -- NULL-LS:
 
-local null_ls_status, null_ls = pcall(require, 'null-ls')
-if not null_ls_status then
+local null_status, null = pcall(require, 'null-ls')
+if not null_status then
   print "'null-ls' executed with errors."
   return
 end
@@ -184,14 +184,14 @@ end
 -- stylua:          cargo install stylua
 --                  (Make sure '~/.cargo/bin' is added to path)
 
-null_ls.setup {
+null.setup {
   debug = false,
   sources = {
-    null_ls.builtins.formatting.black,
-    -- null_ls.builtins.formatting.clang_format,
-    -- null_ls.builtins.formatting.cmake_format,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.stylua,
+    null.builtins.formatting.black,
+    -- null.builtins.formatting.clang_format,
+    -- null.builtins.formatting.cmake_format,
+    null.builtins.formatting.prettier,
+    null.builtins.formatting.stylua,
   },
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
