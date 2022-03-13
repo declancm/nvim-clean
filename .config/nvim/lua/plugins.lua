@@ -95,7 +95,7 @@ return require('packer').startup(function(use)
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
   use {
     'tpope/vim-fugitive',
-    requires = { 'tpope/git-bump', 'junegunn/gv.vim' },
+    requires = { 'junegunn/gv.vim' },
   } -- Git
   use 'tpope/vim-obsession' -- sessions
   use 'tpope/vim-capslock' -- software capslock
