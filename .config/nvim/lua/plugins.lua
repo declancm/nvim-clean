@@ -5,7 +5,7 @@ if vim.fn.empty(vim.fn.glob(path)) > 0 then
   PackerBootstrap = vim.fn.system(command)
 end
 
--- Packer outputs to a floating window.
+-- Packer uses a floating window.
 require('packer').init {
   display = {
     open_fn = function()

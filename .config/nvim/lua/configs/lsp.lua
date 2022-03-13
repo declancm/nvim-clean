@@ -48,6 +48,22 @@ if not coq_status then
   return
 end
 
+local on_attach = function(client, bufnr)
+  if client.resolved_capabilities.document_formatting then
+    -- Format on save.
+    autocmd('BufWritePre', {
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+        vim.cmd 'retab'
+      end,
+      buffer = bufnr,
+      group = augroup('lsp_format', {}),
+    })
+    -- Format on command.
+    vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
+  end
+end
+
 --[[
 
 ~ INSTALLATION ~
@@ -55,6 +71,7 @@ end
 bashls:             npm i -g bash-language-server
 clangd:             sudo apt-get install clangd-12
 cmake:              pip3 install cmake-language-server
+eslint:             npm i -g vscode-langservers-extracted
 powershell_es:      https://github.com/PowerShell/PowerShellEditorServices/releases
                     Extract the zip file to '~/lsp/PowerShellEditorServices'.
                     (Set 'bundle_path' to PowerShellEditorServices root directory)
@@ -62,6 +79,7 @@ pyright:            pip3 install pyright
 sumneko_lua:        https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
                     Clone to '~/lsp/lua-language-server'.
                     (Make sure '/lua-language-server/bin' is added to path)
+tsserver:           npm install -g typescript typescript-language-server
 vimls:              npm install -g vim-language-server
 
 ~ NOTES ~
@@ -75,17 +93,21 @@ coq:                Requires python3-venv:
 
 vim.cmd 'let g:powershell_es_path = expand("$HOME/lsp/PowerShellEditorServices")'
 
-lsp.bashls.setup(coq.lsp_ensure_capabilities {})
-lsp.clangd.setup(coq.lsp_ensure_capabilities {})
-lsp.cmake.setup(coq.lsp_ensure_capabilities {})
+lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
   bundle_path = vim.g.powershell_es_path,
+  on_attach = on_attach,
 })
-lsp.pyright.setup(coq.lsp_ensure_capabilities {})
+lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
   settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+  on_attach = on_attach,
 })
-lsp.vimls.setup(coq.lsp_ensure_capabilities {})
+-- lsp.tsserver.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+lsp.vimls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 
 -- LSP dianostic keymaps:
 keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -175,29 +197,14 @@ if not null_status then
   return
 end
 
-function LspFormat()
-  vim.lsp.buf.formatting_sync()
-  -- Fix tabs after formatting.
-  vim.cmd 'retab'
-end
-
 --[[
 
 ~ INSTALLATION ~
 
 black:              pip3 install black
-clang_format:       sudo apt install clang-format
-cmake_format:       pip3 install cmakelang
 prettier:           npm install --save-dev --save-exact prettier
 stylua:             cargo install stylua
                     (Make sure '~/.cargo/bin' is added to path)
-
-~ NOTES ~
-
-clang_format:       Currently not able to be run simultaneously with clangd
-                    language server.
-cmake_format:       Currently not able to be run simultaneously with cmake
-                    language server.
 
 ]]
 
@@ -205,22 +212,23 @@ null.setup {
   debug = false,
   sources = {
     null.builtins.formatting.black,
-    -- null.builtins.formatting.clang_format,
-    -- null.builtins.formatting.cmake_format,
     null.builtins.formatting.prettier,
     null.builtins.formatting.stylua,
   },
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     if client.resolved_capabilities.document_formatting then
       -- Format on save.
-      vim.cmd [[
-      augroup LspFormatting
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua LspFormat()
-      augroup END
-      ]]
-      -- Format on command 'Format'.
-      vim.cmd 'command! Format lua LspFormat()'
+      autocmd('BufWritePre', {
+        callback = function()
+          vim.lsp.buf.formatting_sync()
+          vim.cmd 'retab'
+        end,
+        -- pattern = '<buffer>',
+        buffer = bufnr,
+        group = augroup('null_format', {}),
+      })
+      -- Format on command.
+      vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
     end
   end,
 }
