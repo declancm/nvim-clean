@@ -54,7 +54,7 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 
 -- Transparent popup menus.
-vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
+-- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
 
 -- LUALINE:
 

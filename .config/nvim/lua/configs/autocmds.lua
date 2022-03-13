@@ -17,7 +17,7 @@ autocmd('TextYankPost', {
 -- Packer.
 autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
-  pattern = 'plugins.lua',
+  pattern = '**/.config/nvim/lua/plugins.lua',
   group = augroup('packer_user_config', {}),
 })
 

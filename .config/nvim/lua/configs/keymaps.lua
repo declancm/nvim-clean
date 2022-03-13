@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 -- Source config file.
-keymap('n', '<Leader>sc', '<Cmd>wa | source $MYVIMRC | PackerCompile<CR>', opts)
+keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 
 -- Toggle your notes file and keep it synced with the github remote.
 -- keymap('n', '<Leader>nt', '<Cmd>call NotesToggle()<CR>', opts)
@@ -109,7 +109,6 @@ keymap('n', '<M-p>', '<Cmd>call GlobalPaste("p")<CR>a', opts)
 keymap('n', '<M-P>', '<Cmd>call GlobalPaste("P")<CR>a', opts)
 keymap('i', '<M-p>', '<Esc><Cmd>call GlobalPaste("p")<CR>a', opts)
 keymap('i', '<M-P>', '<Esc><Cmd>call GlobalPaste("P")<CR>a', opts)
-keymap('n', 'op', 'o<Esc><Cmd>call GlobalPaste("p")<CR>', opts)
 
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x', opts)
@@ -166,7 +165,7 @@ keymap('n', 'q<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
 keymap('n', 'q<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 
 -- Save and quit all windows.
-keymap('n', '<Leader>ZZ', '<Cmd>wqall<CR>', opts)
+keymap('n', 'ZA', '<Cmd>wqall<CR>', opts)
 
 -- BUFFERS:
 
@@ -175,7 +174,7 @@ keymap('n', '<Leader>bn', '<Cmd>bNext<CR>', opts)
 keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
 
 -- Show list of current buffers and select one.
-keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
+-- keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
 
 -- Close all buffers but the current one.
 keymap('n', '<Leader>bd', '<Cmd>call ClearBuffers()<CR>', opts)

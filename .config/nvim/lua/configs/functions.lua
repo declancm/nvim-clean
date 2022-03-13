@@ -176,10 +176,10 @@ endfunction
 vim.cmd [[
 function! Search(cmd = '')
   let l:pattern = input("Enter the search pattern: ")
+  if l:pattern == "" | return | endif
   echo "\n"
   if l:pattern[0] == "'"
-    let l:pattern = trim(l:pattern, "'", 1)
-    let l:pattern = "\\<" . l:pattern . "\\>"
+    let l:pattern = "\\<" . trim(l:pattern, "'", 1) . "\\>"
   endif
   exec "%s/" . l:pattern . "//gn"
   silent exec "normal! /" . l:pattern
