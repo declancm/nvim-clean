@@ -223,7 +223,6 @@ null.setup {
           vim.lsp.buf.formatting_sync()
           vim.cmd 'retab'
         end,
-        -- pattern = '<buffer>',
         buffer = bufnr,
         group = augroup('null_format', {}),
       })
