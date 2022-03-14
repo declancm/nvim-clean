@@ -46,6 +46,7 @@ if theme == 'gruvbox' then
   vim.cmd [[colorscheme gruvbox-baby]]
   vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#3c3836]]
   vim.cmd [[highlight LineNr guifg=#458588]]
+  vim.cmd [[highlight Pmenu ctermbg=0 guibg=#3c3836]]
 end
 
 -- Highlight the line number.

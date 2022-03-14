@@ -59,8 +59,6 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       group = augroup('lsp_format', {}),
     })
-    -- Format on command.
-    vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
   end
 end
 
@@ -129,6 +127,9 @@ keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt
 keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 -- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+-- Format on command.
+vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
 
 -- LSPCONFIG-UI:
 
@@ -226,8 +227,6 @@ null.setup {
         buffer = bufnr,
         group = augroup('null_format', {}),
       })
-      -- Format on command.
-      vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
     end
   end,
 }
