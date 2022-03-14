@@ -57,7 +57,7 @@ local on_attach = function(client, bufnr)
         vim.cmd 'retab'
       end,
       buffer = bufnr,
-      group = augroup('lsp_format', {}),
+      group = augroup('lsp_format', { clear = false }),
     })
   end
 end
@@ -225,7 +225,7 @@ null.setup {
           vim.cmd 'retab'
         end,
         buffer = bufnr,
-        group = augroup('null_format', {}),
+        group = augroup('null_format', { clear = false }),
       })
     end
   end,
