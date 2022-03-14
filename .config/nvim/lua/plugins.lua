@@ -73,6 +73,7 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git column icons
   use 'folke/todo-comments.nvim' -- better todo comments
   use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
+  use 'lukas-reineke/indent-blankline.nvim' -- indent lines
 
   -- SPEED:
 
