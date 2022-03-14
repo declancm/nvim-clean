@@ -164,8 +164,11 @@ if not indent_status then
   return
 end
 
--- Indent lines:
+vim.g.indent_blankline_show_trailing_blankline_indent = false
+vim.g.indent_blankline_max_indent_increase = 1
+vim.g.indent_blankline_use_treesitter = true
+
 indent.setup {
-  show_current_context = true,
+  -- show_current_context = true,
   -- show_current_context_start = true,
 }
