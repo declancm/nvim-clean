@@ -86,23 +86,28 @@ end
 -- Works with plugins that change what a word is such as wordmotion (recognizes
 -- camelCase etc. as separate words).
 
-vim.cmd [[
-function! DeleteStartWord(backKey)
-    let l:cursorPos = getcurpos()
-    if l:cursorPos[2] < 3
-        call feedkeys("\<BS>", 'n')
+function DeleteStartWord(word)
+  local cursorPos = vim.fn.getcurpos()
+  if cursorPos[3] < 3 then
+    local bs = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
+    vim.api.nvim_feedkeys(bs, 'n', true)
+  else
+    vim.cmd 'normal! b'
+    local cursorNew = vim.fn.getcurpos()
+    vim.fn.cursor(cursorPos[2], cursorPos[3])
+    if cursorPos[2] - cursorNew[2] ~= 0 then
+      vim.cmd 'normal! d0i'
     else
-        normal! b
-        let l:cursorNew = getcurpos()
-        silent exec "call cursor(l:cursorPos[1], l:cursorPos[2])"
-        if l:cursorPos[1] - l:cursorNew[1] != 0
-            normal! d0i
-        else
-            call feedkeys("\<Space>\<Esc>v" . a:backKey . "c")
-        endif
-    endif
-endfunction
-]]
+      local keys
+      if word == 'w' then
+        keys = vim.api.nvim_replace_termcodes('<Space><Esc>vbc', true, false, true)
+      elseif word == 'W' then
+        keys = vim.api.nvim_replace_termcodes('<Space><Esc>vBc', true, false, true)
+      end
+      vim.api.nvim_feedkeys(keys, 'm', true)
+    end
+  end
+end
 
 -- CTRL-DEL:
 
@@ -110,8 +115,13 @@ endfunction
 -- Works with plugins that change what a word is such as wordmotion ( which
 -- recognizes camelCase etc. as separate words).
 
-function DeleteEndWord(endKey)
-  local keys = vim.api.nvim_replace_termcodes('<Space><Esc>v' .. endKey .. 'c', true, false, true)
+function DeleteEndWord(word)
+  local keys
+  if word == 'w' then
+    keys = vim.api.nvim_replace_termcodes('<Space><Esc>vec', true, false, true)
+  elseif word == 'W' then
+    keys = vim.api.nvim_replace_termcodes('<Space><Esc>vEc', true, false, true)
+  end
   vim.api.nvim_feedkeys(keys, 'm', true)
 end
 

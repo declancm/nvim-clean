@@ -5,7 +5,6 @@ local keymap = vim.api.nvim_set_keymap
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 
 -- Toggle your notes file and keep it synced with the github remote.
--- keymap('n', '<Leader>nt', '<Cmd>call NotesToggle()<CR>', opts)
 keymap('n', '<Leader>nt', '<Cmd>lua ToggleNotes("~/notes/notes.txt")<CR>', opts)
 
 -- MOVEMENT:
@@ -58,13 +57,13 @@ keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
 
 -- Delete the start of the word.
-keymap('i', '<C-H>', '<Cmd>call DeleteStartWord("b")<CR>', opts)
-keymap('i', '<M-BS>', '<Cmd>call DeleteStartWord("B")<CR>', opts)
+keymap('i', '<C-H>', '<Cmd>lua DeleteStartWord("w")<CR>', opts)
+keymap('i', '<M-BS>', '<Cmd>lua DeleteStartWord("W")<CR>', opts)
 keymap('c', '<C-H>', '<C-w>', { noremap = true })
 
 -- Delete the end of the word.
-keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("e")<CR>', opts)
-keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("E")<CR>', opts)
+keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("w")<CR>', opts)
+keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("W")<CR>', opts)
 
 -- Enter pattern to get a count for total matches in file.
 -- Prepend a ' (single quotation mark) to the pattern for an exact match.
