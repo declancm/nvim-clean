@@ -94,20 +94,22 @@ keymap('v', 'y', '"*y', opts)
 keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
 keymap('x', '<Leader>y', "\"0y<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
 
--- Paste from global clipboard and highlight.
+-- Paste from global register '*' and highlight.
 keymap('n', '<Leader>p', '"*p`[v`]', opts)
 keymap('n', '<Leader>P', '"*P`[v`]', opts)
 
--- Paste from the global register '*'.
--- If pasting a visual line selection of text, perform automatic indentation.
-keymap('n', 'p', '<Cmd>call GlobalPaste("p")<CR>', opts)
-keymap('n', 'P', '<Cmd>call GlobalPaste("P")<CR>', opts)
-keymap('n', 'gp', '<Cmd>call GlobalPaste("gp")<CR>', opts)
-keymap('n', 'gP', '<Cmd>call GlobalPaste("gP")<CR>', opts)
-keymap('n', '<M-p>', '<Cmd>call GlobalPaste("p")<CR>a', opts)
-keymap('n', '<M-P>', '<Cmd>call GlobalPaste("P")<CR>a', opts)
-keymap('i', '<M-p>', '<Esc><Cmd>call GlobalPaste("p")<CR>a', opts)
-keymap('i', '<M-P>', '<Esc><Cmd>call GlobalPaste("P")<CR>a', opts)
+-- Paste from the global register '*' and if pasting a visual line selection of
+-- text, perform automatic indentation.
+keymap('n', 'p', '<Cmd>lua GlobalPaste("p")<CR>', opts)
+keymap('n', 'P', '<Cmd>lua GlobalPaste("P")<CR>', opts)
+keymap('n', 'gp', '<Cmd>lua GlobalPaste("gp")<CR>', opts)
+keymap('n', 'gP', '<Cmd>lua GlobalPaste("gP")<CR>', opts)
+
+-- Paste from the global register '*' and enter insert mode at the end.
+keymap('n', '<M-p>', '<Cmd>lua GlobalPaste("p")<CR>a', opts)
+keymap('n', '<M-P>', '<Cmd>lua GlobalPaste("P")<CR>a', opts)
+keymap('i', '<M-p>', '<Esc><Cmd>lua GlobalPaste("p")<CR>a', opts)
+keymap('i', '<M-P>', '<Esc><Cmd>lua GlobalPaste("P")<CR>a', opts)
 
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x', opts)

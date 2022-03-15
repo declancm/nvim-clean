@@ -130,18 +130,30 @@ end
 -- Paste from the global register '*'.
 -- If pasting a visual line selection of text, perform automatic indentation.
 
-vim.cmd [[
-function! GlobalPaste(pasteMode)
-    if getreg('*') != ""
-        let l:pasteType = getregtype('*')
-        if l:pasteType ==# 'V'
-            silent exec "normal! \"*" . a:pasteMode . "`[v`]=`]$"
-        else
-            silent exec "normal! \"*" . a:pasteMode
-        endif
-    endif
-endfunction
-]]
+function GlobalPaste(pasteMode)
+  if vim.fn.getreg '*' == '' then
+    return
+  end
+  local pasteType = vim.fn.getregtype '*'
+  if pasteType == 'V' then
+    vim.cmd('normal! "*' .. pasteMode .. '`[v`]=`]$')
+  else
+    vim.cmd('normal! "*' .. pasteMode)
+  end
+end
+
+-- vim.cmd [[
+-- function! GlobalPaste(pasteMode)
+--     if getreg('*') != ""
+--         let l:pasteType = getregtype('*')
+--         if l:pasteType ==# 'V'
+--             silent exec "normal! \"*" . a:pasteMode . "`[v`]=`]$"
+--         else
+--             silent exec "normal! \"*" . a:pasteMode
+--         endif
+--     endif
+-- endfunction
+-- ]]
 
 -- PREVIOUS_WINDOW:
 
