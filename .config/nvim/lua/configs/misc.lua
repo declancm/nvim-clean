@@ -25,9 +25,9 @@ keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
 -- Telescope keymaps will close chadtree.
 autocmd('FileType', {
   callback = function()
-    bufmap(0, 'n', '<Leader>ff', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-    bufmap(0, 'n', '<Leader>fg', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-    bufmap(0, 'n', '<Leader>fb', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+    bufmap(0, 'n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+    bufmap(0, 'n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+    bufmap(0, 'n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
   end,
   pattern = 'CHADTree',
   group = augroup('chadtree_telescope', {}),

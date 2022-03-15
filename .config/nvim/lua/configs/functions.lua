@@ -28,7 +28,8 @@ function TerminalToggle(command)
     vim.g.term_bufnr = vim.fn.bufnr()
     MaximizeWindow()
     if vim.g.term_prev == nil or vim.fn.bufname(vim.g.term_prev) == '' then
-      vim.cmd 'call feedkeys("\\<C-\\>\\<C-N>\\<C-^>", "n")'
+      local keys = vim.api.nvim_replace_termcodes('<C-\\><C-N><C-^>', true, false, true)
+      vim.api.nvim_feedkeys(keys, 'n', true)
     else
       vim.cmd('keepalt buffer ' .. vim.g.term_prev)
     end
@@ -70,7 +71,11 @@ function ToggleNotes(notesPath)
     require('git-scripts').async_pull(notesDirectory)
     vim.b.notes_modified = 0
     vim.cmd('edit ' .. notesPath)
-    vim.cmd('au BufWritePre ' .. notesPath .. ' if &modified | let b:notes_modified = 1 | endif')
+    -- autocmd('BufWritePre', {
+    --   command = 'if &modified | let b:notes_modified = 1 | endif',
+    --   pattern = notesPath,
+    --   group = augroup('toggle_notes', {}),
+    -- })
   end
 end
 
@@ -106,7 +111,8 @@ endfunction
 -- recognizes camelCase etc. as separate words).
 
 function DeleteEndWord(endKey)
-  vim.cmd('call feedkeys("\\<Space>\\<Esc>v' .. endKey .. 'c")')
+  local keys = vim.api.nvim_replace_termcodes('<Space><Esc>v' .. endKey .. 'c', true, false, true)
+  vim.api.nvim_feedkeys(keys, 'm', true)
 end
 
 -- IMPROVED_PASTE:
