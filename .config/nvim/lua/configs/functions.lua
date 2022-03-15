@@ -142,19 +142,6 @@ function GlobalPaste(pasteMode)
   end
 end
 
--- vim.cmd [[
--- function! GlobalPaste(pasteMode)
---     if getreg('*') != ""
---         let l:pasteType = getregtype('*')
---         if l:pasteType ==# 'V'
---             silent exec "normal! \"*" . a:pasteMode . "`[v`]=`]$"
---         else
---             silent exec "normal! \"*" . a:pasteMode
---         endif
---     endif
--- endfunction
--- ]]
-
 -- PREVIOUS_WINDOW:
 
 -- Switch to previous vim window.
