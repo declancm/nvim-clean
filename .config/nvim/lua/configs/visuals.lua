@@ -1,3 +1,6 @@
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- THEME:
 
 -- local theme = 'tokyonight'
@@ -172,3 +175,12 @@ indent.setup {
   -- show_current_context = true,
   -- show_current_context_start = true,
 }
+
+-- Disable indent guides for chadtree.
+autocmd('FileType', {
+  callback = function()
+    vim.b.indent_blankline_enabled = false
+  end,
+  pattern = 'CHADTree',
+  group = augroup('chadtree', {}),
+})

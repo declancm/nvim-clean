@@ -198,6 +198,7 @@ function FindSameIndent(direction)
   local indentChanged = false
   local lineNum = vim.fn.getcurpos()[2]
   local wantedIndent = vim.fn.indent(lineNum)
+  vim.cmd 'norm! ^'
   while true do
     if direction == 'Up' then
       lineNum = lineNum - 1
@@ -246,8 +247,8 @@ function SetJump()
     vim.b.prevJumpCursor = cursor
     vim.b.prevJumpBuffer = buffer
     vim.b.jumpTextChanged = 0
-    -- vim.cmd "normal! m'" -- only save the line number
-    vim.cmd 'normal! m`' -- save the column position too
+    vim.cmd "normal! m'" -- only save the line number
+    -- vim.cmd 'normal! m`' -- save the column position too
   end
 end
 
