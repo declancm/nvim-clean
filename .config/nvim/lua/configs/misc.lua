@@ -1,5 +1,9 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
+local bufmap = vim.api.nvim_buf_set_keymap
+
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 -- UNDOTREE:
 
@@ -22,3 +26,11 @@ keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
 
 keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>', opts)
 keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>', opts)
+
+autocmd('FileType', {
+  callback = function()
+    bufmap(0, 'n', '<Leader>ff', "<Cmd>wincmd p<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+  end,
+  pattern = 'CHADTree',
+  group = augroup('chadtree_telescope', {}),
+})
