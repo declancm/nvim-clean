@@ -75,26 +75,24 @@ telescope.load_extension 'refactoring'
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
-local builtin = "<Cmd>lua require('telescope.builtin')"
-
 -- File pickers.
-keymap('n', '<Leader>ff', builtin .. '.find_files()<CR>', opts)
-keymap('n', '<Leader>fg', builtin .. '.live_grep()<CR>', opts)
+keymap('n', '<Leader>ff', "<Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+keymap('n', '<Leader>fg', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
 
 -- Vim pickers.
-keymap('n', '<Leader>fb', builtin .. '.buffers()<CR>', opts)
-keymap('n', '<Leader>fh', builtin .. '.help_tags()<CR>', opts)
-keymap('n', '<Leader>fc', builtin .. '.command_history()<CR>', opts)
-keymap('n', '<Leader>fq', builtin .. '.quickfix()<CR>', opts)
+keymap('n', '<Leader>fb', "<Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
+keymap('n', '<Leader>fc', "<Cmd>lua require('telescope.builtin').command_history()<CR>", opts)
+keymap('n', '<Leader>fq', "<Cmd>lua require('telescope.builtin').quickfix()<CR>", opts)
 
 -- LSP pickers.
-keymap('n', '<Leader>fd', builtin .. '.diagnostics()<CR>', opts)
-keymap('n', '<Leader>fr', builtin .. '.lsp_references()<CR>', opts)
-keymap('n', '<Leader>fi', builtin .. '.lsp_implementations()<CR>', opts)
-keymap('n', '<Leader>fa', builtin .. '.lsp_code_actions()<CR>', opts)
+keymap('n', '<Leader>fd', "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", opts)
+keymap('n', '<Leader>fr', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
+keymap('n', '<Leader>fi', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
+keymap('n', '<Leader>fa', "<Cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
 
 -- List pickers.
-keymap('n', '<Leader>fp', builtin .. '.builtin()<CR>', opts)
+keymap('n', '<Leader>fp', "<Cmd>lua require('telescope.builtin').builtin()<CR>", opts)
 
 -- PLUGIN_KEYMAPS:
 

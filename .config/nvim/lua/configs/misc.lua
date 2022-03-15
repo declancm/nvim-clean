@@ -22,15 +22,27 @@ keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>', opts)
 keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>', opts)
 keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
 
--- MARKDOWN-PREVIEW:
-
-keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>', opts)
-keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>', opts)
-
+-- Telescope keymaps will close chadtree.
 autocmd('FileType', {
   callback = function()
-    bufmap(0, 'n', '<Leader>ff', "<Cmd>wincmd p<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+    bufmap(0, 'n', '<Leader>ff', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+    bufmap(0, 'n', '<Leader>fg', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+    bufmap(0, 'n', '<Leader>fb', "<Cmd>bdelete<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
   end,
   pattern = 'CHADTree',
   group = augroup('chadtree_telescope', {}),
 })
+
+-- Disable indent guides for chadtree.
+autocmd('FileType', {
+  callback = function()
+    vim.b.indent_blankline_enabled = false
+  end,
+  pattern = 'CHADTree',
+  group = augroup('chadtree_indent', {}),
+})
+
+-- MARKDOWN-PREVIEW:
+
+keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>', opts)
+keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>', opts)

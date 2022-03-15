@@ -1,6 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
 -- THEME:
 
 -- local theme = 'tokyonight'
@@ -60,7 +57,7 @@ vim.opt.cursorlineopt = 'number'
 -- Transparent popup menus.
 -- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
 
--- Show newline character.
+-- End-of-line character.
 -- vim.opt.list = true
 -- vim.opt.listchars:append 'eol:↴'
 
@@ -180,12 +177,3 @@ indent.setup {
   -- show_current_context = true,
   -- show_current_context_start = true,
 }
-
--- Disable indent guides for chadtree.
-autocmd('FileType', {
-  callback = function()
-    vim.b.indent_blankline_enabled = false
-  end,
-  pattern = 'CHADTree',
-  group = augroup('chadtree', {}),
-})
