@@ -60,6 +60,10 @@ vim.opt.cursorlineopt = 'number'
 -- Transparent popup menus.
 -- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
 
+-- Show newline character.
+-- vim.opt.list = true
+-- vim.opt.listchars:append 'eol:↴'
+
 -- LUALINE:
 
 local lualine_status, lualine = pcall(require, 'lualine')
@@ -167,11 +171,12 @@ if not indent_status then
   return
 end
 
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_max_indent_increase = 1
-vim.g.indent_blankline_use_treesitter = true
-
 indent.setup {
+  -- char = '▏', -- faint line
+  char = '▎', -- thick line
+  show_trailing_blankline_indent = false,
+  max_indent_increase = 1,
+  use_treesittter = true,
   -- show_current_context = true,
   -- show_current_context_start = true,
 }
