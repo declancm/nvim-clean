@@ -178,7 +178,7 @@ keymap('n', '<Leader>bn', '<Cmd>bNext<CR>', opts)
 keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
 
 -- Show list of current buffers and select one.
--- keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
+keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
 
 -- TABS:
 
