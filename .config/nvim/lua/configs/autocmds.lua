@@ -24,7 +24,7 @@ autocmd('BufWritePost', {
 -- Delete whitespace on the end of lines.
 autocmd('BufWritePre', {
   command = 'let b:savedView = winsaveview() | keeppatterns %s/s+$//e | call winrestview(b:savedView)',
-  group = augroup('format_on_save', {}),
+  group = augroup('remove_whitespace', {}),
 })
 
 -- Setting options.

@@ -11,7 +11,7 @@ vim.g.coq_settings = {
   ['keymap.recommended'] = false,
   ['keymap.jump_to_mark'] = '<C-n>',
   ['display.ghost_text.enabled'] = false,
-  ['display.preview.border'] = 'solid',
+  ['display.preview.border'] = 'rounded',
 }
 
 vim.cmd [[
@@ -89,14 +89,14 @@ coq:                Requires python3-venv:
 
 ]]
 
-vim.cmd 'let g:powershell_es_path = expand("$HOME/lsp/PowerShellEditorServices")'
+-- FIX: powershell_es doesn't give autocompletion, but works with keymaps and formatting!?
 
 lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
-  bundle_path = vim.g.powershell_es_path,
+  bundle_path = vim.fn.expand '$HOME/lsp/PowerShellEditorServices',
   on_attach = on_attach,
 })
 lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
@@ -191,17 +191,5 @@ null.setup {
     null.builtins.formatting.prettier,
     null.builtins.formatting.stylua,
   },
-  on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
-      -- Format on save.
-      autocmd('BufWritePre', {
-        callback = function()
-          vim.lsp.buf.formatting_sync()
-          vim.cmd 'retab'
-        end,
-        buffer = bufnr,
-        group = augroup('null_format', { clear = false }),
-      })
-    end
-  end,
+  on_attach = on_attach,
 }
