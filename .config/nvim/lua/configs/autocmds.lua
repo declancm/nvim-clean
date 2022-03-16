@@ -57,13 +57,15 @@ autocmd('VimEnter', {
 autocmd('VimEnter', {
   callback = function()
     if vim.fn.has 'unix' then
-      local lines = vim.fn.readfile '/proc/version'
-      if lines[1]:find('microsoft', 1, true) then
+      local file = io.open('/proc/version', 'r')
+      local text = file:read 'a'
+      if text:find('microsoft', 1, true) then
         autocmd('TextYankPost', {
           command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",
           group = augroup('clipboard', {}),
         })
       end
+      file:close()
     end
   end,
   group = augroup('clipboard', {}),

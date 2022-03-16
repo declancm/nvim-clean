@@ -168,6 +168,9 @@ keymap('n', 'q<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 -- Save and quit all windows.
 keymap('n', 'ZA', '<Cmd>wqall<CR>', opts)
 
+-- Close other windows.
+keymap('n', 'ZO', '<Cmd>wa<CR><Cmd>only<CR>', opts)
+
 -- BUFFERS:
 
 -- Buffer movement.
@@ -176,9 +179,6 @@ keymap('n', '<Leader>bp', '<Cmd>bprevious<CR>', opts)
 
 -- Show list of current buffers and select one.
 -- keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")<CR>', opts)
-
--- Close all buffers but the current one.
-keymap('n', '<Leader>bd', '<Cmd>call ClearBuffers()<CR>', opts)
 
 -- TABS:
 

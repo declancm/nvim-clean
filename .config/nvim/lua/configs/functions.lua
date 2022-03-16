@@ -170,18 +170,6 @@ function CloseOtherWindow(direction)
   vim.cmd [[exec (&modifiable && &modified) ? 'wq' : 'q']]
 end
 
--- CLEAR_BUFFERS:
-
--- Close all buffers but the current.
-
-vim.cmd [[
-function! ClearBuffers()
-    let l:cursorPos = getcurpos()
-    silent exec "wa | %bdelete | normal! \<C-^>"
-    silent exec "call cursor(l:cursorPos[1], l:cursorPos[2])"
-endfunction
-]]
-
 -- SEARCH:
 
 -- Enter pattern to get a count for total matches in file.
@@ -286,5 +274,5 @@ autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', 
 -- autocmd('BufWritePost', {
 --   command = 'call ClangFormat()',
 --   pattern = { '*.h', '*.hpp', '*.c', '*.cpp' },
---   group = augroup('format_on_save', {}),
+--   group = augroup('clang_format', {}),
 -- })
