@@ -6,12 +6,6 @@ local augroup = vim.api.nvim_create_augroup
 
 -- COQ:
 
-local coq_status, coq = pcall(require, 'coq')
-if not coq_status then
-  print "'coq' executed with errors."
-  return
-end
-
 vim.g.coq_settings = {
   ['auto_start'] = 'shut-up',
   ['keymap.recommended'] = false,
@@ -29,7 +23,7 @@ inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 
 " Arrow keys close the completion popup window.
-inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>" : "\<Up>"
+inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>"   : "\<Up>"
 inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
 ]]
 
@@ -62,6 +56,33 @@ local on_attach = function(client, bufnr)
   end
 end
 
+-- LSP dianostic keymaps:
+keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
+keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- LSP buffer keymaps:
+keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+keymap('n', 'H', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+keymap('n', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+keymap('n', '<Leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+-- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+-- Go to definition in split window:
+keymap('n', '<Leader>gd', '<Cmd>split<CR><Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+-- Format on command.
+vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
+
 --[[
 
 ~ INSTALLATION ~
@@ -89,6 +110,17 @@ coq:                Requires python3-venv:
 
 ]]
 
+local coq_status, coq = pcall(require, 'coq')
+if not coq_status then
+  print "'coq' executed with errors."
+  -- Setup diagnostics in init.lua if coq wasn't executed successfully.
+  lsp.sumneko_lua.setup {
+    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+    on_attach = on_attach,
+  }
+  return
+end
+
 -- FIX: powershell_es doesn't give autocompletion, but gives diagnostics and formatting?!
 
 lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
@@ -106,33 +138,6 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
 })
 -- lsp.tsserver.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.vimls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-
--- LSP dianostic keymaps:
-keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
-keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
--- LSP buffer keymaps:
-keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
-keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-keymap('n', 'H', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-keymap('n', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-keymap('n', '<Leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
--- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
--- Go to definition in split window:
-keymap('n', '<Leader>gd', '<Cmd>split<CR><Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-
--- Format on command.
-vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
 
 -- LSPCONFIG-UI:
 

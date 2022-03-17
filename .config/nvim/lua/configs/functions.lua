@@ -167,7 +167,7 @@ function CloseOtherWindow(direction)
   if win1 == win2 then
     return
   end
-  vim.cmd [[exec (&modifiable && &modified) ? 'wq' : 'q']]
+  vim.cmd 'exit'
 end
 
 -- SEARCH:

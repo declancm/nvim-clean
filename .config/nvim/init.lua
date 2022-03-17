@@ -62,7 +62,7 @@ vim.opt.path = vim.opt.path + '**'
 vim.opt.textwidth = 80
 vim.opt.pastetoggle = '<F9>'
 
--- Unmapping the arrow keys for practice.
+-- NOTE: Unmapping the arrow keys for practice.
 local keymap = vim.api.nvim_set_keymap
 keymap('', '<Up>', '', { noremap = true })
 keymap('', '<Down>', '', { noremap = true })

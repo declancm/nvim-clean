@@ -156,14 +156,14 @@ keymap('n', '<S-Right>', '<Cmd>vertical resize +5<CR>', opts)
 keymap('n', '<S-Left>', '<Cmd>vertical resize -5<CR>', opts)
 
 -- Save and close the window in the direction selected.
-keymap('n', 'ql', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', 'qh', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', 'qk', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', 'qj', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
-keymap('n', 'q<Right>', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', 'q<Left>', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', 'q<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', 'q<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
+keymap('n', '<Leader>xl', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
+keymap('n', '<Leader>xh', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
+keymap('n', '<Leader>xk', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
+keymap('n', '<Leader>xj', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
+keymap('n', '<Leader>x<Right>', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
+keymap('n', '<Leader>x<Left>', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
+keymap('n', '<Leader>x<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
+keymap('n', '<Leader>x<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 
 -- Save and quit all windows.
 keymap('n', 'ZA', '<Cmd>wqall<CR>', opts)

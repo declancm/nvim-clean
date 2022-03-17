@@ -8,6 +8,8 @@ local augroup = vim.api.nvim_create_augroup
 -- UNDOTREE:
 
 keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>', opts)
+-- u is undo
+-- <C-R> is redo
 
 -- CHADTREE:
 
