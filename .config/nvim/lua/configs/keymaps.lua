@@ -121,9 +121,12 @@ keymap('n', 'C', '"_C', opts)
 keymap('v', 'c', '"_c', opts)
 
 -- Cut is now Leader d.
-keymap('n', '<Leader>d', '"*d', opts)
-keymap('n', '<Leader>D', '"*d', opts)
-keymap('v', '<Leader>d', '"*d', opts)
+-- keymap('n', '<Leader>d', '"*d', opts)
+-- keymap('n', '<Leader>D', '"*d', opts)
+-- keymap('v', '<Leader>d', '"*d', opts)
+keymap('n', '<M-d>', '"*d', opts)
+keymap('n', '<M-D>', '"*d', opts)
+keymap('v', '<M-d>', '"*d', opts)
 
 -- WINDOWS:
 

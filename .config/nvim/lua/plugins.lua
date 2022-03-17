@@ -62,7 +62,10 @@ return require('packer').startup(function(use)
 
   -- DEBUGGING:
 
-  -- use 'mfussenegger/nvim-dap' -- debugging
+  use {
+    'mfussenegger/nvim-dap', -- debugging
+    requires = { 'rcarriga/nvim-dap-ui' },
+  }
 
   -- VISUALS:
 
