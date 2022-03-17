@@ -57,8 +57,8 @@ return require('packer').startup(function(use)
       'nvim-treesitter/playground',
     },
   }
-  use 'ThePrimeagen/refactoring.nvim' -- extract, inline and print debug
   use 'simrat39/symbols-outline.nvim'
+  use 'ThePrimeagen/refactoring.nvim' -- extract, inline and print debug
 
   -- DEBUGGING:
 

@@ -1,3 +1,6 @@
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
 -- TREESITTER:
 
 local treesitter_status, treesitter = pcall(require, 'nvim-treesitter.configs')
@@ -39,6 +42,15 @@ treesitter.setup {
   },
 }
 
+-- SYMBOLS-OUTLINE:
+
+vim.g.symbols_outline = {
+  auto_close = true,
+  preview_bg_highlight = '',
+}
+
+keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>', opts)
+
 -- REFACTORING:
 
 local refactoring_status, refactoring = pcall(require, 'refactoring')
@@ -47,15 +59,13 @@ if not refactoring_status then
   return
 end
 
-local keymap = vim.api.nvim_set_keymap
-
 -- Refactoring operations:
 
 -- NOTE: Use the telescope extension for refactoring (visual mode: <Leader>fr).
 
 -- Debug operations:
 
-local opts = { noremap = true }
+opts = { noremap = true }
 local debug = ":lua require('refactoring').debug"
 
 keymap('n', '<Leader>rf', debug .. '.printf({below = false})<CR>', opts)
@@ -77,7 +87,3 @@ refactoring.setup {
     java = true,
   },
 }
-
--- SYMBOLS-OUTLINE:
-
-keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>', opts)
