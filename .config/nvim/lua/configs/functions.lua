@@ -230,7 +230,7 @@ end
 -- greater than 15 lines, set this position in the jump list.
 -- Use ctrl-o and ctrl-i to go back and forth on the jump list.
 
--- FIX: stop setting jumps in terminal.
+-- TODO: stop setting jumps in terminal.
 
 function SetJump()
   local cursor = vim.fn.getcurpos()

@@ -6,6 +6,12 @@ local augroup = vim.api.nvim_create_augroup
 
 -- COQ:
 
+local coq_status, coq = pcall(require, 'coq')
+if not coq_status then
+  print "'coq' executed with errors."
+  return
+end
+
 vim.g.coq_settings = {
   ['auto_start'] = 'shut-up',
   ['keymap.recommended'] = false,
@@ -22,7 +28,7 @@ inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ?
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 
-" Arrow keys ignore popup window.
+" Arrow keys close the completion popup window.
 inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>" : "\<Up>"
 inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
 ]]
@@ -39,12 +45,6 @@ autocmd('BufWritePost', {
 local lsp_status, lsp = pcall(require, 'lspconfig')
 if not lsp_status then
   print "'lsp' executed with errors."
-  return
-end
-
-local coq_status, coq = pcall(require, 'coq')
-if not coq_status then
-  print "'coq' executed with errors."
   return
 end
 
@@ -89,7 +89,7 @@ coq:                Requires python3-venv:
 
 ]]
 
--- FIX: powershell_es doesn't give autocompletion, but works with keymaps and formatting!?
+-- FIX: powershell_es doesn't give autocompletion, but gives diagnostics and formatting?!
 
 lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })

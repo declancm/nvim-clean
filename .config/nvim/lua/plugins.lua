@@ -28,10 +28,10 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- collection of lsp configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
   use {
-    'ms-jpq/coq_nvim',
+    'ms-jpq/coq_nvim', -- auto-completion
     branch = 'coq',
     requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
-  } -- completion
+  }
   -- use 'tami5/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
   -- use 'folke/lsp-colors.nvim' -- add lsp colors to unsupported colorschemes
@@ -40,12 +40,12 @@ return require('packer').startup(function(use)
   -- TELESCOPE:
 
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim', -- fuzzy finder
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'jvgrootveld/telescope-zoxide',
     },
-  } -- fuzzy finder
+  }
 
   -- TREESITTER:
 
@@ -70,7 +70,10 @@ return require('packer').startup(function(use)
   use 'navarasu/onedark.nvim' -- colorscheme
   use 'luisiacc/gruvbox-baby' -- colorscheme
   use 'hoob3rt/lualine.nvim' -- better status line
-  use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git column icons
+  use {
+    'lewis6991/gitsigns.nvim', -- git column icons
+    tag = 'release',
+  }
   use 'folke/todo-comments.nvim' -- better todo comments
   use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
   use 'lukas-reineke/indent-blankline.nvim' -- indent guides
@@ -82,22 +85,25 @@ return require('packer').startup(function(use)
   use 'b3nj5m1n/kommentary' -- comments
   use 'dkarter/bullets.vim' -- bullets
   use 'arthurxavierx/vim-caser' -- word coercion
-  -- use 'ggandor/lightspeed.nvim' -- added movement
+  -- use 'ggandor/lightspeed.nvim' -- another movement
 
   -- MISC:
 
   use 'chaoren/vim-wordmotion' -- camel case, snake case etc. become separate words
   use 'mbbill/undotree' -- tree view of undo history
   use {
-    'ms-jpq/chadtree',
+    'ms-jpq/chadtree', -- filetree
     branch = 'chad',
     run = 'python3 -m chadtree deps',
-  } -- filetree
-  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+  }
   use {
-    'tpope/vim-fugitive',
+    'iamcco/markdown-preview.nvim', -- preview markdown in browser
+    run = 'cd app && yarn install',
+  }
+  use {
+    'tpope/vim-fugitive', -- Git
     requires = { 'junegunn/gv.vim' },
-  } -- Git
+  }
   use 'tpope/vim-obsession' -- sessions
   use 'tpope/vim-capslock' -- software capslock
 

@@ -51,16 +51,7 @@ local keymap = vim.api.nvim_set_keymap
 
 -- Refactoring operations:
 
--- NOTE: Use the telescope extension for these commands (visual mode: <Leader>fr).
-
--- local opts = { noremap = true, silent = true, expr = false }
--- local refactor = " <Esc><Cmd>lua require('refactoring').refactor"
-
--- keymap('v', '<Leader>re', refactor .. "('Extract Function')<CR>", opts)
--- keymap('v', '<Leader>rf', refactor .. "('Extract Function To File')<CR>", opts)
--- keymap('v', '<Leader>rv', refactor .. "('Extract Variable')<CR>", opts)
--- keymap('v', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
--- keymap('n', '<Leader>ri', refactor .. "('Inline Variable')<CR>", opts)
+-- NOTE: Use the telescope extension for refactoring (visual mode: <Leader>fr).
 
 -- Debug operations:
 
