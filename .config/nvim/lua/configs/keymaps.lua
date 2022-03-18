@@ -1,6 +1,8 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
+-- TODO: Create quickfix list keymaps.
+
 -- Source config file.
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 
@@ -169,7 +171,7 @@ keymap('n', '<Leader>x<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
 keymap('n', '<Leader>x<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 
 -- Save and quit all windows.
-keymap('n', 'ZA', '<Cmd>wqall<CR>', opts)
+keymap('n', 'ZA', '<Cmd>xall<CR>', opts)
 
 -- Close other windows.
 keymap('n', 'ZO', '<Cmd>wa<CR><Cmd>only<CR>', opts)
