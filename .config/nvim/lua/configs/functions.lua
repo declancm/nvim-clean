@@ -142,20 +142,6 @@ function GlobalPaste(pasteMode)
   end
 end
 
--- PREVIOUS_WINDOW:
-
--- Switch to previous vim window.
--- If no previous vim window exists, switch to last tmux pane.
-
-function PreviousWindow()
-  local win1 = vim.fn.winnr()
-  vim.cmd 'wincmd p'
-  local win2 = vim.fn.winnr()
-  if win1 == win2 then
-    os.execute 'tmux select-pane -l'
-  end
-end
-
 -- CLOSE_OTHER_WINDOW:
 
 -- Save and close the window in the direction selected.

@@ -61,14 +61,15 @@ vim.opt.mouse = 'a'
 vim.opt.path = vim.opt.path + '**'
 vim.opt.textwidth = 80
 vim.opt.pastetoggle = '<F9>'
+vim.opt.laststatus = 3
 
 -- NOTE: Unmapping the arrow keys for practice.
-local keymap = vim.api.nvim_set_keymap
-keymap('', '<Up>', '', { noremap = true })
-keymap('', '<Down>', '', { noremap = true })
-keymap('', '<Left>', '', { noremap = true })
-keymap('', '<Right>', '', { noremap = true })
-keymap('i', '<Up>', '', { noremap = true })
-keymap('i', '<Down>', '', { noremap = true })
-keymap('i', '<Left>', '', { noremap = true })
-keymap('i', '<Right>', '', { noremap = true })
+-- local keymap = vim.api.nvim_set_keymap
+-- keymap('', '<Up>', '', { noremap = true })
+-- keymap('', '<Down>', '', { noremap = true })
+-- keymap('', '<Left>', '', { noremap = true })
+-- keymap('', '<Right>', '', { noremap = true })
+-- keymap('i', '<Up>', '', { noremap = true })
+-- keymap('i', '<Down>', '', { noremap = true })
+-- keymap('i', '<Left>', '', { noremap = true })
+-- keymap('i', '<Right>', '', { noremap = true })

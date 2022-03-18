@@ -1,8 +1,6 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
--- TODO: Create quickfix list keymaps.
-
 -- Source config file.
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 
@@ -123,12 +121,19 @@ keymap('n', 'C', '"_C', opts)
 keymap('v', 'c', '"_c', opts)
 
 -- Cut is now Leader d.
--- keymap('n', '<Leader>d', '"*d', opts)
--- keymap('n', '<Leader>D', '"*d', opts)
--- keymap('v', '<Leader>d', '"*d', opts)
 keymap('n', '<M-d>', '"*d', opts)
 keymap('n', '<M-D>', '"*d', opts)
 keymap('v', '<M-d>', '"*d', opts)
+
+-- QUICKFIX-LIST:
+
+-- NOTE: Use the quickfix list with ':vimgrep'.
+
+keymap('n', '<Leader>qq', '<Cmd>cwindow<CR>', opts)
+keymap('n', '<Leader>qn', '<Cmd>cnext<CR>', opts)
+keymap('n', '<Leader>qp', '<Cmd>cprevious<CR>', opts)
+keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
+keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
 
 -- WINDOWS:
 
@@ -138,7 +143,18 @@ keymap('x', '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
 
 -- Switch to previous vim window.
 -- If no previous vim window exists, switch to last tmux pane.
-keymap('n', '<Leader>;', '<Cmd>lua PreviousWindow()<CR>', opts)
+keymap('n', '<Leader>;', '', {
+  callback = function()
+    local win1 = vim.fn.winnr()
+    vim.cmd 'wincmd p'
+    local win2 = vim.fn.winnr()
+    if win1 == win2 then
+      os.execute 'tmux select-pane -l > /dev/null 2>&1'
+    end
+  end,
+  noremap = true,
+  silent = true,
+})
 
 -- Creating windows.
 keymap('n', '<Leader>v', '<C-w>v', opts)

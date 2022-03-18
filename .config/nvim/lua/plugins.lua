@@ -34,8 +34,6 @@ return require('packer').startup(function(use)
   }
   -- use 'tami5/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
-  -- use 'folke/lsp-colors.nvim' -- add lsp colors to unsupported colorschemes
-  -- use 'L3MON4D3/LuaSnip -- snippets
 
   -- TELESCOPE:
 
