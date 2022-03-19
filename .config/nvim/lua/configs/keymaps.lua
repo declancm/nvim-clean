@@ -130,14 +130,14 @@ keymap('v', '<M-d>', '"*d', opts)
 -- NOTE: Use the quickfix list with ':vimgrep'.
 
 -- Quickfix-list:
-keymap('n', '<Leader>qq', '<Cmd>cwindow<CR>', opts)
+keymap('n', '<Leader>qt', '<Cmd>cwindow<CR>', opts)
 keymap('n', '<Leader>qn', '<Cmd>cnext<CR>', opts)
 keymap('n', '<Leader>qp', '<Cmd>cprevious<CR>', opts)
 keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
 keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
 
 -- Location-list:
-keymap('n', '<Leader>lq', '<Cmd>lwindow<CR>', opts)
+keymap('n', '<Leader>lt', '<Cmd>lwindow<CR>', opts)
 keymap('n', '<Leader>ln', '<Cmd>lnext<CR>', opts)
 keymap('n', '<Leader>lp', '<Cmd>lprevious<CR>', opts)
 keymap('n', '<Leader>la', '<Cmd>lafter<CR>', opts)
@@ -165,8 +165,8 @@ keymap('n', '<Leader>;', '', {
 })
 
 -- Creating windows.
-keymap('n', '<Leader>v', '<C-w>v', opts)
-keymap('n', '<Leader>s', '<C-w>s', opts)
+keymap('n', '<Leader>wv', '<C-w>v', opts)
+keymap('n', '<Leader>ws', '<C-w>s', opts)
 
 -- Switch windows.
 keymap('n', '<Leader>wk', "<Cmd>lua SwitchWindow('k')<CR>", opts)

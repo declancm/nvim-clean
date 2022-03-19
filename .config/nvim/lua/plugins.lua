@@ -32,9 +32,21 @@ return require('packer').startup(function(use)
     branch = 'coq',
     requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
   }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'saadparwaiz1/cmp_luasnip',
+      -- 'onsails/lspkind-nvim',
+      -- { 'tzachar/cmp-tabnine', run = './install.sh' },
+    },
+  }
   -- use 'tami5/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
-  -- use 'L3MON4D3/LuaSnip' -- snippets
+  use 'L3MON4D3/LuaSnip' -- snippets
 
   -- TELESCOPE:
 
@@ -107,6 +119,13 @@ return require('packer').startup(function(use)
   }
   use 'tpope/vim-obsession' -- sessions
   use 'tpope/vim-capslock' -- software capslock
+  -- use {
+  --   'tpope/vim-dadbod',
+  --   requires = {
+  --     'kristijanhusak/vim-dadbod-completion',
+  --     'kristijanhusak/vim-dadbod-ui',
+  --   },
+  -- }
 
   -- MY_PLUGINS:
 

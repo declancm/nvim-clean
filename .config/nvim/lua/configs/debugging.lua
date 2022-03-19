@@ -79,7 +79,7 @@ function OpenRepl(cmd)
       require('dap').repl.open({ width = width }, 'belowright vertical split')
     end
   else
-    local height = math.floor(winHeight / 4)
+    local height = math.floor(winHeight / 3)
     if cmd == 'toggle' then
       require('dap').repl.toggle({ height = height }, 'belowright split')
     else

@@ -4,41 +4,11 @@ local keymap = vim.api.nvim_set_keymap
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- COQ:
-
-vim.g.coq_settings = {
-  ['auto_start'] = 'shut-up',
-  ['keymap.recommended'] = false,
-  ['keymap.jump_to_mark'] = '<C-n>',
-  ['display.ghost_text.enabled'] = false,
-  ['display.preview.border'] = 'rounded',
-}
-
-vim.cmd [[
-inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
-inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
-inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
-inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
-
-" Arrow keys close the completion popup window.
-inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>"   : "\<Up>"
-inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
-]]
-
--- Automatically compile snippets when saving.
-autocmd('BufWritePost', {
-  command = 'COQsnips compile',
-  pattern = '*/coq-user-snippets/*.snip',
-  group = augroup('coq_custom_snippets', {}),
-})
-
 -- LSPCONFIG:
 
-local lsp_status, lsp = pcall(require, 'lspconfig')
+local lsp_status = pcall(require, 'lspconfig')
 if not lsp_status then
-  print "'lsp' executed with errors."
+  print "'lspconfig' executed with errors."
   return
 end
 
@@ -48,19 +18,18 @@ local on_attach = function(client, bufnr)
     autocmd('BufWritePre', {
       callback = function()
         vim.lsp.buf.formatting_sync()
-        vim.cmd 'retab'
       end,
       buffer = bufnr,
       group = augroup('lsp_format', { clear = false }),
     })
-    -- Add diagnostics to location list.
-    autocmd('BufEnter', 'InsertLeave', {
-      callback = function()
-        vim.diagnostic.setloclist { open = false }
-      end,
-      group = augroup('lsp_loclist', { clear = false }),
-    })
   end
+  -- Add diagnostics to location list.
+  autocmd({ 'BufEnter', 'InsertLeave' }, {
+    callback = function()
+      vim.diagnostic.setloclist { open = false }
+    end,
+    group = augroup('lsp_loclist', { clear = false }),
+  })
 end
 
 -- LSP dianostic keymaps:
@@ -68,8 +37,6 @@ keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
 keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 -- keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
--- TODO: Create an autocmd in the on_attach function to add diagnostics to loclist.
 
 -- LSP buffer keymaps:
 keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -119,34 +86,10 @@ coq:                Requires python3-venv:
 
 ]]
 
-local coq_status, coq = pcall(require, 'coq')
-if not coq_status then
-  print "'coq' executed with errors."
-  -- Setup diagnostics in init.lua if coq wasn't executed successfully.
-  lsp.sumneko_lua.setup {
-    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
-    on_attach = on_attach,
-  }
-  return
-end
+-- COMPLETION:
 
--- FIX: powershell_es doesn't give autocompletion, but gives diagnostics and formatting?!
-
-lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
-  bundle_path = vim.fn.expand '$HOME/lsp/PowerShellEditorServices',
-  on_attach = on_attach,
-})
-lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
-  settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
-  on_attach = on_attach,
-})
--- lsp.tsserver.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-lsp.vimls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+require('configs.completion').COQ_setup(on_attach)
+-- require('configs.completion').CMP_setup(on_attach)
 
 -- LSPCONFIG-UI:
 
@@ -206,13 +149,15 @@ null.setup {
     null.builtins.formatting.stylua,
   },
   on_attach = function(client, bufnr)
-    autocmd('BufWritePre', {
-      callback = function()
-        vim.lsp.buf.formatting_sync()
-        vim.cmd 'retab'
-      end,
-      buffer = bufnr,
-      group = augroup('lsp_format', { clear = false }),
-    })
+    if client.resolved_capabilities.document_formatting then
+      -- Format on save.
+      autocmd('BufWritePre', {
+        callback = function()
+          vim.lsp.buf.formatting_sync()
+        end,
+        buffer = bufnr,
+        group = augroup('lsp_format', { clear = false }),
+      })
+    end
   end,
 }
