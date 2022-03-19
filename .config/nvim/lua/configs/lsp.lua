@@ -63,7 +63,7 @@ vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
 
 -- COMPLETION:
 
-local completion = vim.g.completion
+local completion = vim.g.__selected_completion or 'cmp'
 
 if completion == 'cmp' then
   require('configs.completion').CMP_setup(on_attach)

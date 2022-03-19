@@ -1,5 +1,7 @@
 local M = {}
 
+-- COQ:
+
 function M.COQ_setup(on_attach)
   local lsp = require 'lspconfig'
 
@@ -61,6 +63,8 @@ inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
   -- lsp.tsserver.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.vimls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
 end
+
+-- CMP:
 
 function M.CMP_setup(on_attach)
   local lsp = require 'lspconfig'

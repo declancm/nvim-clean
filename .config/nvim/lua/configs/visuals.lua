@@ -1,6 +1,6 @@
 -- THEME:
 
-local theme = vim.g.theme
+local theme = vim.g.__selected_theme or 'gruvbox'
 
 vim.opt.background = 'dark'
 vim.opt.colorcolumn = '80'

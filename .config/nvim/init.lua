@@ -1,3 +1,15 @@
+-- THEME:
+local theme = 'gruvbox'
+-- local theme = 'onedark'
+-- local theme = 'tokyonight'
+
+-- COMPLETION:
+-- local completion = 'coq'
+local completion = 'cmp'
+
+vim.g.__selected_theme = theme
+vim.g.__selected_completion = completion
+
 -- Starting Python.
 vim.g.python3_host_prog = '/bin/python3'
 vim.g.python_host_prog = '/bin/python2'
@@ -6,15 +18,6 @@ vim.g.python_host_prog = '/bin/python2'
 vim.opt.syntax = 'on'
 vim.opt.termguicolors = true
 vim.cmd 'let mapleader = "\\<BS>"'
-
--- THEME:
-vim.g.theme = 'gruvbox'
--- vim.g.theme = 'onedark'
--- vim.g.theme = 'tokyonight'
-
--- COMPLETION:
--- vim.g.completion = 'coq'
-vim.g.completion = 'cmp'
 
 -- Autocommands.
 require 'configs.autocmds'
