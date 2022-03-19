@@ -39,8 +39,9 @@ dap.configurations.rust = dap.configurations.cpp
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
--- keymap('n', '<Leader>dc', "<Cmd>lua require('dap').continue()<CR>", opts)
+keymap('n', '<Leader>dc', "<Cmd>lua require('dap').continue()<CR>", opts)
 -- keymap('n', '<Leader>dq', "<Cmd>lua require('dap').terminate()<CR>", opts)
+keymap('n', '<Leader>drl', "<Cmd>lua require('dap').run_last()<CR>", opts)
 
 -- Breakpoints:
 keymap('n', '<Leader>db', "<Cmd>lua require('dap').toggle_breakpoint()<CR>", opts)
@@ -66,16 +67,37 @@ keymap('n', '<Leader>dk', "<Cmd>lua require('dap').step_back()<CR>", opts)
 keymap('n', '<Leader>dsi', "<Cmd>lua require('dap').step_into()<CR>", opts)
 keymap('n', '<Leader>dso', "<Cmd>lua require('dap').step_out()<CR>", opts)
 
+function OpenRepl(cmd)
+  cmd = cmd or 'open'
+  local winWidth = vim.api.nvim_win_get_width(0)
+  local winHeight = vim.api.nvim_win_get_height(0)
+  if winWidth >= 170 then
+    local width = math.floor(winWidth / 2)
+    if cmd == 'toggle' then
+      require('dap').repl.toggle({ width = width }, 'belowright vertical split')
+    else
+      require('dap').repl.open({ width = width }, 'belowright vertical split')
+    end
+  else
+    local height = math.floor(winHeight / 4)
+    if cmd == 'toggle' then
+      require('dap').repl.toggle({ height = height }, 'belowright split')
+    else
+      require('dap').repl.open({ height = height }, 'belowright split')
+    end
+  end
+end
+
 -- Repl:
-keymap('n', '<Leader>dd', "<Cmd>lua require('dap').repl.toggle({}, 'vertical split')<CR>", opts)
-keymap('n', '<Leader>dc', '', {
-  callback = function()
-    require('dap').continue()
-    require('dap').repl.open({}, 'vertical split')
-  end,
-  noremap = true,
-  silent = true,
-})
+keymap('n', '<Leader>dd', "<Cmd>lua OpenRepl('toggle')<CR>", opts)
+-- keymap('n', '<Leader>dc', '', {
+--   callback = function()
+--     require('dap').continue()
+--     OpenRepl()
+--   end,
+--   noremap = true,
+--   silent = true,
+-- })
 keymap('n', '<Leader>dq', '', {
   callback = function()
     require('dap').terminate()
@@ -85,14 +107,30 @@ keymap('n', '<Leader>dq', '', {
   silent = true,
 })
 
+require('dap').listeners.after.event_initialized['repl_open'] = function()
+  OpenRepl()
+end
+
 -- NVIM-DAP-VIRTUAL-TEXT:
 
 require('nvim-dap-virtual-text').setup()
 
 -- NVIM-DAP-UI:
 
-require('dapui').setup()
+require('dapui').setup {
+  floating = { borders = 'rounded' },
+}
 
 keymap('n', '<Leader>du', "<Cmd>lua require('dapui').toggle()<CR>", opts)
 -- keymap('n', '<Leader>dc', "<Cmd>lua require('dap').continue()<CR><Cmd>lua require('dapui').open()<CR>", opts)
 -- keymap('n', '<Leader>dq', "<Cmd>lua require('dap').terminate()<CR><Cmd>lua require('dapui').close()<CR>", opts)
+
+-- require('dap').listeners.after.event_initialized['dapui_config'] = function()
+--   require('dapui').open()
+-- end
+-- require('dap').listeners.before.event_terminated['dapui_config'] = function()
+--   require('dapui').close()
+-- end
+-- require('dap').listeners.before.event_exited['dapui_config'] = function()
+--   require('dapui').close()
+-- end

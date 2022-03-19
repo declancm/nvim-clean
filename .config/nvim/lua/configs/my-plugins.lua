@@ -16,13 +16,8 @@ local keymap = vim.api.nvim_set_keymap
 -- require('cinnamon').setup {
 --   default_keymaps = false,
 --   extra_keymaps = true,
+--   centered = false,
 -- }
-
-vim.g.cinnamon_centered = 1
-
--- vim.g.cinnamon_no_defaults = 1
-
--- vim.g.cinnamon_extras = 1
 
 -- keymap('n', 'gg', "<Cmd>lua Cinnamon.Scroll('gg', 0, 1, 3)<CR>", opts)
 -- keymap('n', 'G', "<Cmd>lua Cinnamon.Scroll('G', 0, 1, 3)<CR>", opts)

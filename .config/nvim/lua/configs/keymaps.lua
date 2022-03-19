@@ -125,15 +125,23 @@ keymap('n', '<M-d>', '"*d', opts)
 keymap('n', '<M-D>', '"*d', opts)
 keymap('v', '<M-d>', '"*d', opts)
 
--- QUICKFIX-LIST:
+-- LISTS:
 
 -- NOTE: Use the quickfix list with ':vimgrep'.
 
+-- Quickfix-list:
 keymap('n', '<Leader>qq', '<Cmd>cwindow<CR>', opts)
 keymap('n', '<Leader>qn', '<Cmd>cnext<CR>', opts)
 keymap('n', '<Leader>qp', '<Cmd>cprevious<CR>', opts)
 keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
 keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
+
+-- Location-list:
+keymap('n', '<Leader>lq', '<Cmd>lwindow<CR>', opts)
+keymap('n', '<Leader>ln', '<Cmd>lnext<CR>', opts)
+keymap('n', '<Leader>lp', '<Cmd>lprevious<CR>', opts)
+keymap('n', '<Leader>la', '<Cmd>lafter<CR>', opts)
+keymap('n', '<Leader>lb', '<Cmd>lbefore<CR>', opts)
 
 -- WINDOWS:
 
@@ -158,17 +166,17 @@ keymap('n', '<Leader>;', '', {
 
 -- Creating windows.
 keymap('n', '<Leader>v', '<C-w>v', opts)
-keymap('n', '<Leader>nv', '<C-w>s', opts)
+keymap('n', '<Leader>s', '<C-w>s', opts)
 
 -- Switch windows.
-keymap('n', '<Leader>k', '<Cmd>wincmd k<CR>', opts)
-keymap('n', '<Leader>j', '<Cmd>wincmd j<CR>', opts)
-keymap('n', '<Leader>h', '<Cmd>wincmd h<CR>', opts)
-keymap('n', '<Leader>l', '<Cmd>wincmd l<CR>', opts)
-keymap('n', '<Leader><Up>', '<Cmd>wincmd k<CR>', opts)
-keymap('n', '<Leader><Down>', '<Cmd>wincmd j<CR>', opts)
-keymap('n', '<Leader><Left>', '<Cmd>wincmd h<CR>', opts)
-keymap('n', '<Leader><Right>', '<Cmd>wincmd l<CR>', opts)
+keymap('n', '<Leader>wk', "<Cmd>lua SwitchWindow('k')<CR>", opts)
+keymap('n', '<Leader>wj', "<Cmd>lua SwitchWindow('j')<CR>", opts)
+keymap('n', '<Leader>wh', "<Cmd>lua SwitchWindow('h')<CR>", opts)
+keymap('n', '<Leader>wl', "<Cmd>lua SwitchWindow('l')<CR>", opts)
+keymap('n', '<Leader>w<Up>', "<Cmd>lua SwitchWindow('k')<CR>", opts)
+keymap('n', '<Leader>w<Down>', "<Cmd>lua SwitchWindow('j')<CR>", opts)
+keymap('n', '<Leader>w<Left>', "<Cmd>lua SwitchWindow('h')<CR>", opts)
+keymap('n', '<Leader>w<Right>', "<Cmd>lua SwitchWindow('l')<CR>", opts)
 
 -- Resize windows.
 keymap('n', '<S-Up>', '<Cmd>resize +5<CR>', opts)

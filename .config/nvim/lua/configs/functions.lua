@@ -154,6 +154,28 @@ function CloseOtherWindow(direction)
     return
   end
   vim.cmd 'exit'
+  -- vim.cmd [[exec (&modifiable && &modified) ? 'wq' : 'q']]
+end
+
+-- SWITCH_WINDOW:
+
+-- Move between nvim windows and tmux panes.
+
+function SwitchWindow(direction)
+  local win1 = vim.fn.winnr()
+  vim.cmd('wincmd ' .. direction)
+  local win2 = vim.fn.winnr()
+  if win1 == win2 then
+    if direction == 'k' then
+      os.execute 'tmux select-pane -U > /dev/null 2>&1'
+    elseif direction == 'j' then
+      os.execute 'tmux select-pane -D > /dev/null 2>&1'
+    elseif direction == 'h' then
+      os.execute 'tmux select-pane -L > /dev/null 2>&1'
+    elseif direction == 'l' then
+      os.execute 'tmux select-pane -R > /dev/null 2>&1'
+    end
+  end
 end
 
 -- SEARCH:
@@ -241,24 +263,6 @@ function SetJump()
   end
 end
 
-autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', {}) })
-autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', {}) })
-autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', {}) })
-
--- CLANG_FORMAT:
-
--- vim.cmd [[
--- function! ClangFormat()
---   let l:savedView = winsaveview()
---   let l:file = fnamemodify(bufname(), ":p")
---   silent exec "!clang-format -i -style=file " . l:file
---   silent exec "e"
---   call winrestview(l:savedView)
--- endfunction
--- ]]
-
--- autocmd('BufWritePost', {
---   command = 'call ClangFormat()',
---   pattern = { '*.h', '*.hpp', '*.c', '*.cpp' },
---   group = augroup('clang_format', {}),
--- })
+autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', { clear = false }) })
+autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', { clear = false }) })
+autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', { clear = false }) })

@@ -61,7 +61,7 @@ vim.opt.mouse = 'a'
 vim.opt.path = vim.opt.path + '**'
 vim.opt.textwidth = 80
 vim.opt.pastetoggle = '<F9>'
-vim.opt.laststatus = 3
+-- vim.opt.laststatus = 3 -- Use one status line for all windows.
 
 -- NOTE: Unmapping the arrow keys for practice.
 -- local keymap = vim.api.nvim_set_keymap

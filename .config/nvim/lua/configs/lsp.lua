@@ -53,6 +53,13 @@ local on_attach = function(client, bufnr)
       buffer = bufnr,
       group = augroup('lsp_format', { clear = false }),
     })
+    -- Add diagnostics to location list.
+    autocmd('BufEnter', 'InsertLeave', {
+      callback = function()
+        vim.diagnostic.setloclist { open = false }
+      end,
+      group = augroup('lsp_loclist', { clear = false }),
+    })
   end
 end
 
@@ -62,7 +69,7 @@ keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 -- keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
--- TODO: Create an autocmd to add diagnostics to loclist.
+-- TODO: Create an autocmd in the on_attach function to add diagnostics to loclist.
 
 -- LSP buffer keymaps:
 keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -74,9 +81,9 @@ keymap('n', 'H', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 keymap('n', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
 keymap('n', '<Leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+-- keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+-- keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+-- keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 -- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 -- Go to definition in split window:
@@ -198,5 +205,14 @@ null.setup {
     null.builtins.formatting.prettier,
     null.builtins.formatting.stylua,
   },
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    autocmd('BufWritePre', {
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+        vim.cmd 'retab'
+      end,
+      buffer = bufnr,
+      group = augroup('lsp_format', { clear = false }),
+    })
+  end,
 }
