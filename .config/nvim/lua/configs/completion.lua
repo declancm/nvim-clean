@@ -2,7 +2,20 @@ local M = {}
 
 function M.CMP_setup(on_attach)
   local lsp = require 'lspconfig'
-  local cmp = require 'cmp'
+
+  local lspkind_status, lspkind = pcall(require, 'lspkind')
+  if not lspkind_status then
+    print "'lspkind' executed with errors."
+    return
+  end
+
+  lspkind.init()
+
+  local cmp_status, cmp = pcall(require, 'cmp')
+  if not cmp_status then
+    print "'cmp' executed with errors."
+    return
+  end
 
   cmp.setup {
     snippet = {
@@ -11,8 +24,20 @@ function M.CMP_setup(on_attach)
       end,
     },
     mapping = {
-      ['<Tab>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-      ['<S-Tab>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+      ['<S-Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
       ['<Down>'] = cmp.config.disable,
       ['<Up>'] = cmp.config.disable,
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -25,32 +50,29 @@ function M.CMP_setup(on_attach)
       },
       ['<CR>'] = cmp.mapping.confirm(),
     },
-    sources = cmp.config.sources({
+    sources = {
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
+      { name = 'path' },
       { name = 'luasnip' },
-    }, {
-      { name = 'buffer' },
-    }),
-  }
-
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
+      -- { name = 'buffer', keyword_length = 5 },
       { name = 'buffer' },
     },
-  })
+    formatting = {
+      format = lspkind.cmp_format {
+        with_text = true,
+        menu = {
+          buffer = '[buf]',
+          nvim_lsp = '[LSP]',
+          nvim_lua = '[api]',
+          path = '[path]',
+          luasnip = '[snip]',
+          -- tn = '[TabNine]',
+        },
+      },
+    },
+  }
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-      { name = 'path' },
-    }, {
-      { name = 'cmdline' },
-    }),
-  })
-
-  -- Setup lspconfig
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }

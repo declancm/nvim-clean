@@ -88,8 +88,8 @@ coq:                Requires python3-venv:
 
 -- COMPLETION:
 
-require('configs.completion').COQ_setup(on_attach)
--- require('configs.completion').CMP_setup(on_attach)
+-- require('configs.completion').COQ_setup(on_attach)
+require('configs.completion').CMP_setup(on_attach)
 
 -- LSPCONFIG-UI:
 
