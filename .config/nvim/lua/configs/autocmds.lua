@@ -30,7 +30,8 @@ autocmd('BufWritePre', {
 -- Setting options.
 autocmd({ 'FileType', 'BufWritePost' }, {
   callback = function()
-    vim.cmd 'set fo-=ro'
+    vim.cmd 'set fo-=cro'
+    -- vim.cmd 'set fo-=ro' -- Comments automatically wrap at 80 characters.
     local fts = { 'html', 'javascript', 'json', 'lua', 'markdown', 'ps1' }
     local size = 4
     for _, value in ipairs(fts) do

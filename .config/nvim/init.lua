@@ -7,6 +7,15 @@ vim.opt.syntax = 'on'
 vim.opt.termguicolors = true
 vim.cmd 'let mapleader = "\\<BS>"'
 
+-- THEME:
+vim.g.theme = 'gruvbox'
+-- vim.g.theme = 'onedark'
+-- vim.g.theme = 'tokyonight'
+
+-- COMPLETION:
+-- vim.g.completion = 'coq'
+vim.g.completion = 'cmp'
+
 -- Autocommands.
 require 'configs.autocmds'
 

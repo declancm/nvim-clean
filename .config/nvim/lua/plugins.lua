@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
+      'andersevenrud/cmp-tmux',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },

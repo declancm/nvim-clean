@@ -1,23 +1,19 @@
 -- THEME:
 
--- local theme = 'tokyonight'
--- local theme = 'onedark'
-local theme = 'gruvbox'
+local theme = vim.g.theme
 
 vim.opt.background = 'dark'
 vim.opt.colorcolumn = '80'
 
--- TOKYONIGHT:
+-- GRUVBOX:
 
-if theme == 'tokyonight' then
-  vim.g.tokyonight_style = 'storm'
-  vim.g.tokyonight_transparent = true
-  vim.g.tokyonight_transparent_sidebar = true
-  -- vim.g.tokyonight_italic_comments = false
-  vim.g.tokyonight_colors = { bg_float = 'NONE' }
-  vim.cmd [[colorscheme tokyonight]]
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#1f2335]]
-  vim.cmd [[highlight LineNr guifg=#3D59A1]]
+if theme == 'gruvbox' then
+  vim.g.gruvbox_baby_transparent_mode = 1
+  -- vim.g.gruvbox_baby_comment_style = 'NONE'
+  vim.cmd [[colorscheme gruvbox-baby]]
+  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#3c3836]]
+  vim.cmd [[highlight LineNr guifg=#458588]]
+  vim.cmd [[highlight Pmenu ctermbg=0 guibg=#3c3836]]
 end
 
 -- ONEDARK:
@@ -38,15 +34,17 @@ if theme == 'onedark' then
   vim.cmd [[highlight LineNr guifg=#61AFEF]]
 end
 
--- GRUVBOX:
+-- TOKYONIGHT:
 
-if theme == 'gruvbox' then
-  vim.g.gruvbox_baby_transparent_mode = 1
-  -- vim.g.gruvbox_baby_comment_style = 'NONE'
-  vim.cmd [[colorscheme gruvbox-baby]]
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#3c3836]]
-  vim.cmd [[highlight LineNr guifg=#458588]]
-  vim.cmd [[highlight Pmenu ctermbg=0 guibg=#3c3836]]
+if theme == 'tokyonight' then
+  vim.g.tokyonight_style = 'storm'
+  vim.g.tokyonight_transparent = true
+  vim.g.tokyonight_transparent_sidebar = true
+  -- vim.g.tokyonight_italic_comments = false
+  vim.g.tokyonight_colors = { bg_float = 'NONE' }
+  vim.cmd [[colorscheme tokyonight]]
+  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#1f2335]]
+  vim.cmd [[highlight LineNr guifg=#3D59A1]]
 end
 
 -- Highlight the line number.
@@ -56,10 +54,6 @@ vim.opt.cursorlineopt = 'number'
 
 -- Transparent popup menus.
 -- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
-
--- End-of-line character.
--- vim.opt.list = true
--- vim.opt.listchars:append 'eol:↴'
 
 -- LUALINE:
 
