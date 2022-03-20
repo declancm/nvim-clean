@@ -1,5 +1,3 @@
--- NOTE: Go to the bottom of the file to see Ubuntu installation instructions.
-
 local theme, completion
 
 -- THEME:
@@ -8,8 +6,8 @@ theme = 'gruvbox'
 -- theme = 'tokyonight'
 
 -- COMPLETION:
--- completion = 'coq' -- faster completion
-completion = 'cmp' -- lots of good sources
+-- completion = 'coq' -- Faster completion. Requires 'python3-venv'.
+completion = 'cmp' -- Lots of good sources.
 
 vim.g.__selected_theme = theme
 vim.g.__selected_completion = completion
@@ -43,9 +41,13 @@ require 'setup.options'
 
 --[[
 
+These installation instructions are for Ubuntu.
+
 -----------------
 -- LSP SERVERS --
 -----------------
+
+You only need to install the language servers you want.
 
 INSTALLATION:
 
@@ -67,25 +69,19 @@ NOTES:
 
 clangd              To use clangd for a cpp project, add this to the CMakeLists.txt:
                     set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
-coq                 Requires python3-venv:
-                    sudo apt install -y python3-venv
 
 -------------
 -- NULL-LS --
 -------------
 
+You only need to install the sources you want.
+
+INSTALLATION:
+
 black               pip3 install black
 prettier            npm install --save-dev --save-exact prettier
 stylua              cargo install stylua
                     (Make sure '~/.cargo/bin' is added to path)
-
-----------------
--- TREESITTER --
-----------------
-
-INSTALLATION:
-
-treesitter          npm install treesitter
 
 ---------------
 -- TELESCOPE --
@@ -100,5 +96,13 @@ NOTES:
 
 zoxide              Add to your .bashrc (or .zshrc etc.):
                     eval "$(zoxide init bash)"
+
+----------------
+-- TREESITTER --
+----------------
+
+INSTALLATION:
+
+treesitter          npm install treesitter
 
 ]]

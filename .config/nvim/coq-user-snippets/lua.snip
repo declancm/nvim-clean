@@ -1,2 +1,11 @@
 snippet debug
-  print(vim.inspect{ ${0:var} })
+alias db
+    print(vim.inspect{ ${0:var} })
+
+snippet protected_call
+alias pc
+    local ${0:module}_status, ${0:module} = pcall(require, "${1:module}")
+    if not ${0:module}_status then
+        ${2:body}
+        return
+    end
