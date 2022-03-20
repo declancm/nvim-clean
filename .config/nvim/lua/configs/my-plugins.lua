@@ -1,14 +1,14 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 -- VIM2VSCODE:
 
 -- GIT-SCRIPTS:
 
 -- require('git-scripts').setup {
---   default_keymaps = false,
---   commit_on_save = true,
---   warnings = false,
+-- default_keymaps = false,
+-- commit_on_save = true,
+-- warnings = false,
 -- }
 
 -- CINNAMON-SCROLL:
@@ -20,7 +20,5 @@ local keymap = vim.api.nvim_set_keymap
 --   scroll_limit = 50,
 -- }
 
--- keymap('n', 'gg', "<Cmd>lua Cinnamon.Scroll('gg', 0, 0, 3)<CR>", opts)
--- keymap('n', 'G', "<Cmd>lua Cinnamon.Scroll('G', 0, 1, 3)<CR>", opts)
--- keymap('x', 'gg', "<Cmd>lua Cinnamon.Scroll('gg', 0, 0, 3)<CR>", opts)
--- keymap('x', 'G', "<Cmd>lua Cinnamon.Scroll('G', 0, 1, 3)<CR>", opts)
+-- keymap({ 'n', 'x' }, 'gg', "<Cmd>lua Cinnamon.Scroll('gg', 0, 0, 3)<CR>", opts)
+-- keymap({ 'n', 'x' }, 'G', "<Cmd>lua Cinnamon.Scroll('G', 0, 1, 3)<CR>", opts)

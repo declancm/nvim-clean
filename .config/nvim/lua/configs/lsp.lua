@@ -1,7 +1,7 @@
 -- NOTE: Information on how to install the servers is at the bottom of the file.
 
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup

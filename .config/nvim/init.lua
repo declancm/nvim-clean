@@ -6,8 +6,8 @@ theme = 'gruvbox'
 -- theme = 'tokyonight'
 
 -- COMPLETION:
--- completion = 'coq'
-completion = 'cmp'
+-- completion = 'coq' -- faster completion
+completion = 'cmp' -- lots of sources
 
 vim.g.__selected_theme = theme
 vim.g.__selected_completion = completion
@@ -32,8 +32,8 @@ require 'configs.lsp'
 require 'configs.telescope'
 require 'configs.treesitter'
 require 'configs.debugging'
-require 'configs.comments'
 require 'configs.visuals'
+require 'configs.comments'
 require 'configs.movements'
 require 'configs.misc'
 require 'configs.my-plugins'
@@ -79,12 +79,12 @@ vim.opt.pastetoggle = '<F9>'
 -- vim.opt.laststatus = 3 -- Use one status line for all windows.
 
 -- NOTE: Unmapping the arrow keys for practice.
--- local keymap = vim.api.nvim_set_keymap
--- keymap('', '<Up>', '', { noremap = true })
--- keymap('', '<Down>', '', { noremap = true })
--- keymap('', '<Left>', '', { noremap = true })
--- keymap('', '<Right>', '', { noremap = true })
--- keymap('i', '<Up>', '', { noremap = true })
--- keymap('i', '<Down>', '', { noremap = true })
--- keymap('i', '<Left>', '', { noremap = true })
--- keymap('i', '<Right>', '', { noremap = true })
+-- local keymap = vim.keymap.set
+-- keymap('', '<Up>', '', {})
+-- keymap('', '<Down>', '', {})
+-- keymap('', '<Left>', '', {})
+-- keymap('', '<Right>', '', {})
+-- keymap('i', '<Up>', '', {})
+-- keymap('i', '<Down>', '', {})
+-- keymap('i', '<Left>', '', {})
+-- keymap('i', '<Right>', '', {})

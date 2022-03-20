@@ -1,5 +1,5 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 local bufmap = vim.api.nvim_buf_set_keymap
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -10,6 +10,11 @@ local augroup = vim.api.nvim_create_augroup
 keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>', opts)
 -- u is undo
 -- <C-R> is redo
+
+-- BULLETS:
+
+vim.g.bullets_enabled_file_types = { 'markdown', 'text' }
+vim.g.bullets_enable_in_empty_buffers = 0
 
 -- CHADTREE:
 

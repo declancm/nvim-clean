@@ -1,7 +1,21 @@
-# my neovim lua config
+# 🧼 Clean Neovim Config 🧼
 
-This is my neovim lua config which is full of custom keymaps, custom functions,\
-and custom configurations for plugins (including lspconfig and telescope).
+This is my neovim lua config which is full of custom keymaps, some heat 🔥
+custom functions, and custom configurations for plugins.
+
+Comes with three themes and two completion sources to choose between.
+
+Some of the plugins with configs:
+* chadtree
+* coq_nvim
+* indent-blankline.nvim
+* lspconfig
+* lualine
+* null-ls
+* nvim-cmp
+* nvim-dap
+* nvim-treesitter
+* telescope
 
 ## Installation
 

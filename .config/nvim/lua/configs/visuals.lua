@@ -142,8 +142,8 @@ todo.setup {
   -- signs = false,
 }
 
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 keymap('n', '<Leader>tdt', '<Cmd>TodoTrouble<CR>', opts)
 keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>', opts)

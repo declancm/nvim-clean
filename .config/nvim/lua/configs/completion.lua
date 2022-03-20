@@ -82,6 +82,24 @@ function M.CMP_setup(on_attach)
     return
   end
 
+  local luasnip_status, luasnip = pcall(require, 'luasnip')
+  if not luasnip_status then
+    print "'luasnip' executed with errors."
+    return
+  end
+
+  luasnip.config.set_config {
+    history = true,
+    updateevents = 'TextChanged,TextChangedI',
+    ext_opts = {
+      [require('luasnip.util.types').choiceNode] = {
+        active = {
+          virt_text = { { '←', 'Error' } },
+        },
+      },
+    },
+  }
+
   lspkind.init()
 
   cmp.setup {
@@ -141,6 +159,15 @@ function M.CMP_setup(on_attach)
       },
     },
   }
+
+  local autocmd = vim.api.nvim_create_autocmd
+  local augroup = vim.api.nvim_create_augroup
+
+  autocmd('FileType', {
+    command = "lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })",
+    pattern = 'sql, mysql, plsql',
+    group = augroup('cmp_dadbod', {}),
+  })
 
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 

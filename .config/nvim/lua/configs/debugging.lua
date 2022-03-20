@@ -36,8 +36,8 @@ dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
 -- KEYMAPS:
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 keymap('n', '<Leader>dc', "<Cmd>lua require('dap').continue()<CR>", opts)
 -- keymap('n', '<Leader>dq', "<Cmd>lua require('dap').terminate()<CR>", opts)
@@ -45,16 +45,12 @@ keymap('n', '<Leader>drl', "<Cmd>lua require('dap').run_last()<CR>", opts)
 
 -- Breakpoints:
 keymap('n', '<Leader>db', "<Cmd>lua require('dap').toggle_breakpoint()<CR>", opts)
-keymap('n', '<Leader>dB', '', {
-  callback = function()
-    local condition = vim.fn.input 'Condition: '
-    local hit = vim.fn.input 'Hit Condition: '
-    local log = vim.fn.input 'Log Message: '
-    require('dap').toggle_breakpoint(condition, hit, log)
-  end,
-  noremap = true,
-  silent = true,
-})
+keymap('n', '<Leader>dB', function()
+  local condition = vim.fn.input 'Condition: '
+  local hit = vim.fn.input 'Hit Condition: '
+  local log = vim.fn.input 'Log Message: '
+  require('dap').toggle_breakpoint(condition, hit, log)
+end, opts)
 keymap('n', '<Leader>drb', "<Cmd>lua require('dap').clear_breakpoints()<CR>", opts)
 keymap('n', '<Leader>dlb', "<Cmd>lua require('dap').list_breakpoints()<CR>", opts)
 keymap('n', '<Leader>dtc', "<Cmd>lua require('dap').run_to_cursor()<CR>", opts)
@@ -90,22 +86,14 @@ end
 
 -- Repl:
 keymap('n', '<Leader>dd', "<Cmd>lua OpenRepl('toggle')<CR>", opts)
--- keymap('n', '<Leader>dc', '', {
---   callback = function()
---     require('dap').continue()
---     OpenRepl()
---   end,
---   noremap = true,
---   silent = true,
--- })
-keymap('n', '<Leader>dq', '', {
-  callback = function()
-    require('dap').terminate()
-    require('dap').repl.close()
-  end,
-  noremap = true,
-  silent = true,
-})
+-- keymap('n', '<Leader>dc', function()
+--   require('dap').continue()
+--   OpenRepl()
+-- end, opts)
+keymap('n', '<Leader>dq', function()
+  require('dap').terminate()
+  require('dap').repl.close()
+end, opts)
 
 require('dap').listeners.after.event_initialized['repl_open'] = function()
   OpenRepl()

@@ -1,5 +1,5 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 -- Source config file.
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
@@ -20,16 +20,16 @@ keymap('', '<Leader>iu', "<Cmd>lua FindSameIndent('Up')<CR>", opts)
 keymap('', '<Leader>id', "<Cmd>lua FindSameIndent('Down')<CR>", opts)
 
 -- Moving text.
-keymap('v', '<C-k>', ":m '<-2<CR>gv=gv", opts)
-keymap('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
+keymap('x', '<C-k>', ":m '<-2<CR>gv=gv", opts)
+keymap('x', '<C-j>', ":m '>+1<CR>gv=gv", opts)
 keymap('i', '<C-k>', '<Esc>:m .-2<CR>==a', opts)
 keymap('i', '<C-j>', '<Esc>:m .+1<CR>==a', opts)
 keymap('n', '<C-k>', ':m .-2<CR>==', opts)
 keymap('n', '<C-j>', ':m .+1<CR>==', opts)
 
 -- Moving text with arrows.
-keymap('v', '<C-Up>', ":m '<-2<CR>gv=gv", opts)
-keymap('v', '<C-Down>', ":m '>+1<CR>gv=gv", opts)
+keymap('x', '<C-Up>', ":m '<-2<CR>gv=gv", opts)
+keymap('x', '<C-Down>', ":m '>+1<CR>gv=gv", opts)
 keymap('i', '<C-Up>', '<Esc>:m .-2<CR>==a', opts)
 keymap('i', '<C-Down>', '<Esc>:m .+1<CR>==a', opts)
 keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
@@ -53,13 +53,13 @@ keymap('i', '!', '!<C-g>u', opts)
 keymap('i', '?', '?<C-g>u', opts)
 
 -- Highlight after indenting.
-keymap('v', '>', '>gv', opts)
-keymap('v', '<', '<gv', opts)
+keymap('x', '>', '>gv', opts)
+keymap('x', '<', '<gv', opts)
 
 -- Delete the start of the word.
 keymap('i', '<C-H>', '<Cmd>lua DeleteStartWord("w")<CR>', opts)
 keymap('i', '<M-BS>', '<Cmd>lua DeleteStartWord("W")<CR>', opts)
-keymap('c', '<C-H>', '<C-w>', { noremap = true })
+keymap('c', '<C-H>', '<C-w>', {})
 
 -- Delete the end of the word.
 keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("w")<CR>', opts)
@@ -74,8 +74,7 @@ keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 
 -- Toggle the native terminal.
 keymap('t', '<C-n>', '<C-Bslash><C-N>', opts)
-keymap('n', '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
-keymap('t', '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
+keymap({ 'n', 't' }, '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
 
 -- Open lazygit:
 keymap('n', '<C-g>', "<Cmd>lua TerminalToggle('lazygit')<CR>", opts)
@@ -86,11 +85,9 @@ keymap('n', '<C-g>', "<Cmd>lua TerminalToggle('lazygit')<CR>", opts)
 keymap('n', 'Y', '"*yg_', opts)
 
 -- Yank to global clipboard.
-keymap('n', 'y', '"*y', opts)
-keymap('v', 'y', '"*y', opts)
+keymap({ 'n', 'x' }, 'y', '"*y', opts)
 
--- Yank to the default register.
--- Append to the '*' register using the same type as the '*' register.
+-- Yank and append to the '*' register using the same type as the '*' register.
 keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
 keymap('x', '<Leader>y', "\"0y<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>", opts)
 
@@ -106,24 +103,19 @@ keymap('n', 'gp', '<Cmd>lua GlobalPaste("gp")<CR>', opts)
 keymap('n', 'gP', '<Cmd>lua GlobalPaste("gP")<CR>', opts)
 
 -- Paste from the global register '*' and enter insert mode at the end.
-keymap('n', '<M-p>', '<Cmd>lua GlobalPaste("p")<CR>a', opts)
-keymap('n', '<M-P>', '<Cmd>lua GlobalPaste("P")<CR>a', opts)
-keymap('i', '<M-p>', '<Esc><Cmd>lua GlobalPaste("p")<CR>a', opts)
-keymap('i', '<M-P>', '<Esc><Cmd>lua GlobalPaste("P")<CR>a', opts)
+keymap({ 'i', 'n' }, '<M-p>', '<Cmd>lua GlobalPaste("p")<CR>a', opts)
+keymap({ 'i', 'n' }, '<M-P>', '<Cmd>lua GlobalPaste("P")<CR>a', opts)
 
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x', opts)
-keymap('n', 'd', '"_d', opts)
+keymap({ 'n', 'x' }, 'd', '"_d', opts)
 keymap('n', 'D', '"_D', opts)
-keymap('v', 'd', '"_d', opts)
-keymap('n', 'c', '"_c', opts)
+keymap({ 'n', 'x' }, 'c', '"_c', opts)
 keymap('n', 'C', '"_C', opts)
-keymap('v', 'c', '"_c', opts)
 
 -- Cut is now Leader d.
-keymap('n', '<M-d>', '"*d', opts)
+keymap({ 'n', 'x' }, '<M-d>', '"*d', opts)
 keymap('n', '<M-D>', '"*d', opts)
-keymap('v', '<M-d>', '"*d', opts)
 
 -- LISTS:
 
@@ -146,23 +138,18 @@ keymap('n', '<Leader>lb', '<Cmd>lbefore<CR>', opts)
 -- WINDOWS:
 
 -- Toggle maximizing the current window.
-keymap('n', '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
-keymap('x', '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
+keymap({ 'n', 'x' }, '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
 
 -- Switch to previous vim window.
 -- If no previous vim window exists, switch to last tmux pane.
-keymap('n', '<Leader>;', '', {
-  callback = function()
-    local win1 = vim.fn.winnr()
-    vim.cmd 'wincmd p'
-    local win2 = vim.fn.winnr()
-    if win1 == win2 then
-      os.execute 'tmux select-pane -l > /dev/null 2>&1'
-    end
-  end,
-  noremap = true,
-  silent = true,
-})
+keymap('n', '<Leader>;', function()
+  local win1 = vim.fn.winnr()
+  vim.cmd 'wincmd p'
+  local win2 = vim.fn.winnr()
+  if win1 == win2 then
+    os.execute 'tmux select-pane -l > /dev/null 2>&1'
+  end
+end, { silent = true })
 
 -- Creating windows.
 keymap('n', '<Leader>wv', '<C-w>v', opts)

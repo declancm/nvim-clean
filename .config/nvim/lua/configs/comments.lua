@@ -1,5 +1,5 @@
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 -- COMMENT:
 
@@ -31,8 +31,7 @@ comment.setup {
 -- local comment_ft = require 'Comment.ft'
 -- comment_ft.set('lua', { '--%s', '--[[%s]]' })
 
-keymap('i', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
-keymap('n', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
+keymap({ 'i', 'n' }, '<C-_>', '<Cmd>lua SavePosComment()<CR>', opts)
 
 function SavePosComment()
   local column = vim.fn.getcurpos()[3]
@@ -40,7 +39,7 @@ function SavePosComment()
   require('Comment.api').toggle_current_linewise()
   local lengthAfter = vim.fn.strdisplaywidth(vim.fn.getline '.')
   if column > vim.fn.indent '.' then
-    vim.fn.cursor(vim.fn.line '.', column + lengthAfter - lengthBefore)
+    vim.fn.cursor(vim.fn.line '.', column + (lengthAfter - lengthBefore))
   end
 end
 

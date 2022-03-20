@@ -72,8 +72,8 @@ telescope.load_extension 'refactoring'
 
 -- KEYMAPS:
 
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local opts = { silent = true }
+local keymap = vim.keymap.set
 
 -- File pickers.
 keymap('n', '<Leader>ff', "<Cmd>lua require('telescope.builtin').find_files()<CR>", opts)

@@ -51,13 +51,6 @@ return require('packer').startup(function(use)
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },
     },
   }
-  use {
-    'kristijanhusak/vim-dadbod-completion',
-    requires = {
-      'tpope/vim-dadbod',
-      'kristijanhusak/vim-dadbod-ui',
-    },
-  }
 
   -- TELESCOPE:
 
@@ -88,10 +81,19 @@ return require('packer').startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'
   use 'rcarriga/nvim-dap-ui' -- debugging ui
 
-  -- COMMENTS:
+  -- LANGUAGE_SPECIFIC:
 
-  use 'numToStr/Comment.nvim' -- comments
-  -- use 'b3nj5m1n/kommentary' -- comments
+  use {
+    'tpope/vim-dadbod', -- database interaction
+    requires = {
+      'kristijanhusak/vim-dadbod-completion',
+      'kristijanhusak/vim-dadbod-ui',
+    },
+  }
+  use {
+    'iamcco/markdown-preview.nvim', -- preview markdown in browser
+    run = 'cd app && yarn install',
+  }
 
   -- VISUALS:
 
@@ -106,6 +108,11 @@ return require('packer').startup(function(use)
   use 'folke/todo-comments.nvim' -- better todo comments
   use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
   use 'lukas-reineke/indent-blankline.nvim' -- indent guides
+
+  -- COMMENTS:
+
+  use 'numToStr/Comment.nvim' -- comments
+  -- use 'b3nj5m1n/kommentary' -- comments
 
   -- MOVEMENTS:
 
@@ -123,10 +130,6 @@ return require('packer').startup(function(use)
     'ms-jpq/chadtree', -- filetree
     branch = 'chad',
     run = 'python3 -m chadtree deps',
-  }
-  use {
-    'iamcco/markdown-preview.nvim', -- preview markdown in browser
-    run = 'cd app && yarn install',
   }
   use {
     'tpope/vim-fugitive', -- Git
