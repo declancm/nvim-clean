@@ -35,7 +35,7 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
--- KEYMAPS:
+-- Keymaps:
 local opts = { silent = true }
 local keymap = vim.keymap.set
 

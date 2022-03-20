@@ -42,32 +42,5 @@ require 'configs.my-plugins'
 require 'configs.functions'
 require 'configs.keymaps'
 
--- OPTIONS:
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath 'config' .. '/undodir'
-vim.opt.undofile = true
-vim.opt.relativenumber = true
-vim.opt.number = true
-vim.opt.showmode = true
-vim.opt.cmdheight = 2
-vim.opt.incsearch = true
-vim.opt.hlsearch = false
-vim.opt.smartcase = true
-vim.opt.wrap = false
-vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.cindent = true
-vim.opt.scrolloff = 8
-vim.opt.iskeyword = vim.opt.iskeyword - '_'
-vim.opt.backspace = { 'indent', 'eol', 'start', 'nostop' }
-vim.opt.updatetime = 100
-vim.opt.shortmess = vim.opt.shortmess + 'ac'
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.timeoutlen = 500
-vim.opt.mouse = 'a'
-vim.opt.path = vim.opt.path + '**'
-vim.opt.textwidth = 80
-vim.opt.pastetoggle = '<F9>'
--- vim.opt.laststatus = 3 -- Use one status line for all windows.
+-- Options.
+require 'options'
