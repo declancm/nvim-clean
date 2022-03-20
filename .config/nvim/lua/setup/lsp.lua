@@ -64,9 +64,9 @@ vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
 local completion = vim.g.__selected_completion or 'cmp'
 
 if completion == 'cmp' then
-  require('configs.completion').CMP_setup(on_attach)
+  require('setup.completion').CMP_setup(on_attach)
 elseif completion == 'coq' then
-  require('configs.completion').COQ_setup(on_attach)
+  require('setup.completion').COQ_setup(on_attach)
 end
 
 -- LSPCONFIG-UI:
