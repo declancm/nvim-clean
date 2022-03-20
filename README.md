@@ -31,7 +31,6 @@ sudo apt install stow
 ```
 
 ```bash
-git clone https://github.com/declancm/nvim-lua.git
-stow nvim-lua
+git clone https://github.com/declancm/nvim-clean.git
+stow nvim-clean
 ```
-
