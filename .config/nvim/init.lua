@@ -1,3 +1,5 @@
+-- NOTE: Go to the bottom of the file to see Ubuntu installation instructions.
+
 local theme, completion
 
 -- THEME:
@@ -44,3 +46,65 @@ require 'configs.keymaps'
 
 -- Options.
 require 'options'
+
+--[[
+
+-----------------
+-- LSP SERVERS --
+-----------------
+
+INSTALLATION:
+
+bashls              npm i -g bash-language-server
+clangd              sudo apt-get install clangd-12
+cmake               pip3 install cmake-language-server
+eslint              npm i -g vscode-langservers-extracted
+powershell_es       https://github.com/PowerShell/PowerShellEditorServices/releases
+                    Extract the zip file to '~/lsp/PowerShellEditorServices'.
+                    (Set 'bundle_path' to PowerShellEditorServices root directory)
+pyright             pip3 install pyright
+sumneko_lua         https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
+                    Clone to '~/lsp/lua-language-server'.
+                    (Make sure '/lua-language-server/bin' is added to path)
+tsserver            npm install -g typescript typescript-language-server
+vimls               npm install -g vim-language-server
+
+NOTES:
+
+clangd              To use clangd for a cpp project, add this to the CMakeLists.txt:
+                    set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+coq                 Requires python3-venv:
+                    sudo apt install -y python3-venv
+
+-------------
+-- NULL-LS --
+-------------
+
+black               pip3 install black
+prettier            npm install --save-dev --save-exact prettier
+stylua              cargo install stylua
+                    (Make sure '~/.cargo/bin' is added to path)
+
+----------------
+-- TREESITTER --
+----------------
+
+INSTALLATION:
+
+treesitter          npm install treesitter
+
+---------------
+-- TELESCOPE --
+---------------
+
+INSTALLATION:
+
+fzf                 sudo apt-get install fzf
+zoxide              sudo apt install zoxide
+
+NOTES:
+
+zoxide              Add to your .bashrc (or .zshrc etc.):
+                    eval "$(zoxide init bash)"
+
+]]

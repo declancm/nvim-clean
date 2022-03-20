@@ -1,5 +1,3 @@
--- NOTE: Information on how to install the servers is at the bottom of the file.
-
 local opts = { silent = true }
 local keymap = vim.keymap.set
 
@@ -130,34 +128,3 @@ null.setup {
     end
   end,
 }
-
---[[
-
-~ INSTALLATION ~
-
-bashls:             npm i -g bash-language-server
-black:              pip3 install black
-clangd:             sudo apt-get install clangd-12
-cmake:              pip3 install cmake-language-server
-eslint:             npm i -g vscode-langservers-extracted
-powershell_es:      https://github.com/PowerShell/PowerShellEditorServices/releases
-                    Extract the zip file to '~/lsp/PowerShellEditorServices'.
-                    (Set 'bundle_path' to PowerShellEditorServices root directory)
-prettier:           npm install --save-dev --save-exact prettier
-pyright:            pip3 install pyright
-stylua:             cargo install stylua
-                    (Make sure '~/.cargo/bin' is added to path)
-sumneko_lua:        https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
-                    Clone to '~/lsp/lua-language-server'.
-                    (Make sure '/lua-language-server/bin' is added to path)
-tsserver:           npm install -g typescript typescript-language-server
-vimls:              npm install -g vim-language-server
-
-~ NOTES ~
-
-clangd:             To use clangd for a cpp project, add this to the CMakeLists.txt:
-                    set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
-coq:                Requires python3-venv:
-                    sudo apt install -y python3-venv
-
-]]
