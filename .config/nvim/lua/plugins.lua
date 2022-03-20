@@ -27,10 +27,15 @@ return require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig' -- collection of lsp configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
+  -- use 'tami5/lspsaga.nvim' -- lsp functions
+  -- use 'folke/trouble.nvim' -- pretty lists
+
+  -- COMPLETION:
+
   use {
     'ms-jpq/coq_nvim', -- auto-completion
     branch = 'coq',
-    requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } },
+    requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } }, -- snippets
   }
   use {
     'hrsh7th/nvim-cmp',
@@ -46,8 +51,13 @@ return require('packer').startup(function(use)
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },
     },
   }
-  -- use 'tami5/lspsaga.nvim' -- lsp functions
-  -- use 'folke/trouble.nvim' -- pretty lists
+  use {
+    'kristijanhusak/vim-dadbod-completion',
+    requires = {
+      'tpope/vim-dadbod',
+      'kristijanhusak/vim-dadbod-ui',
+    },
+  }
 
   -- TELESCOPE:
 
@@ -78,6 +88,11 @@ return require('packer').startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'
   use 'rcarriga/nvim-dap-ui' -- debugging ui
 
+  -- COMMENTS:
+
+  use 'numToStr/Comment.nvim' -- comments
+  -- use 'b3nj5m1n/kommentary' -- comments
+
   -- VISUALS:
 
   use 'folke/tokyonight.nvim' -- colorscheme
@@ -92,18 +107,17 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
   use 'lukas-reineke/indent-blankline.nvim' -- indent guides
 
-  -- SPEED:
+  -- MOVEMENTS:
 
   use 'unblevable/quick-scope' -- highlight for f, F, t, T movements
   use 'machakann/vim-sandwich' -- change surrounding chars
-  use 'b3nj5m1n/kommentary' -- comments
-  use 'dkarter/bullets.vim' -- bullets
   use 'arthurxavierx/vim-caser' -- word coercion
+  use 'dkarter/bullets.vim' -- bullets
+  use 'chaoren/vim-wordmotion' -- camel case, snake case etc. become separate words
   -- use 'ggandor/lightspeed.nvim' -- another movement
 
   -- MISC:
 
-  use 'chaoren/vim-wordmotion' -- camel case, snake case etc. become separate words
   use 'mbbill/undotree' -- tree view of undo history
   use {
     'ms-jpq/chadtree', -- filetree
@@ -120,13 +134,6 @@ return require('packer').startup(function(use)
   }
   use 'tpope/vim-obsession' -- sessions
   use 'tpope/vim-capslock' -- software capslock
-  -- use {
-  --   'tpope/vim-dadbod',
-  --   requires = {
-  --     'kristijanhusak/vim-dadbod-completion',
-  --     'kristijanhusak/vim-dadbod-ui',
-  --   },
-  -- }
 
   -- MY_PLUGINS:
 

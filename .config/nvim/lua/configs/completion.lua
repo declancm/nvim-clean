@@ -17,17 +17,17 @@ function M.COQ_setup(on_attach)
   }
 
   vim.cmd [[
-inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
-inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
-inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
-inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
+  inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+  inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+  inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+  inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+  inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 
-" Arrow keys close the completion popup window.
-inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>"   : "\<Up>"
-inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
-]]
+  " Arrow keys close the completion popup window.
+  inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>"   : "\<Up>"
+  inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
+  ]]
 
   -- Automatically compile snippets when saving.
   autocmd('BufWritePost', {
@@ -47,6 +47,7 @@ inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
     return
   end
 
+  -- LSP setup:
   lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
@@ -69,6 +70,12 @@ end
 function M.CMP_setup(on_attach)
   local lsp = require 'lspconfig'
 
+  local cmp_status, cmp = pcall(require, 'cmp')
+  if not cmp_status then
+    print "'cmp' executed with errors."
+    return
+  end
+
   local lspkind_status, lspkind = pcall(require, 'lspkind')
   if not lspkind_status then
     print "'lspkind' executed with errors."
@@ -76,12 +83,6 @@ function M.CMP_setup(on_attach)
   end
 
   lspkind.init()
-
-  local cmp_status, cmp = pcall(require, 'cmp')
-  if not cmp_status then
-    print "'cmp' executed with errors."
-    return
-  end
 
   cmp.setup {
     snippet = {
@@ -121,7 +122,7 @@ function M.CMP_setup(on_attach)
       { name = 'nvim_lsp' },
       { name = 'path' },
       { name = 'luasnip' },
-      -- { name = 'buffer', keyword_length = 5 },
+      -- { name = 'buffer', keyword_length = 3 },
       { name = 'buffer' },
       { name = 'tmux', max_item_count = 3 },
     },
@@ -135,7 +136,7 @@ function M.CMP_setup(on_attach)
           nvim_lua = '[api]',
           path = '[path]',
           tmux = '[tmux]',
-          tn = '[Tab9]',
+          tn = '[tab9]',
         },
       },
     },
@@ -143,6 +144,7 @@ function M.CMP_setup(on_attach)
 
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+  -- LSP setup:
   lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.cmake.setup { on_attach = on_attach, capabilities = capabilities }

@@ -1,11 +1,13 @@
+local theme, completion
+
 -- THEME:
-local theme = 'gruvbox'
--- local theme = 'onedark'
--- local theme = 'tokyonight'
+theme = 'gruvbox'
+-- theme = 'onedark'
+-- theme = 'tokyonight'
 
 -- COMPLETION:
--- local completion = 'coq'
-local completion = 'cmp'
+-- completion = 'coq'
+completion = 'cmp'
 
 vim.g.__selected_theme = theme
 vim.g.__selected_completion = completion
@@ -30,8 +32,9 @@ require 'configs.lsp'
 require 'configs.telescope'
 require 'configs.treesitter'
 require 'configs.debugging'
+require 'configs.comments'
 require 'configs.visuals'
-require 'configs.speed'
+require 'configs.movements'
 require 'configs.misc'
 require 'configs.my-plugins'
 

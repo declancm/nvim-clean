@@ -1,6 +1,6 @@
 -- THEME:
 
-local theme = vim.g.__selected_theme or 'gruvbox'
+local theme = vim.g.__selected_theme
 
 vim.opt.background = 'dark'
 vim.opt.colorcolumn = '80'
@@ -54,6 +54,10 @@ vim.opt.cursorlineopt = 'number'
 
 -- Transparent popup menus.
 -- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
+
+-- End-of-line character.
+-- vim.opt.list = true
+-- vim.opt.listchars:append 'eol:↴'
 
 -- LUALINE:
 
