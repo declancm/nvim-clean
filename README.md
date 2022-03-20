@@ -1,7 +1,7 @@
 # 🧼 Clean Neovim Config 🧼
 
-This is my neovim lua config which is full of custom keymaps, some heat 🔥
-custom functions, and custom configurations for plugins.
+This is my neovim lua config which is full of some heat 🔥 custom keymaps, 
+functions, and plugins configurations.
 
 Comes with three themes and two completion sources to choose between.
 
