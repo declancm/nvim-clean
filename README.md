@@ -23,6 +23,8 @@ Some of the plugins with configs:
 
 ## Installation
 
+_Note: Please ensure you are using neovim nightly._
+
 Stow is required to install the config.
 
 For Ubuntu:

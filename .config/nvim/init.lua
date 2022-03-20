@@ -36,7 +36,7 @@ require 'configs.visuals'
 require 'configs.comments'
 require 'configs.movements'
 require 'configs.misc'
-require 'configs.my-plugins'
+require 'configs.declancm'
 
 -- CONFIGS:
 require 'configs.functions'

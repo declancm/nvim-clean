@@ -6,9 +6,9 @@ local keymap = vim.keymap.set
 -- GIT-SCRIPTS:
 
 -- require('git-scripts').setup {
--- default_keymaps = false,
--- commit_on_save = true,
--- warnings = false,
+--   default_keymaps = false,
+--   commit_on_save = true,
+--   warnings = false,
 -- }
 
 -- CINNAMON-SCROLL:

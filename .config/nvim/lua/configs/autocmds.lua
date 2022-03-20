@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 -- Keep nvim config synced with remote.
 autocmd('VimEnter', {
   command = "lua require('git-scripts').async_pull('~/.config/nvim')",
-  group = augroup('clean_sync', {}),
+  group = augroup('config_sync', {}),
 })
 
 -- Quickscope colors.
