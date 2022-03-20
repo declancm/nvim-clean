@@ -1,21 +1,25 @@
-# 🧼 Clean Neovim Config 🧼
+# 🧼 The CLEAN Neovim Config 🧼
 
-This is my neovim lua config which is full of some heat 🔥 custom keymaps, 
-functions, and plugins configurations.
+This is my neovim lua config which is full of some heat 🔥 custom functions, 
+keymaps, and plugins configurations.
 
 Comes with three themes and two completion sources to choose between.
 
 Some of the plugins with configs:
 * chadtree
-* coq_nvim
+* ✨ coq_nvim ✨
+* Comment.nvim
+* gitsigns.nvim
 * indent-blankline.nvim
-* lspconfig
+* ✨ lspconfig ✨
 * lualine
+* LuaSnip
 * null-ls
-* nvim-cmp
-* nvim-dap
+* ✨ nvim-cmp ✨
+* ✨ nvim-dap ✨
 * nvim-treesitter
-* telescope
+* symbols-outline.nvim
+* ✨ telescope ✨
 
 ## Installation
 

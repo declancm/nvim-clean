@@ -50,16 +50,16 @@ end
 --   print "'kommentary' executed with errors."
 --   return
 -- end
-
+--
 -- vim.g.kommentary_create_default_mappings = false
-
+--
 -- -- Set <C-/> keymaps.
 -- keymap('i', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
 -- keymap('n', '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
 -- keymap('x', '<C-_>', "<Cmd>lua SavePosComment('selection')<CR><Esc>", opts)
 -- -- keymap('n', '<C-_>', '<Plug>kommentary_line_default', {})
 -- -- keymap('x', '<C-_>', '<Plug>kommentary_visual_default<Esc>', {})
-
+--
 -- -- Keymaps to increase or decrease the comment depth level.
 -- keymap('n', '<Leader>cic', '<Plug>kommentary_line_increase', {})
 -- keymap('n', '<Leader>cdc', '<Plug>kommentary_line_decrease', {})
@@ -67,7 +67,7 @@ end
 -- keymap('n', '<Leader>cd', '<Plug>kommentary_motion_decrease', {})
 -- keymap('x', '<Leader>ci', '<Plug>kommentary_visual_increase', {})
 -- keymap('x', '<Leader>cd', '<Plug>kommentary_visual_decrease', {})
-
+--
 -- -- Configure the languages.
 -- kommentary.configure_language('default', {
 --   prefer_single_line_comments = true,
@@ -86,7 +86,7 @@ end
 -- kommentary.configure_language('python', {
 --   single_line_comment_string = '#',
 -- })
-
+--
 -- function SavePosComment(mode)
 --   local column = vim.fn.getcurpos()[3]
 --   local lengthBefore = vim.fn.strdisplaywidth(vim.fn.getline '.')
