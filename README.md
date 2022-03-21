@@ -23,7 +23,7 @@ Some of the plugins with configs:
 
 ## Installation
 
-_Note: Please ensure you are using neovim nightly._
+_Note: Please ensure you are using neovim nightly_ 🌘.
 
 Stow is required to install the config.
 
