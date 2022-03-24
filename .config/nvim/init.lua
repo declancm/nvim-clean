@@ -6,8 +6,8 @@ theme = 'gruvbox'
 -- theme = 'tokyonight'
 
 -- COMPLETION:
--- completion = 'coq' -- Faster completion. Requires 'python3-venv'.
 completion = 'cmp' -- Lots of good sources.
+-- completion = 'coq' -- Faster completion. Requires 'python3-venv'.
 
 vim.g.__selected_theme = theme
 vim.g.__selected_completion = completion

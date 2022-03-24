@@ -33,31 +33,36 @@ local on_attach = function(client, bufnr)
 end
 
 -- LSP dianostic keymaps:
-keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
-keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
--- keymap('n', '<Leader>q', '<Cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+keymap('n', '<Leader>e', vim.diagnostic.open_float, opts)
+keymap('n', '[d', vim.diagnostic.goto_prev, opts)
+keymap('n', ']d', vim.diagnostic.goto_next, opts)
+-- keymap('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
 -- LSP buffer keymaps:
-keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
-keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-keymap('n', 'H', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-keymap('n', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-keymap('n', '<Leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
--- keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
--- keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
--- keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
--- keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+keymap('n', 'gd', vim.lsp.buf.definition, opts)
+keymap('n', 'gD', vim.lsp.buf.declaration, opts)
+keymap('n', 'gt', vim.lsp.buf.type_definition, opts)
+keymap('n', 'gr', vim.lsp.buf.references, opts)
+keymap('n', 'gi', vim.lsp.buf.implementation, opts)
+keymap('n', 'H', vim.lsp.buf.hover, opts)
+keymap('n', '<C-h>', vim.lsp.buf.signature_help, opts)
+keymap('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+keymap('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
+-- keymap('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+-- keymap('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+-- keymap('n', '<Leader>wl', function()
+--   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+-- end, opts)
+-- keymap('n', '<Leader>f', vim.lsp.buf.formatting, opts)
 
 -- Go to definition in split window:
-keymap('n', '<Leader>gd', '<Cmd>split<CR><Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+keymap('n', '<Leader>gd', function()
+  vim.cmd 'split'
+  vim.lsp.buf.definition()
+end, opts)
 
 -- Format on command.
-vim.cmd "command! Format lua vim.lsp.buf.formatting_sync(); vim.cmd 'retab'"
+vim.cmd 'command! Format lua vim.lsp.buf.formatting_sync()'
 
 -- COMPLETION:
 

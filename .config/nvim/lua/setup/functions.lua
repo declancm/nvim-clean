@@ -1,55 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- MAXIMIZE_WINDOW:
-
-function MaximizeWindow()
-  if vim.b.maxWinStatus == nil or vim.b.maxWinStatus == 0 then
-    vim.b.winPositions = vim.fn.winrestcmd()
-    vim.cmd 'resize | vertical resize'
-    vim.b.winPositionsNew = vim.fn.winrestcmd()
-    if vim.b.winPositions == vim.b.winPositionsNew then
-      vim.b.maxWinStatus = 0
-      return
-    end
-    vim.b.maxWinStatus = 1
-  else
-    vim.b.maxWinStatus = 0
-    vim.cmd 'silent exec b:winPositions'
-  end
-end
-
--- NATIVE_TERMINAL:
-
--- Toggle the native terminal.
-
-function TerminalToggle(command)
-  if vim.bo.buftype == 'terminal' then
-    vim.g.term_bufnr = vim.fn.bufnr()
-    MaximizeWindow()
-    if vim.g.term_prev == nil or vim.fn.bufname(vim.g.term_prev) == '' then
-      local keys = vim.api.nvim_replace_termcodes('<C-\\><C-N><C-^>', true, false, true)
-      vim.api.nvim_feedkeys(keys, 'n', true)
-    else
-      vim.cmd('keepalt buffer ' .. vim.g.term_prev)
-    end
-  else
-    vim.g.term_prev = vim.fn.bufnr()
-    if command ~= nil then
-      vim.cmd('keepalt terminal ' .. command)
-    elseif vim.g.term_bufnr == nil or vim.fn.bufname(vim.g.term_bufnr) == '' then
-      vim.cmd 'keepalt terminal'
-    else
-      vim.cmd('keepalt buffer ' .. vim.g.term_bufnr)
-    end
-    vim.opt_local.relativenumber = false
-    vim.opt_local.number = false
-    vim.opt_local.signcolumn = 'no'
-    vim.cmd 'startinsert'
-    MaximizeWindow()
-  end
-end
-
 -- NOTES:
 
 -- Toggle your notes file and keep it synced with the github remote.
@@ -142,42 +93,6 @@ function GlobalPaste(pasteMode)
   end
 end
 
--- CLOSE_OTHER_WINDOW:
-
--- Save and close the window in the direction selected.
-
-function CloseOtherWindow(direction)
-  local win1 = vim.fn.winnr()
-  vim.cmd('wincmd ' .. direction)
-  local win2 = vim.fn.winnr()
-  if win1 == win2 then
-    return
-  end
-  vim.cmd 'exit'
-  -- vim.cmd [[exec (&modifiable && &modified) ? 'wq' : 'q']]
-end
-
--- SWITCH_WINDOW:
-
--- Move between nvim windows and tmux panes.
-
-function SwitchWindow(direction)
-  local win1 = vim.fn.winnr()
-  vim.cmd('wincmd ' .. direction)
-  local win2 = vim.fn.winnr()
-  if win1 == win2 then
-    if direction == 'k' then
-      os.execute 'tmux select-pane -U > /dev/null 2>&1'
-    elseif direction == 'j' then
-      os.execute 'tmux select-pane -D > /dev/null 2>&1'
-    elseif direction == 'h' then
-      os.execute 'tmux select-pane -L > /dev/null 2>&1'
-    elseif direction == 'l' then
-      os.execute 'tmux select-pane -R > /dev/null 2>&1'
-    end
-  end
-end
-
 -- SEARCH:
 
 -- Enter pattern to get a count for total matches in file.
@@ -191,6 +106,10 @@ function! Search(cmd = '')
   echo "\n"
   if l:pattern[0] == "'"
     let l:pattern = "\\<" . trim(l:pattern, "'", 1) . "\\>"
+  endif
+  if search(l:pattern, 'nw') == 0
+    echohl ErrorMsg | echo "Error: Pattern not found: " . l:pattern | echohl None
+    return
   endif
   exec "%s/" . l:pattern . "//gn"
   silent exec "normal! /" . l:pattern
@@ -237,8 +156,6 @@ end
 -- If the distance between this InsertLeave and the last InsertLeave is
 -- greater than 15 lines, set this position in the jump list.
 -- Use ctrl-o and ctrl-i to go back and forth on the jump list.
-
--- TODO: stop setting jumps in terminal.
 
 function SetJump()
   local cursor = vim.fn.getcurpos()

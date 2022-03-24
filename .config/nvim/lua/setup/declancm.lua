@@ -18,8 +18,9 @@ require('cinnamon').setup {
   extra_keymaps = true,
   -- centered = false,
   -- disable = true,
-  -- scroll_limit = 50,
+  scroll_limit = 100,
 }
 
--- keymap({ 'n', 'x' }, 'gg', "<Cmd>lua Cinnamon.Scroll('gg', 0, 0, 3)<CR>", opts)
--- keymap({ 'n', 'x' }, 'G', "<Cmd>lua Cinnamon.Scroll('G', 0, 1, 3)<CR>", opts)
+-- WINDEX:
+
+require('windex').setup()

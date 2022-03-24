@@ -143,11 +143,12 @@ return require('packer').startup(function(use)
   if vim.fn.getenv 'USER' == 'declancm' then
     -- Local files.
     use '~/plugins/cinnamon.nvim'
-    -- use '~/plugins/vim-cinnamon'
+    use '~/plugins/windex.nvim'
     use '~/plugins/vim2vscode'
     use '~/plugins/git-scripts.nvim'
   else
     use 'declancm/cinnamon.nvim' -- neovim smooth scrolling
+    use 'declancm/windex.nvim' -- cleaner window movements
     use 'declancm/vim2vscode' -- open current buffers in vscode
     use 'declancm/git-scripts.nvim' -- async git functions
   end

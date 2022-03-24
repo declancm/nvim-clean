@@ -51,6 +51,7 @@ keymap('i', ',', ',<C-g>u', opts)
 keymap('i', '.', '.<C-g>u', opts)
 keymap('i', '!', '!<C-g>u', opts)
 keymap('i', '?', '?<C-g>u', opts)
+keymap('i', '<CR>', '<CR><C-g>u', opts)
 
 -- Highlight after indenting.
 keymap('x', '>', '>gv', opts)
@@ -72,12 +73,8 @@ keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 
 -- TERMINAL:
 
--- Toggle the native terminal.
-keymap('t', '<C-n>', '<C-Bslash><C-N>', opts)
-keymap({ 'n', 't' }, '<C-Bslash>', '<Cmd>lua TerminalToggle()<CR>', opts)
-
 -- Open lazygit:
-keymap('n', '<C-g>', "<Cmd>lua TerminalToggle('lazygit')<CR>", opts)
+keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('nvim', 'lazygit')<CR>", opts)
 
 -- COPY_AND_PASTE:
 
@@ -129,57 +126,23 @@ keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
 keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
 
 -- Location-list:
-keymap('n', '<Leader>lt', '<Cmd>lwindow<CR>', opts)
-keymap('n', '<Leader>ln', '<Cmd>lnext<CR>', opts)
-keymap('n', '<Leader>lp', '<Cmd>lprevious<CR>', opts)
-keymap('n', '<Leader>la', '<Cmd>lafter<CR>', opts)
-keymap('n', '<Leader>lb', '<Cmd>lbefore<CR>', opts)
+-- keymap('n', '<Leader>lt', '<Cmd>lwindow<CR>', opts)
+-- keymap('n', '<Leader>ln', '<Cmd>lnext<CR>', opts)
+-- keymap('n', '<Leader>lp', '<Cmd>lprevious<CR>', opts)
+-- keymap('n', '<Leader>la', '<Cmd>lafter<CR>', opts)
+-- keymap('n', '<Leader>lb', '<Cmd>lbefore<CR>', opts)
 
 -- WINDOWS:
 
--- Toggle maximizing the current window.
-keymap({ 'n', 'x' }, '<Leader>z', '<Cmd>lua MaximizeWindow()<CR>', opts)
-
--- Switch to previous vim window.
--- If no previous vim window exists, switch to last tmux pane.
-keymap('n', '<Leader>;', function()
-  local win1 = vim.fn.winnr()
-  vim.cmd 'wincmd p'
-  local win2 = vim.fn.winnr()
-  if win1 == win2 then
-    os.execute 'tmux select-pane -l > /dev/null 2>&1'
-  end
-end, { silent = true })
-
 -- Creating windows.
-keymap('n', '<Leader>wv', '<C-w>v', opts)
-keymap('n', '<Leader>ws', '<C-w>s', opts)
-
--- Switch windows.
-keymap('n', '<Leader>wk', "<Cmd>lua SwitchWindow('k')<CR>", opts)
-keymap('n', '<Leader>wj', "<Cmd>lua SwitchWindow('j')<CR>", opts)
-keymap('n', '<Leader>wh', "<Cmd>lua SwitchWindow('h')<CR>", opts)
-keymap('n', '<Leader>wl', "<Cmd>lua SwitchWindow('l')<CR>", opts)
-keymap('n', '<Leader>w<Up>', "<Cmd>lua SwitchWindow('k')<CR>", opts)
-keymap('n', '<Leader>w<Down>', "<Cmd>lua SwitchWindow('j')<CR>", opts)
-keymap('n', '<Leader>w<Left>', "<Cmd>lua SwitchWindow('h')<CR>", opts)
-keymap('n', '<Leader>w<Right>', "<Cmd>lua SwitchWindow('l')<CR>", opts)
+keymap('n', '<Leader>v', '<C-w>v', opts)
+keymap('n', '<Leader>s', '<C-w>s', opts)
 
 -- Resize windows.
 keymap('n', '<S-Up>', '<Cmd>resize +5<CR>', opts)
 keymap('n', '<S-Down>', '<Cmd>resize -5<CR>', opts)
 keymap('n', '<S-Right>', '<Cmd>vertical resize +5<CR>', opts)
 keymap('n', '<S-Left>', '<Cmd>vertical resize -5<CR>', opts)
-
--- Save and close the window in the direction selected.
-keymap('n', '<Leader>xl', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', '<Leader>xh', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', '<Leader>xk', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', '<Leader>xj', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
-keymap('n', '<Leader>x<Right>', "<Cmd>lua CloseOtherWindow('l')<CR>", opts)
-keymap('n', '<Leader>x<Left>', "<Cmd>lua CloseOtherWindow('h')<CR>", opts)
-keymap('n', '<Leader>x<Up>', "<Cmd>lua CloseOtherWindow('k')<CR>", opts)
-keymap('n', '<Leader>x<Down>', "<Cmd>lua CloseOtherWindow('j')<CR>", opts)
 
 -- Save and quit all windows.
 keymap('n', 'ZA', '<Cmd>xall<CR>', opts)
@@ -198,8 +161,7 @@ keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")
 
 -- TABS:
 
-keymap('n', '<Leader>tn', '<Cmd>tabnew<CR>', opts)
-keymap('n', '<Leader>ts', '<Cmd>tab split<CR>', opts)
+keymap('n', '<Leader>tn', '<Cmd>tab split<CR>', opts)
 keymap('n', '<Leader>tc', '<Cmd>tabclose<CR>', opts)
 -- <C-PgUp> = prev. tab.
 -- <C-PgDown> = next tab.
