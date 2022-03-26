@@ -36,7 +36,7 @@ autocmd('BufWritePre', {
 -- Setting options.
 autocmd({ 'FileType', 'BufWritePost' }, {
   callback = function()
-    vim.cmd 'set fo-=cro'
+    vim.cmd('set fo-=cro')
     -- vim.cmd 'set fo-=ro' -- Comments automatically wrap at 80 characters.
     local fts = { 'html', 'javascript', 'json', 'lua', 'markdown', 'ps1' }
     local size = 4
@@ -63,9 +63,9 @@ autocmd('VimEnter', {
 -- Make the clipboard work in WSL.
 autocmd('VimEnter', {
   callback = function()
-    if vim.fn.has 'unix' then
+    if vim.fn.has('unix') then
       local file = io.open('/proc/version', 'r')
-      local text = file:read 'a'
+      local text = file:read('a')
       if text:find('microsoft', 1, true) then
         autocmd('TextYankPost', {
           command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",

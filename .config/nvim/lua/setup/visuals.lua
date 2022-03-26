@@ -10,10 +10,10 @@ vim.opt.colorcolumn = '80'
 if theme == 'gruvbox' then
   vim.g.gruvbox_baby_transparent_mode = 1
   -- vim.g.gruvbox_baby_comment_style = 'NONE'
-  vim.cmd [[colorscheme gruvbox-baby]]
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#3c3836]]
-  vim.cmd [[highlight LineNr guifg=#458588]]
-  vim.cmd [[highlight Pmenu ctermbg=0 guibg=#3c3836]]
+  vim.cmd([[colorscheme gruvbox-baby]])
+  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#3c3836]])
+  vim.cmd([[highlight LineNr guifg=#458588]])
+  vim.cmd([[highlight Pmenu ctermbg=0 guibg=#3c3836]])
 end
 
 -- ONEDARK:
@@ -21,7 +21,7 @@ end
 if theme == 'onedark' then
   local onedark_status, onedark = pcall(require, 'onedark')
   if not onedark_status then
-    print "'onedark' executed with errors."
+    print("'onedark' executed with errors.")
     return
   end
   onedark.setup {
@@ -29,9 +29,9 @@ if theme == 'onedark' then
     transparent = true,
     -- code_style = { comments = 'none' },
   }
-  vim.cmd [[colorscheme onedark]]
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#31353f]]
-  vim.cmd [[highlight LineNr guifg=#61AFEF]]
+  vim.cmd([[colorscheme onedark]])
+  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#31353f]])
+  vim.cmd([[highlight LineNr guifg=#61AFEF]])
 end
 
 -- TOKYONIGHT:
@@ -42,13 +42,13 @@ if theme == 'tokyonight' then
   vim.g.tokyonight_transparent_sidebar = true
   -- vim.g.tokyonight_italic_comments = false
   vim.g.tokyonight_colors = { bg_float = 'NONE' }
-  vim.cmd [[colorscheme tokyonight]]
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=#1f2335]]
-  vim.cmd [[highlight LineNr guifg=#3D59A1]]
+  vim.cmd([[colorscheme tokyonight]])
+  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#1f2335]])
+  vim.cmd([[highlight LineNr guifg=#3D59A1]])
 end
 
 -- Highlight the line number.
-vim.cmd [[highlight CursorLineNr guifg=white]]
+vim.cmd([[highlight CursorLineNr guifg=white]])
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 
@@ -63,7 +63,7 @@ vim.opt.cursorlineopt = 'number'
 
 local lualine_status, lualine = pcall(require, 'lualine')
 if not lualine_status then
-  print "'lualine' executed with errors."
+  print("'lualine' executed with errors.")
   return
 end
 
@@ -112,7 +112,7 @@ lualine.setup {
 
 local gitsigns_status, gitsigns = pcall(require, 'gitsigns')
 if not gitsigns_status then
-  print "'gitsigns' executed with errors."
+  print("'gitsigns' executed with errors.")
   return
 end
 
@@ -134,7 +134,7 @@ gitsigns.setup {
 
 local todo_status, todo = pcall(require, 'todo-comments')
 if not todo_status then
-  print "'todo-comments' executed with errors."
+  print("'todo-comments' executed with errors.")
   return
 end
 
@@ -152,7 +152,7 @@ keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>', opts)
 
 local colorizer_status, colorizer = pcall(require, 'colorizer')
 if not colorizer_status then
-  print "'colorizer' executed with errors."
+  print("'colorizer' executed with errors.")
   return
 end
 
@@ -162,7 +162,7 @@ colorizer.setup()
 
 local indent_status, indent = pcall(require, 'indent_blankline')
 if not indent_status then
-  print "'indent_blankline' executed with errors."
+  print("'indent_blankline' executed with errors.")
   return
 end
 

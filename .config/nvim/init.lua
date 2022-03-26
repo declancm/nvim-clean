@@ -19,25 +19,25 @@ vim.g.python_host_prog = '/bin/python2'
 -- PRE-CONFIG_OPTIONS:
 vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
-vim.cmd 'let mapleader = "\\<BS>"' -- Set Leader for keymaps.
+vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
-require 'setup.autocmds'
+require('setup.autocmds')
 
 -- PLUGIN_CONFIGS:
-require 'plugins'
-require 'setup.lsp'
-require 'setup.telescope'
-require 'setup.treesitter'
-require 'setup.debugging'
-require 'setup.visuals'
-require 'setup.comments'
-require 'setup.movements'
-require 'setup.misc'
-require 'setup.declancm'
+require('plugins')
+require('setup.lsp')
+require('setup.telescope')
+require('setup.treesitter')
+require('setup.debugging')
+require('setup.visuals')
+require('setup.comments')
+require('setup.movements')
+require('setup.misc')
+require('setup.declancm')
 
-require 'setup.functions'
-require 'setup.keymaps'
-require 'setup.options'
+require('setup.functions')
+require('setup.keymaps')
+require('setup.options')
 
 --[[
 

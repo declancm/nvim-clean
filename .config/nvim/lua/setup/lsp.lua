@@ -8,7 +8,7 @@ local augroup = vim.api.nvim_create_augroup
 
 local lsp_status = pcall(require, 'lspconfig')
 if not lsp_status then
-  print "'lspconfig' executed with errors."
+  print("'lspconfig' executed with errors.")
   return
 end
 
@@ -57,12 +57,12 @@ keymap('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
 
 -- Go to definition in split window:
 keymap('n', '<Leader>gd', function()
-  vim.cmd 'split'
+  vim.cmd('split')
   vim.lsp.buf.definition()
 end, opts)
 
 -- Format on command.
-vim.cmd 'command! Format lua vim.lsp.buf.formatting_sync()'
+vim.cmd('command! Format lua vim.lsp.buf.formatting_sync()')
 
 -- COMPLETION:
 
@@ -109,7 +109,7 @@ end
 
 local null_status, null = pcall(require, 'null-ls')
 if not null_status then
-  print "'null-ls' executed with errors."
+  print("'null-ls' executed with errors.")
   return
 end
 

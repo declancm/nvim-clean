@@ -2,11 +2,11 @@
 
 local telescope_status, telescope = pcall(require, 'telescope')
 if not telescope_status then
-  print "'telescope' executed with errors."
+  print("'telescope' executed with errors.")
   return
 end
 
-local actions = require 'telescope.actions'
+local actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
@@ -19,7 +19,7 @@ telescope.setup {
       i = {
         -- Delete the start of the word.
         ['<C-H>'] = function()
-          vim.cmd 'normal! cB'
+          vim.cmd('normal! cB')
         end,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,
@@ -52,9 +52,9 @@ telescope.setup {
     },
   },
 }
-telescope.load_extension 'fzf'
-telescope.load_extension 'zoxide'
-telescope.load_extension 'refactoring'
+telescope.load_extension('fzf')
+telescope.load_extension('zoxide')
+telescope.load_extension('refactoring')
 
 -- KEYMAPS:
 

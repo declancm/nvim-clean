@@ -1,4 +1,4 @@
-local dap = require 'dap'
+local dap = require('dap')
 
 vim.fn.sign_define('DapBreakpoint', { text = '⬤', texthl = 'DiagnosticError', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '⬤', texthl = 'DiagnosticWarn', linehl = '', numhl = '' })
@@ -46,9 +46,9 @@ keymap('n', '<Leader>drl', "<Cmd>lua require('dap').run_last()<CR>", opts)
 -- Breakpoints:
 keymap('n', '<Leader>db', "<Cmd>lua require('dap').toggle_breakpoint()<CR>", opts)
 keymap('n', '<Leader>dB', function()
-  local condition = vim.fn.input 'Condition: '
-  local hit = vim.fn.input 'Hit Condition: '
-  local log = vim.fn.input 'Log Message: '
+  local condition = vim.fn.input('Condition: ')
+  local hit = vim.fn.input('Hit Condition: ')
+  local log = vim.fn.input('Log Message: ')
   require('dap').toggle_breakpoint(condition, hit, log)
 end, opts)
 keymap('n', '<Leader>drb', "<Cmd>lua require('dap').clear_breakpoints()<CR>", opts)

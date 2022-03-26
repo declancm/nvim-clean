@@ -2,7 +2,7 @@
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath 'config' .. '/undodir'
+vim.opt.undodir = vim.fn.stdpath('config') .. '/undodir'
 vim.opt.undofile = true
 vim.opt.relativenumber = true
 vim.opt.number = true -- Line number at cursor.

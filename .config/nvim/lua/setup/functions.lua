@@ -9,7 +9,7 @@ local augroup = vim.api.nvim_create_augroup
 function ToggleNotes(notesPath)
   notesPath = vim.fn.expand(notesPath)
   local notesDirectory = vim.fn.fnamemodify(notesPath, ':h')
-  if notesPath == vim.fn.expand '%' then
+  if notesPath == vim.fn.expand('%') then
     -- if vim.bo.modified or vim.b.notes_modified == 1 then
     --   vim.cmd 'write'
     --   local notesTail = vim.fn.fnamemodify(notesPath, ':t')
@@ -17,7 +17,7 @@ function ToggleNotes(notesPath)
     --   require('git-scripts').async_commit('', notesDirectory)
     --   vim.b.notes_modified = 0
     -- end
-    vim.cmd 'edit #'
+    vim.cmd('edit #')
   else
     require('git-scripts').async_pull(notesDirectory)
     vim.b.notes_modified = 0
@@ -43,11 +43,11 @@ function DeleteStartWord(word)
     local bs = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
     vim.api.nvim_feedkeys(bs, 'n', true)
   else
-    vim.cmd 'normal! b'
+    vim.cmd('normal! b')
     local cursorNew = vim.fn.getcurpos()
     vim.fn.cursor(cursorPos[2], cursorPos[3])
     if cursorPos[2] - cursorNew[2] ~= 0 then
-      vim.cmd 'normal! d0i'
+      vim.cmd('normal! d0i')
     else
       local keys
       if word == 'w' then
@@ -82,10 +82,10 @@ end
 -- If pasting a visual line selection of text, perform automatic indentation.
 
 function GlobalPaste(pasteMode)
-  if vim.fn.getreg '*' == '' then
+  if vim.fn.getreg('*') == '' then
     return
   end
-  local pasteType = vim.fn.getregtype '*'
+  local pasteType = vim.fn.getregtype('*')
   if pasteType == 'V' then
     vim.cmd('normal! "*' .. pasteMode .. '`[v`]=`]$')
   else
@@ -99,7 +99,7 @@ end
 -- Prepend a ' (single quotation mark) to the pattern for an exact match.
 -- Use 'n' to go to the next match or 'N' to go to the previous.
 
-vim.cmd [[
+vim.cmd([[
 function! Search(cmd = '')
   let l:pattern = input("Enter the search pattern: ")
   if l:pattern == "" | return | endif
@@ -116,7 +116,7 @@ function! Search(cmd = '')
   silent exec "normal! n"
   let @/ = l:pattern
 endfunction
-]]
+]])
 
 -- INDENT_MOVEMENT:
 
@@ -128,7 +128,7 @@ function FindSameIndent(direction)
   local indentChanged = false
   local lineNum = vim.fn.getcurpos()[2]
   local wantedIndent = vim.fn.indent(lineNum)
-  vim.cmd 'norm! ^'
+  vim.cmd('norm! ^')
   while true do
     if direction == 'Up' then
       lineNum = lineNum - 1
@@ -144,7 +144,7 @@ function FindSameIndent(direction)
       vim.cmd('normal ' .. lineNum .. 'G')
       return
     end
-    if lineNum <= 0 or lineNum >= vim.fn.line '$' then
+    if lineNum <= 0 or lineNum >= vim.fn.line('$') then
       return
     end
   end
@@ -175,7 +175,7 @@ function SetJump()
     vim.b.prevJumpCursor = cursor
     vim.b.prevJumpBuffer = buffer
     vim.b.jumpTextChanged = 0
-    vim.cmd "normal! m'" -- only save the line number
+    vim.cmd("normal! m'") -- only save the line number
     -- vim.cmd 'normal! m`' -- save the column position too
   end
 end

@@ -5,7 +5,7 @@ local keymap = vim.keymap.set
 
 local comment_status, comment = pcall(require, 'Comment')
 if not comment_status then
-  print "'kommentary' executed with errors."
+  print("'kommentary' executed with errors.")
   return
 end
 
@@ -36,15 +36,15 @@ keymap('x', '<C-_>', "<Esc><Cmd>lua SavePosComment('visual')<CR>", opts)
 
 function SavePosComment(mode)
   local column = vim.fn.getcurpos()[3]
-  local lengthBefore = vim.fn.strdisplaywidth(vim.fn.getline '.')
+  local lengthBefore = vim.fn.strdisplaywidth(vim.fn.getline('.'))
   if mode == 'line' then
     require('Comment.api').toggle_current_linewise()
   elseif mode == 'visual' then
     require('Comment.api').locked.toggle_linewise_op(vim.fn.visualmode())
   end
-  local lengthAfter = vim.fn.strdisplaywidth(vim.fn.getline '.')
-  if column > vim.fn.indent '.' then
-    vim.fn.cursor(vim.fn.line '.', column + (lengthAfter - lengthBefore))
+  local lengthAfter = vim.fn.strdisplaywidth(vim.fn.getline('.'))
+  if column > vim.fn.indent('.') then
+    vim.fn.cursor(vim.fn.line('.'), column + (lengthAfter - lengthBefore))
   end
 end
 

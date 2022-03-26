@@ -1,5 +1,5 @@
 -- Clone packer if it doesn't already exist.
-local path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(path)) > 0 then
   local command = { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path }
   PackerBootstrap = vim.fn.system(command)
@@ -16,17 +16,17 @@ require('packer').init {
 
 -- Installing plugins.
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- plugin manager
+  use('wbthomason/packer.nvim') -- plugin manager
 
   -- DEPENDENCIES:
 
-  use 'nvim-lua/plenary.nvim' -- lua functions
-  use 'kyazdani42/nvim-web-devicons' -- icons library
+  use('nvim-lua/plenary.nvim') -- lua functions
+  use('kyazdani42/nvim-web-devicons') -- icons library
 
   -- LSP:
 
-  use 'neovim/nvim-lspconfig' -- collection of lsp configurations
-  use 'jose-elias-alvarez/null-ls.nvim' -- use neovim as a language server
+  use('neovim/nvim-lspconfig') -- collection of lsp configurations
+  use('jose-elias-alvarez/null-ls.nvim') -- use neovim as a language server
   -- use 'tami5/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
 
@@ -72,14 +72,14 @@ return require('packer').startup(function(use)
       'nvim-treesitter/playground',
     },
   }
-  use 'simrat39/symbols-outline.nvim'
-  use 'ThePrimeagen/refactoring.nvim' -- extract, inline and print debug
+  use('simrat39/symbols-outline.nvim')
+  use('ThePrimeagen/refactoring.nvim') -- extract, inline and print debug
 
   -- DEBUGGING:
 
-  use 'mfussenegger/nvim-dap' -- debugging
-  use 'theHamsta/nvim-dap-virtual-text'
-  use 'rcarriga/nvim-dap-ui' -- debugging ui
+  use('mfussenegger/nvim-dap') -- debugging
+  use('theHamsta/nvim-dap-virtual-text')
+  use('rcarriga/nvim-dap-ui') -- debugging ui
 
   -- LANGUAGE_SPECIFIC:
 
@@ -97,35 +97,35 @@ return require('packer').startup(function(use)
 
   -- VISUALS:
 
-  use 'folke/tokyonight.nvim' -- colorscheme
-  use 'navarasu/onedark.nvim' -- colorscheme
-  use 'luisiacc/gruvbox-baby' -- colorscheme
-  use 'hoob3rt/lualine.nvim' -- better status line
+  use('folke/tokyonight.nvim') -- colorscheme
+  use('navarasu/onedark.nvim') -- colorscheme
+  use('luisiacc/gruvbox-baby') -- colorscheme
+  use('hoob3rt/lualine.nvim') -- better status line
   use {
     'lewis6991/gitsigns.nvim', -- git column icons
     tag = 'release',
   }
-  use 'folke/todo-comments.nvim' -- better todo comments
-  use 'norcalli/nvim-colorizer.lua' -- preview colors for color codes
-  use 'lukas-reineke/indent-blankline.nvim' -- indent guides
+  use('folke/todo-comments.nvim') -- better todo comments
+  use('norcalli/nvim-colorizer.lua') -- preview colors for color codes
+  use('lukas-reineke/indent-blankline.nvim') -- indent guides
 
   -- COMMENTS:
 
-  use 'numToStr/Comment.nvim' -- comments
+  use('numToStr/Comment.nvim') -- comments
   -- use 'b3nj5m1n/kommentary' -- comments
 
   -- MOVEMENTS:
 
-  use 'unblevable/quick-scope' -- highlight for f, F, t, T movements
-  use 'machakann/vim-sandwich' -- change surrounding chars
-  use 'arthurxavierx/vim-caser' -- word coercion
-  use 'dkarter/bullets.vim' -- bullets
-  use 'chaoren/vim-wordmotion' -- camel case, snake case etc. become separate words
+  use('unblevable/quick-scope') -- highlight for f, F, t, T movements
+  use('machakann/vim-sandwich') -- change surrounding chars
+  use('arthurxavierx/vim-caser') -- word coercion
+  use('dkarter/bullets.vim') -- bullets
+  use('chaoren/vim-wordmotion') -- camel case, snake case etc. become separate words
   -- use 'ggandor/lightspeed.nvim' -- another movement
 
   -- MISC:
 
-  use 'mbbill/undotree' -- tree view of undo history
+  use('mbbill/undotree') -- tree view of undo history
   use {
     'ms-jpq/chadtree', -- filetree
     branch = 'chad',
@@ -135,22 +135,22 @@ return require('packer').startup(function(use)
     'tpope/vim-fugitive', -- Git
     requires = { 'junegunn/gv.vim' },
   }
-  use 'tpope/vim-obsession' -- sessions
-  use 'tpope/vim-capslock' -- software capslock
+  use('tpope/vim-obsession') -- sessions
+  use('tpope/vim-capslock') -- software capslock
 
   -- MY_PLUGINS:
 
-  if vim.fn.getenv 'USER' == 'declancm' then
+  if vim.fn.getenv('USER') == 'declancm' then
     -- Local files.
-    use '~/plugins/cinnamon.nvim'
-    use '~/plugins/windex.nvim'
-    use '~/plugins/vim2vscode'
-    use '~/plugins/git-scripts.nvim'
+    use('~/plugins/cinnamon.nvim')
+    use('~/plugins/windex.nvim')
+    use('~/plugins/vim2vscode')
+    use('~/plugins/git-scripts.nvim')
   else
-    use 'declancm/cinnamon.nvim' -- neovim smooth scrolling
-    use 'declancm/windex.nvim' -- cleaner window movements
-    use 'declancm/vim2vscode' -- open current buffers in vscode
-    use 'declancm/git-scripts.nvim' -- async git functions
+    use('declancm/cinnamon.nvim') -- neovim smooth scrolling
+    use('declancm/windex.nvim') -- cleaner window movements
+    use('declancm/vim2vscode') -- open current buffers in vscode
+    use('declancm/git-scripts.nvim') -- async git functions
   end
 
   -- Install packer if it was just git cloned.

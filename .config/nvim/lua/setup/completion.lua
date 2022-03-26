@@ -3,23 +3,23 @@ local M = {}
 -- CMP:
 
 function M.CMP_setup(on_attach)
-  local lsp = require 'lspconfig'
+  local lsp = require('lspconfig')
 
   local cmp_status, cmp = pcall(require, 'cmp')
   if not cmp_status then
-    print "'cmp' executed with errors."
+    print("'cmp' executed with errors.")
     return
   end
 
   local lspkind_status, lspkind = pcall(require, 'lspkind')
   if not lspkind_status then
-    print "'lspkind' executed with errors."
+    print("'lspkind' executed with errors.")
     return
   end
 
   local luasnip_status, luasnip = pcall(require, 'luasnip')
   if not luasnip_status then
-    print "'luasnip' executed with errors."
+    print("'luasnip' executed with errors.")
     return
   end
 
@@ -112,7 +112,7 @@ function M.CMP_setup(on_attach)
   lsp.cmake.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.eslint.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.powershell_es.setup {
-    bundle_path = vim.fn.expand '$HOME/lsp/PowerShellEditorServices',
+    bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
     on_attach = on_attach,
     capabilities = capabilities,
   }
@@ -129,7 +129,7 @@ end
 -- COQ:
 
 function M.COQ_setup(on_attach)
-  local lsp = require 'lspconfig'
+  local lsp = require('lspconfig')
 
   local autocmd = vim.api.nvim_create_autocmd
   local augroup = vim.api.nvim_create_augroup
@@ -142,7 +142,7 @@ function M.COQ_setup(on_attach)
     ['display.preview.border'] = 'rounded',
   }
 
-  vim.cmd [[
+  vim.cmd([[
 inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
 inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
 inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
@@ -153,7 +153,7 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 " Arrow keys close the completion popup window.
 inoremap <silent><expr> <Up>    pumvisible() ? "\<C-e>\<Up>"   : "\<Up>"
 inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
-]]
+]])
 
   -- Automatically compile snippets when saving.
   autocmd('BufWritePost', {
@@ -164,7 +164,7 @@ inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
 
   local coq_status, coq = pcall(require, 'coq')
   if not coq_status then
-    print "'coq' executed with errors."
+    print("'coq' executed with errors.")
     -- Setup diagnostics in init.lua if coq wasn't executed successfully.
     lsp.sumneko_lua.setup {
       settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
@@ -179,7 +179,7 @@ inoremap <silent><expr> <Down>  pumvisible() ? "\<C-e>\<Down>" : "\<Down>"
   lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
-    bundle_path = vim.fn.expand '$HOME/lsp/PowerShellEditorServices',
+    bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
     on_attach = on_attach,
   })
   lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })

@@ -5,7 +5,7 @@ local opts = { silent = true }
 
 local treesitter_status, treesitter = pcall(require, 'nvim-treesitter.configs')
 if not treesitter_status then
-  print "'treesitter' executed with errors."
+  print("'treesitter' executed with errors.")
   return
 end
 
@@ -47,7 +47,7 @@ keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>', opts)
 
 local refactoring_status, refactoring = pcall(require, 'refactoring')
 if not refactoring_status then
-  print "'refactoring' executed with errors."
+  print("'refactoring' executed with errors.")
   return
 end
 
