@@ -38,7 +38,7 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      find_command = { 'rg', '--ignore', '-L', '--hidden', '--files' },
+      find_command = { 'rg', '--ignore', '--follow', '--hidden', '--files' },
       -- hidden = true,
       file_ignore_patterns = { '^.git/' },
     },
@@ -67,8 +67,8 @@ keymap('n', '<Leader>fg', "<Cmd>lua require('telescope.builtin').live_grep()<CR>
 
 -- Vim pickers.
 keymap('n', '<Leader>fb', "<Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
-keymap('n', '<Leader>fc', "<Cmd>lua require('telescope.builtin').command_history()<CR>", opts)
+-- keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
+keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').command_history()<CR>", opts)
 keymap('n', '<Leader>fq', "<Cmd>lua require('telescope.builtin').quickfix()<CR>", opts)
 
 -- LSP pickers.
@@ -76,6 +76,9 @@ keymap('n', '<Leader>fd', "<Cmd>lua require('telescope.builtin').diagnostics()<C
 keymap('n', '<Leader>fr', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
 keymap('n', '<Leader>fi', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
 keymap('n', '<Leader>fa', "<Cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+
+-- Git:
+keymap('n', '<Leader>fs', "<Cmd>lua require('telescope.builtin').git_status()<CR>", opts)
 
 -- List pickers.
 keymap('n', '<Leader>fp', "<Cmd>lua require('telescope.builtin').builtin()<CR>", opts)
@@ -87,3 +90,37 @@ keymap('n', '<Leader>fz', '<Cmd>Telescope zoxide list<CR>', opts)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
+
+-- Custom pickers:
+keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>", opts)
+keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
+-- keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
+
+local M = {}
+local options
+
+M.grep_notes = function()
+  options = {}
+  options.search_dirs = { '~/notes/' }
+  options.prompt_title = 'Search Notes'
+  options.shorten_path = true
+  require('telescope.builtin').live_grep(options)
+end
+
+M.grep_config = function()
+  options = {}
+  options.search_dirs = { '~/.config/nvim/' }
+  options.prompt_title = 'Config Files'
+  options.shorten_path = true
+  require('telescope.builtin').find_files(options)
+end
+
+M.grep_neovim = function()
+  options = {}
+  options.search_dirs = { '~/neovim/' }
+  options.shorten_path = true
+  options.prompt_title = 'Search Neovim'
+  require('telescope.builtin').live_grep(options)
+end
+
+return M

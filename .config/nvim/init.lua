@@ -21,23 +21,23 @@ vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
-require('setup.autocmds')
+require('config.autocmds')
 
 -- PLUGIN_CONFIGS:
 require('plugins')
-require('setup.lsp')
-require('setup.telescope')
-require('setup.treesitter')
-require('setup.debugging')
-require('setup.visuals')
-require('setup.comments')
-require('setup.movements')
-require('setup.misc')
-require('setup.declancm')
+require('config.lsp')
+require('config.telescope')
+require('config.treesitter')
+require('config.debugging')
+require('config.visuals')
+require('config.comments')
+require('config.movements')
+require('config.misc')
+require('config.declancm')
 
-require('setup.functions')
-require('setup.keymaps')
-require('setup.options')
+require('config.functions')
+require('config.keymaps')
+require('config.options')
 
 --[[
 

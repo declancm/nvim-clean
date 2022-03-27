@@ -78,6 +78,7 @@ function M.CMP_setup(on_attach)
       -- { name = 'buffer', keyword_length = 3 },
       { name = 'buffer' },
       { name = 'tmux', max_item_count = 3 },
+      -- { name = 'cmp_tabnine' },
     },
     formatting = {
       format = lspkind.cmp_format {
@@ -89,7 +90,7 @@ function M.CMP_setup(on_attach)
           nvim_lua = '[api]',
           path = '[path]',
           tmux = '[tmux]',
-          tn = '[tab9]',
+          -- cmp_tabnine = '[tab9]',
         },
       },
     },
