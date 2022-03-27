@@ -94,14 +94,15 @@ keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refacto
 -- Custom pickers:
 keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>", opts)
 keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
--- keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
+keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
 
 local M = {}
 local options
 
 M.grep_notes = function()
   options = {}
-  options.search_dirs = { '~/notes/' }
+  -- options.search_dirs = { '~/notes/' }
+  options.cwd = '~/notes/'
   options.prompt_title = 'Search Notes'
   options.shorten_path = true
   require('telescope.builtin').live_grep(options)
@@ -109,7 +110,8 @@ end
 
 M.grep_config = function()
   options = {}
-  options.search_dirs = { '~/.config/nvim/' }
+  -- options.search_dirs = { '~/.config/nvim/' }
+  options.cwd = '~/.config/nvim/'
   options.prompt_title = 'Config Files'
   options.shorten_path = true
   require('telescope.builtin').find_files(options)
@@ -117,7 +119,8 @@ end
 
 M.grep_neovim = function()
   options = {}
-  options.search_dirs = { '~/neovim/' }
+  -- options.search_dirs = { '~/neovim/' }
+  options.cwd = '~/neovim/'
   options.shorten_path = true
   options.prompt_title = 'Search Neovim'
   require('telescope.builtin').live_grep(options)
