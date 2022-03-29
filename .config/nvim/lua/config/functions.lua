@@ -85,8 +85,7 @@ function GlobalPaste(pasteMode)
   if vim.fn.getreg('*') == '' then
     return
   end
-  local pasteType = vim.fn.getregtype('*')
-  if pasteType == 'V' then
+  if vim.fn.getregtype('*') == 'V' then
     vim.cmd('normal! "*' .. pasteMode .. '`[v`]=`]$')
   else
     vim.cmd('normal! "*' .. pasteMode)

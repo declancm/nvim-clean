@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
 
   use('nvim-lua/plenary.nvim') -- lua functions
   use('kyazdani42/nvim-web-devicons') -- icons library
+  -- use('ms-jpq/lua-async-await')
 
   -- LSP:
 

@@ -14,8 +14,6 @@ keymap('n', 'cn', '<Cmd>let @/=expand("<cword>")<CR>"_cgn', opts)
 keymap('n', 'cN', '<Cmd>let @/=expand("<cword>")<CR>"_cgN', opts)
 
 -- Jump to the next line with the same indent size.
--- Will only find a match after the indent has changed, stopping it from jumping
--- just one line at a time.
 keymap('', '<Leader>iu', "<Cmd>lua FindSameIndent('Up')<CR>", opts)
 keymap('', '<Leader>id', "<Cmd>lua FindSameIndent('Down')<CR>", opts)
 

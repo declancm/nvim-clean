@@ -21,6 +21,11 @@ require('cinnamon').setup {
   scroll_limit = 100,
 }
 
+keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>", opts)
+
 -- WINDEX:
 
-require('windex').setup()
+require('windex').setup {
+  -- arrow_keys = true,
+  -- numbered_term = true,
+}
