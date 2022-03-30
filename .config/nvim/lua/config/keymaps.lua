@@ -64,10 +64,9 @@ keymap('c', '<C-H>', '<C-w>', {})
 keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("w")<CR>', opts)
 keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("W")<CR>', opts)
 
--- Enter pattern to get a count for total matches in file.
--- Prepend a ' (single quotation mark) to the pattern for an exact match.
--- Use 'n' to go to the next match or 'N' to go to the previous.
-keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
+-- Search/Grep
+-- keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
+keymap('n', '<Leader>/', '<Cmd>call VimGrep()<CR>', opts)
 
 -- TERMINAL:
 
@@ -114,14 +113,12 @@ keymap('n', '<M-D>', '"*d', opts)
 
 -- LISTS:
 
--- NOTE: Use the quickfix list with ':vimgrep'.
-
 -- Quickfix-list:
-keymap('n', '<Leader>qt', '<Cmd>cwindow<CR>', opts)
-keymap('n', '<Leader>qn', '<Cmd>cnext<CR>', opts)
-keymap('n', '<Leader>qp', '<Cmd>cprevious<CR>', opts)
-keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
-keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
+-- keymap('n', '<Leader>qt', '<Cmd>cwindow<CR>', opts)
+-- keymap('n', '<Leader>qn', '<Cmd>cnext<CR>', opts)
+-- keymap('n', '<Leader>qp', '<Cmd>cprevious<CR>', opts)
+-- keymap('n', '<Leader>qa', '<Cmd>cafter<CR>', opts)
+-- keymap('n', '<Leader>qb', '<Cmd>cbefore<CR>', opts)
 
 -- Location-list:
 -- keymap('n', '<Leader>lt', '<Cmd>lwindow<CR>', opts)

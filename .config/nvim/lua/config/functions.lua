@@ -117,6 +117,34 @@ function! Search(cmd = '')
 endfunction
 ]])
 
+-- VIMGREP:
+
+-- Enter pattern to grep within the current file.
+-- Prepend a ' (single quotation mark) to the pattern for an exact match.
+-- The results are added to the quickfix list.
+
+vim.cmd([[
+function! VimGrep()
+  let l:pattern = input("Enter the grep pattern: ")
+  if l:pattern == "" | return | endif
+  if l:pattern[0] == "'"
+    let l:pattern = "\\<" . trim(l:pattern, "'", 1) . "\\>"
+  endif
+  try
+    exe "vimgrep /" . l:pattern . "/gj " . getreg('%')
+  catch
+    echohl ErrorMsg | echo "Error: The grep failed." | echohl None
+    return
+  endtry
+  let l:input = input("Do you want to open the quickfix list? [y/n]: ")
+  if l:input == 'y' || l:input == 'yes'
+    lua require('telescope.builtin').quickfix()
+  else
+    echo "\nThe quickfix list was populated with the grep results."
+  endif
+endfunction
+]])
+
 -- INDENT_MOVEMENT:
 
 -- Jump to the next line with the same indent size.

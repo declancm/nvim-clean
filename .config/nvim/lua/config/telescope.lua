@@ -67,9 +67,9 @@ keymap('n', '<Leader>fg', "<Cmd>lua require('telescope.builtin').live_grep()<CR>
 
 -- Vim pickers.
 keymap('n', '<Leader>fb', "<Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
--- keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
 keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').command_history()<CR>", opts)
 keymap('n', '<Leader>fq', "<Cmd>lua require('telescope.builtin').quickfix()<CR>", opts)
+keymap('n', '<Leader>fl', "<Cmd>lua require('telescope.builtin').loclist()<CR>", opts)
 
 -- LSP pickers.
 keymap('n', '<Leader>fd', "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", opts)
