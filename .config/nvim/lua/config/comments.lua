@@ -5,7 +5,7 @@ local keymap = vim.keymap.set
 
 local comment_status, comment = pcall(require, 'Comment')
 if not comment_status then
-  print("'kommentary' executed with errors.")
+  print("'comment' executed with errors.")
   return
 end
 
@@ -31,8 +31,8 @@ comment.setup {
 -- local comment_ft = require 'Comment.ft'
 -- comment_ft.set('lua', { '--%s', '--[[%s]]' })
 
-keymap({ 'i', 'n' }, '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
-keymap('x', '<C-_>', "<Esc><Cmd>lua SavePosComment('visual')<CR>", opts)
+keymap({ 'i', 'n' }, '<C-_>', "<Cmd>lua require('config.comments').SavePosComment('line')<CR>", opts)
+keymap('x', '<C-_>', "<Esc><Cmd>lua require('config.comments').SavePosComment('visual')<CR>", opts)
 
 local M = {}
 

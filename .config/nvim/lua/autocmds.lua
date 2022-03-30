@@ -77,3 +77,11 @@ autocmd('VimEnter', {
   end,
   group = augroup('clipboard', {}),
 })
+
+-- Setting jump points.
+autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', { clear = false }) })
+autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', { clear = false }) })
+autocmd('InsertLeave', {
+  command = "lua require('functions').SetJump()",
+  group = augroup('set_jump', { clear = false }),
+})

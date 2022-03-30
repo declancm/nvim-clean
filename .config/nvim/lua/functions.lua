@@ -1,8 +1,5 @@
 local M = {}
 
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
 -- NOTES:
 
 -- Toggle your notes file and keep it synced with the github remote.
@@ -204,12 +201,5 @@ M.SetJump = function()
     -- vim.cmd 'normal! m`' -- save the column position too
   end
 end
-
-autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', { clear = false }) })
-autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', { clear = false }) })
-autocmd('InsertLeave', {
-  command = "lua require('config.functions').SetJump()",
-  group = augroup('set_jump', { clear = false }),
-})
 
 return M

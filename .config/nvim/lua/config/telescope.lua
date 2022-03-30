@@ -97,6 +97,7 @@ keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR
 keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
 
 local M = {}
+
 local options
 
 M.grep_notes = function()
