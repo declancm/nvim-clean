@@ -119,7 +119,7 @@ function M.CMP_setup(on_attach)
   }
   lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.sumneko_lua.setup {
-    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+    settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim' } } } },
     on_attach = on_attach,
     capabilities = capabilities,
   }

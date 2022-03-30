@@ -57,7 +57,11 @@ keymap('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
 
 -- Go to definition in split window:
 keymap('n', '<Leader>gd', function()
-  vim.cmd('split')
+  if vim.api.nvim_win_get_width(0) >= 170 then
+    vim.cmd('vertical split')
+  else
+    vim.cmd('split')
+  end
   vim.lsp.buf.definition()
 end, opts)
 

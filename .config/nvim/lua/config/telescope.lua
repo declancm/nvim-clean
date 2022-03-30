@@ -112,6 +112,7 @@ end
 M.grep_config = function()
   options = {}
   -- options.search_dirs = { '~/.config/nvim/' }
+  options.opts = { file_ignore_patterns = { '^runtime/' } }
   options.cwd = '~/.config/nvim/'
   options.prompt_title = 'Config Files'
   options.shorten_path = true

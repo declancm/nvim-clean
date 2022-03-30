@@ -10,8 +10,8 @@ keymap('n', '<Leader>nt', "<Cmd>lua require('functions').ToggleNotes('~/notes/no
 -- MOVEMENT:
 
 -- Replace a word then press '.' to change next occurence.
-keymap('n', 'cn', '<Cmd>let @/=expand("<cword>")<CR>"_cgn', opts)
-keymap('n', 'cN', '<Cmd>let @/=expand("<cword>")<CR>"_cgN', opts)
+keymap('n', 'cn', '<Cmd>call setreg("/", "\\\\<" . expand("<cword>") . "\\\\>", "v")<CR>"_cgn', opts)
+keymap('n', 'cN', '<Cmd>call setreg("/", "\\\\<" . expand("<cword>") . "\\\\>", "v")<CR>"_cgN', opts)
 
 -- Jump to the next line with the same indent size.
 keymap('', '<Leader>iu', "<Cmd>lua require('functions').FindSameIndent('Up')<CR>", opts)
