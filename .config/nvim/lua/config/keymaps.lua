@@ -5,7 +5,7 @@ local keymap = vim.keymap.set
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 
 -- Toggle your notes file and keep it synced with the github remote.
-keymap('n', '<Leader>nt', '<Cmd>lua ToggleNotes("~/notes/notes.txt")<CR>', opts)
+keymap('n', '<Leader>nt', "<Cmd>lua require('config.functions').ToggleNotes('~/notes/notes.txt')<CR>", opts)
 
 -- MOVEMENT:
 
@@ -14,8 +14,8 @@ keymap('n', 'cn', '<Cmd>let @/=expand("<cword>")<CR>"_cgn', opts)
 keymap('n', 'cN', '<Cmd>let @/=expand("<cword>")<CR>"_cgN', opts)
 
 -- Jump to the next line with the same indent size.
-keymap('', '<Leader>iu', "<Cmd>lua FindSameIndent('Up')<CR>", opts)
-keymap('', '<Leader>id', "<Cmd>lua FindSameIndent('Down')<CR>", opts)
+keymap('', '<Leader>iu', "<Cmd>lua require('config.functions').FindSameIndent('Up')<CR>", opts)
+keymap('', '<Leader>id', "<Cmd>lua require('config.functions').FindSameIndent('Down')<CR>", opts)
 
 -- Moving text.
 keymap('x', '<C-k>', ":m '<-2<CR>gv=gv", opts)
@@ -56,13 +56,13 @@ keymap('x', '>', '>gv', opts)
 keymap('x', '<', '<gv', opts)
 
 -- Delete the start of the word.
-keymap('i', '<C-H>', '<Cmd>lua DeleteStartWord("w")<CR>', opts)
-keymap('i', '<M-BS>', '<Cmd>lua DeleteStartWord("W")<CR>', opts)
+keymap('i', '<C-H>', "<Cmd>lua require('config.functions').DeleteStartWord('w')<CR>", opts)
+keymap('i', '<M-BS>', "<Cmd>lua require('config.functions').DeleteStartWord('W')<CR>", opts)
 keymap('c', '<C-H>', '<C-w>', {})
 
 -- Delete the end of the word.
-keymap('i', '<C-Del>', '<Cmd>lua DeleteEndWord("w")<CR>', opts)
-keymap('i', '<M-Del>', '<Cmd>lua DeleteEndWord("W")<CR>', opts)
+keymap('i', '<C-Del>', "<Cmd>lua require('config.functions').DeleteEndWord('w')<CR>", opts)
+keymap('i', '<M-Del>', "<Cmd>lua require('config.functions').DeleteEndWord('W')<CR>", opts)
 
 -- Search/Grep
 -- keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
@@ -91,14 +91,14 @@ keymap('n', '<Leader>P', '"*P`[v`]', opts)
 
 -- Paste from the global register '*' and if pasting a visual line selection of
 -- text, perform automatic indentation.
-keymap('n', 'p', '<Cmd>lua GlobalPaste("p")<CR>', opts)
-keymap('n', 'P', '<Cmd>lua GlobalPaste("P")<CR>', opts)
-keymap('n', 'gp', '<Cmd>lua GlobalPaste("gp")<CR>', opts)
-keymap('n', 'gP', '<Cmd>lua GlobalPaste("gP")<CR>', opts)
+keymap('n', 'p', "<Cmd>lua require('config.functions').GlobalPaste('p')<CR>", opts)
+keymap('n', 'P', "<Cmd>lua require('config.functions').GlobalPaste('P')<CR>", opts)
+keymap('n', 'gp', "<Cmd>lua require('config.functions').GlobalPaste('gp')<CR>", opts)
+keymap('n', 'gP', "<Cmd>lua require('config.functions').GlobalPaste('gP')<CR>", opts)
 
 -- Paste from the global register '*' and enter insert mode at the end.
-keymap({ 'i', 'n' }, '<M-p>', '<Cmd>lua GlobalPaste("p")<CR>a', opts)
-keymap({ 'i', 'n' }, '<M-P>', '<Cmd>lua GlobalPaste("P")<CR>a', opts)
+keymap({ 'i', 'n' }, '<M-p>', "<Cmd>lua require('config.functions').GlobalPaste('p')<CR>a", opts)
+keymap({ 'i', 'n' }, '<M-P>', "<Cmd>lua require('config.functions').GlobalPaste('P')<CR>a", opts)
 
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x', opts)

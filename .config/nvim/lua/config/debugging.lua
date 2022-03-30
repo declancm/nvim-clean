@@ -63,29 +63,8 @@ keymap('n', '<Leader>dk', "<Cmd>lua require('dap').step_back()<CR>", opts)
 keymap('n', '<Leader>dsi', "<Cmd>lua require('dap').step_into()<CR>", opts)
 keymap('n', '<Leader>dso', "<Cmd>lua require('dap').step_out()<CR>", opts)
 
-function OpenRepl(cmd)
-  cmd = cmd or 'open'
-  local winWidth = vim.api.nvim_win_get_width(0)
-  local winHeight = vim.api.nvim_win_get_height(0)
-  if winWidth >= 170 then
-    local width = math.floor(winWidth / 2)
-    if cmd == 'toggle' then
-      require('dap').repl.toggle({ width = width }, 'belowright vertical split')
-    else
-      require('dap').repl.open({ width = width }, 'belowright vertical split')
-    end
-  else
-    local height = math.floor(winHeight / 3)
-    if cmd == 'toggle' then
-      require('dap').repl.toggle({ height = height }, 'belowright split')
-    else
-      require('dap').repl.open({ height = height }, 'belowright split')
-    end
-  end
-end
-
 -- Repl:
-keymap('n', '<Leader>dd', "<Cmd>lua OpenRepl('toggle')<CR>", opts)
+keymap('n', '<Leader>dd', "<Cmd>lua require('config.debugging').OpenRepl('toggle')<CR>", opts)
 -- keymap('n', '<Leader>dc', function()
 --   require('dap').continue()
 --   OpenRepl()
@@ -96,7 +75,7 @@ keymap('n', '<Leader>dq', function()
 end, opts)
 
 require('dap').listeners.after.event_initialized['repl_open'] = function()
-  OpenRepl()
+  require('config.debugging').OpenRepl()
 end
 
 -- NVIM-DAP-VIRTUAL-TEXT:
@@ -122,3 +101,28 @@ keymap('n', '<Leader>du', "<Cmd>lua require('dapui').toggle()<CR>", opts)
 -- require('dap').listeners.before.event_exited['dapui_config'] = function()
 --   require('dapui').close()
 -- end
+
+local M = {}
+
+M.OpenRepl = function(cmd)
+  cmd = cmd or 'open'
+  local winWidth = vim.api.nvim_win_get_width(0)
+  local winHeight = vim.api.nvim_win_get_height(0)
+  if winWidth >= 170 then
+    local width = math.floor(winWidth / 2)
+    if cmd == 'toggle' then
+      require('dap').repl.toggle({ width = width }, 'belowright vertical split')
+    else
+      require('dap').repl.open({ width = width }, 'belowright vertical split')
+    end
+  else
+    local height = math.floor(winHeight / 3)
+    if cmd == 'toggle' then
+      require('dap').repl.toggle({ height = height }, 'belowright split')
+    else
+      require('dap').repl.open({ height = height }, 'belowright split')
+    end
+  end
+end
+
+return M

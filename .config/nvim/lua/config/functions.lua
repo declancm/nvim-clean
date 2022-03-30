@@ -1,3 +1,5 @@
+local M = {}
+
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
@@ -6,7 +8,7 @@ local augroup = vim.api.nvim_create_augroup
 -- Toggle your notes file and keep it synced with the github remote.
 -- Requires 'declancm/git-scripts.nvim'.
 
-function ToggleNotes(notesPath)
+M.ToggleNotes = function(notesPath)
   notesPath = vim.fn.expand(notesPath)
   local notesDirectory = vim.fn.fnamemodify(notesPath, ':h')
   if notesPath == vim.fn.expand('%') then
@@ -37,7 +39,7 @@ end
 -- Works with plugins that change what a word is such as wordmotion (recognizes
 -- camelCase etc. as separate words).
 
-function DeleteStartWord(word)
+M.DeleteStartWord = function(word)
   local cursorPos = vim.fn.getcurpos()
   if cursorPos[3] < 3 then
     local bs = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
@@ -66,7 +68,7 @@ end
 -- Works with plugins that change what a word is such as wordmotion ( which
 -- recognizes camelCase etc. as separate words).
 
-function DeleteEndWord(word)
+M.DeleteEndWord = function(word)
   local keys
   if word == 'w' then
     keys = vim.api.nvim_replace_termcodes('<Space><Esc>vec', true, false, true)
@@ -81,7 +83,7 @@ end
 -- Paste from the global register '*'.
 -- If pasting a visual line selection of text, perform automatic indentation.
 
-function GlobalPaste(pasteMode)
+M.GlobalPaste = function(pasteMode)
   if vim.fn.getreg('*') == '' then
     return
   end
@@ -107,12 +109,12 @@ function! Search(cmd = '')
     let l:pattern = "\\<" . trim(l:pattern, "'", 1) . "\\>"
   endif
   if search(l:pattern, 'nw') == 0
-    echohl ErrorMsg | echo "Error: Pattern not found: " . l:pattern | echohl None
+    echohl ErrorMsg | echom "Error: Pattern not found: " . l:pattern | echohl None
     return
   endif
-  exec "%s/" . l:pattern . "//gn"
-  silent exec "normal! /" . l:pattern
-  silent exec "normal! n"
+  exe "%s/" . l:pattern . "//gn"
+  silent exe "normal! /" . l:pattern
+  silent exe "normal! n"
   let @/ = l:pattern
 endfunction
 ]])
@@ -133,15 +135,11 @@ function! VimGrep()
   try
     exe "vimgrep /" . l:pattern . "/gj " . getreg('%')
   catch
-    echohl ErrorMsg | echo "Error: The grep failed." | echohl None
+    echohl ErrorMsg | echom "Error: The grep failed." | echohl None
     return
   endtry
-  let l:input = input("Do you want to open the quickfix list? [y/n]: ")
-  if l:input == 'y' || l:input == 'yes'
-    lua require('telescope.builtin').quickfix()
-  else
-    echo "\nThe quickfix list was populated with the grep results."
-  endif
+  echom "The quickfix list was populated with the grep results."
+  lua require('telescope.builtin').quickfix()
 endfunction
 ]])
 
@@ -151,7 +149,7 @@ endfunction
 -- Will only find a match after the indent has changed, stopping it from jumping
 -- just one line at a time.
 
-function FindSameIndent(direction)
+M.FindSameIndent = function(direction)
   local indentChanged = false
   local lineNum = vim.fn.getcurpos()[2]
   local wantedIndent = vim.fn.indent(lineNum)
@@ -184,7 +182,7 @@ end
 -- greater than 15 lines, set this position in the jump list.
 -- Use ctrl-o and ctrl-i to go back and forth on the jump list.
 
-function SetJump()
+M.SetJump = function()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
   if
@@ -209,4 +207,9 @@ end
 
 autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', { clear = false }) })
 autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', { clear = false }) })
-autocmd('InsertLeave', { command = 'lua SetJump()', group = augroup('set_jump', { clear = false }) })
+autocmd('InsertLeave', {
+  command = "lua require('config.functions').SetJump()",
+  group = augroup('set_jump', { clear = false }),
+})
+
+return M

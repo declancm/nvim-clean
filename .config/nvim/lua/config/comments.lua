@@ -34,7 +34,9 @@ comment.setup {
 keymap({ 'i', 'n' }, '<C-_>', "<Cmd>lua SavePosComment('line')<CR>", opts)
 keymap('x', '<C-_>', "<Esc><Cmd>lua SavePosComment('visual')<CR>", opts)
 
-function SavePosComment(mode)
+local M = {}
+
+M.SavePosComment = function(mode)
   local column = vim.fn.getcurpos()[3]
   local lengthBefore = vim.fn.strdisplaywidth(vim.fn.getline('.'))
   if mode == 'line' then
@@ -47,6 +49,8 @@ function SavePosComment(mode)
     vim.fn.cursor(vim.fn.line('.'), column + (lengthAfter - lengthBefore))
   end
 end
+
+return M
 
 -- KOMMENTARY:
 
