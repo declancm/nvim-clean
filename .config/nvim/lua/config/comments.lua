@@ -40,7 +40,7 @@ M.SavePosComment = function(mode)
   local _, row, column = unpack(vim.fn.getcurpos())
   local widthBefore = vim.fn.strdisplaywidth(vim.fn.getline('.'))
   if mode == 'line' then
-    require('Comment.api').toggle_current_linewise()
+    require('Comment.api').locked.toggle_current_linewise()
   elseif mode == 'visual' then
     require('Comment.api').locked.toggle_linewise_op(vim.fn.visualmode())
   end

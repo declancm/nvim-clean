@@ -112,7 +112,8 @@ return require('packer').startup(function(use)
 
   -- COMMENTS:
 
-  -- use('b3nj5m1n/kommentary') -- comments
+  use('numToStr/Comment.nvim') -- comments
+  -- use('numToStr/Comment.nvim') -- comments
 
   -- MOVEMENTS:
 
@@ -146,13 +147,12 @@ return require('packer').startup(function(use)
     use('~/plugins/windex.nvim')
     use('~/plugins/vim2vscode')
     use('~/plugins/git-scripts.nvim')
-    use('~/plugins/Comment.nvim')
+    -- use('~/plugins/Comment.nvim')
   else
     use('declancm/cinnamon.nvim') -- neovim smooth scrolling
     use('declancm/windex.nvim') -- cleaner window movements
     use('declancm/vim2vscode') -- open current buffers in vscode
     use('declancm/git-scripts.nvim') -- async git functions
-    use('numToStr/Comment.nvim') -- comments
   end
 
   -- Install packer if it was just git cloned.
