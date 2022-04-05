@@ -40,7 +40,7 @@ M.DeleteStartWord = function(word)
   local cursorPos = vim.fn.getcurpos()
   if cursorPos[3] < 3 then
     local bs = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
-    vim.api.nvim_feedkeys(bs, 'n', true)
+    vim.api.nvim_feedkeys(bs, 'n', false)
   else
     vim.cmd('normal! b')
     local cursorNew = vim.fn.getcurpos()
@@ -54,7 +54,7 @@ M.DeleteStartWord = function(word)
       elseif word == 'W' then
         keys = vim.api.nvim_replace_termcodes('<Space><Esc>vBc', true, false, true)
       end
-      vim.api.nvim_feedkeys(keys, 'm', true)
+      vim.api.nvim_feedkeys(keys, 'm', false)
     end
   end
 end
@@ -72,7 +72,7 @@ M.DeleteEndWord = function(word)
   elseif word == 'W' then
     keys = vim.api.nvim_replace_termcodes('<Space><Esc>vEc', true, false, true)
   end
-  vim.api.nvim_feedkeys(keys, 'm', true)
+  vim.api.nvim_feedkeys(keys, 'm', false)
 end
 
 -- IMPROVED_PASTE:

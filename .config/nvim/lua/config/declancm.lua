@@ -21,11 +21,14 @@ require('cinnamon').setup {
   scroll_limit = 100,
 }
 
-keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>", opts)
+-- keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>", opts)
 
 -- WINDEX:
 
-require('windex').setup {
-  -- arrow_keys = true,
-  -- numbered_term = true,
-}
+-- require('windex').setup {
+--   -- arrow_keys = true,
+--   -- numbered_term = true,
+-- }
+
+-- Open lazygit:
+keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('all', 'lazygit')<CR>", opts)

@@ -68,11 +68,6 @@ keymap('i', '<M-Del>', "<Cmd>lua require('functions').DeleteEndWord('W')<CR>", o
 -- keymap('n', '<Leader>/', '<Cmd>call Search()<CR>', opts)
 keymap('n', '<Leader>/', '<Cmd>call VimGrep()<CR>', opts)
 
--- TERMINAL:
-
--- Open lazygit:
-keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('nvim', 'lazygit')<CR>", opts)
-
 -- COPY_AND_PASTE:
 
 -- Y works like D and C.

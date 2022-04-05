@@ -14,18 +14,20 @@ vim.opt.smartcase = true
 vim.opt.wrap = false -- Disable line wrap.
 vim.opt.expandtab = true -- Convert tabs into spaces.
 vim.opt.autoindent = true -- Copy indent of current line for new line.
-vim.opt.cindent = true
+vim.opt.cindent = true -- C style indenting.
 vim.opt.scrolloff = 8 -- Minimum number of screen lines above/below the cursor.
-vim.opt.iskeyword = vim.opt.iskeyword - '_' -- '_' separates words, same as '-'.
+vim.opt.iskeyword:remove('_') -- '_' separates words, same as '-'.
 vim.opt.backspace = { 'indent', 'eol', 'start', 'nostop' } -- Better backspace.
 vim.opt.updatetime = 100 -- Delay before CursorHold event is activated.
-vim.opt.shortmess = vim.opt.shortmess + 'ac'
+vim.opt.shortmess:append('ac')
 vim.opt.splitbelow = true -- Create new windows below.
 vim.opt.splitright = true -- Create new windows to the right.
 vim.opt.timeoutlen = 500 -- Maximum time between key presses for a keymap.
 vim.opt.mouse = 'a' -- Enable mouse.
-vim.opt.path = vim.opt.path + '**'
+vim.opt.path:append('**')
 vim.opt.textwidth = 80
 vim.opt.pastetoggle = '<F9>'
 -- vim.opt.laststatus = 3 -- Use one status line for all windows.
 vim.opt.inccommand = 'split'
+vim.opt.shortmess:remove('S') -- Show count for search results.
+vim.opt.lazyredraw = true

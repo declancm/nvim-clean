@@ -1,3 +1,6 @@
+local opts = { silent = true }
+local keymap = vim.keymap.set
+
 -- THEME:
 
 local theme = vim.g.__selected_theme
@@ -126,9 +129,16 @@ gitsigns.setup {
       linehl = 'GitSignsDeleteLn',
     },
   },
-  -- sign_priority = 10,
+  current_line_blame_opts = {
+    delay = 0,
+    ignore_whitespace = true,
+  },
   keymaps = {},
 }
+
+local gs = package.loaded.gitsigns
+
+keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame, opts)
 
 -- TODO-COMMENTS:
 
@@ -142,10 +152,6 @@ todo.setup {
   -- signs = false,
 }
 
-local opts = { silent = true }
-local keymap = vim.keymap.set
-
-keymap('n', '<Leader>tdt', '<Cmd>TodoTrouble<CR>', opts)
 keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>', opts)
 
 -- COLORIZER:
