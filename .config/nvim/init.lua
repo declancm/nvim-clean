@@ -12,11 +12,9 @@ completion = 'cmp' -- Lots of good sources.
 vim.g.__selected_theme = theme
 vim.g.__selected_completion = completion
 
--- Starting Python.
-vim.g.python3_host_prog = '/bin/python3'
-vim.g.python_host_prog = '/bin/python2'
-
 -- PRE-CONFIG_OPTIONS:
+vim.g.python3_host_prog = '/bin/python3' -- Starts python3.
+vim.g.python_host_prog = '/bin/python2' -- Starts python.
 vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.

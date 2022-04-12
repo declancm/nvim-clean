@@ -181,3 +181,12 @@ indent.setup {
   -- show_current_context = true,
   -- show_current_context_start = true,
 }
+
+-- INCLINE:
+local incline_status, incline = pcall(require, 'incline')
+if not incline_status then
+  print("'incline' executed with errors.")
+  return
+end
+
+-- incline.setup()

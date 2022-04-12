@@ -27,7 +27,8 @@ require('cinnamon').setup {
 
 -- require('windex').setup {
 --   -- arrow_keys = true,
---   -- numbered_term = true,
+--   numbered_term = true,
+--   -- save_buffers = true,
 -- }
 
 -- Open lazygit:

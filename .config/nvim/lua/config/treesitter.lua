@@ -10,7 +10,7 @@ if not treesitter_status then
 end
 
 treesitter.setup {
-  ensure_installed = 'maintained',
+  ensure_installed = 'all',
   highlight = {
     enable = true,
     disable = {},

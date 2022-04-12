@@ -109,6 +109,7 @@ return require('packer').startup(function(use)
   use('folke/todo-comments.nvim') -- better todo comments
   use('norcalli/nvim-colorizer.lua') -- preview colors for color codes
   use('lukas-reineke/indent-blankline.nvim') -- indent guides
+  use('b0o/incline.nvim') -- floating statuslines
 
   -- COMMENTS:
 
@@ -147,7 +148,6 @@ return require('packer').startup(function(use)
     use('~/plugins/windex.nvim')
     use('~/plugins/vim2vscode')
     use('~/plugins/git-scripts.nvim')
-    -- use('~/plugins/Comment.nvim')
   else
     use('declancm/cinnamon.nvim') -- neovim smooth scrolling
     use('declancm/windex.nvim') -- cleaner window movements
