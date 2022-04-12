@@ -21,7 +21,7 @@ vim.g.bullets_enable_in_empty_buffers = 0
 local chadtree_settings = {
   ['options.close_on_open'] = true,
   ['theme.text_colour_set'] = 'solarized_light',
-  -- ['options.session'] = false,
+  ['options.session'] = false,
 }
 vim.api.nvim_set_var('chadtree_settings', chadtree_settings)
 

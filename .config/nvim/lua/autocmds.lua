@@ -79,9 +79,9 @@ autocmd('VimEnter', {
 })
 
 -- Setting jump points.
-autocmd('InsertEnter', { command = 'let b:jumpTextChanged = 0', group = augroup('set_jump', { clear = false }) })
-autocmd('TextChangedI', { command = 'let b:jumpTextChanged = 1', group = augroup('set_jump', { clear = false }) })
+autocmd('InsertEnter', { command = 'let b:__jump_text_changed = 0', group = augroup('set_jump', { clear = false }) })
+autocmd('TextChangedI', { command = 'let b:__jump_text_changed = 1', group = augroup('set_jump', { clear = false }) })
 autocmd('InsertLeave', {
-  command = "lua require('functions').SetJump()",
+  command = "lua require('functions').set_jump()",
   group = augroup('set_jump', { clear = false }),
 })

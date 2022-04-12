@@ -5,25 +5,25 @@ local M = {}
 -- Toggle your notes file and keep it synced with the github remote.
 -- Requires 'declancm/git-scripts.nvim'.
 
-M.ToggleNotes = function(notesPath)
-  notesPath = vim.fn.expand(notesPath)
-  local notesDirectory = vim.fn.fnamemodify(notesPath, ':h')
-  if notesPath == vim.fn.expand('%') then
-    -- if vim.bo.modified or vim.b.notes_modified == 1 then
+M.toggle_notes = function(notes_path)
+  notes_path = vim.fn.expand(notes_path)
+  local notes_directory = vim.fn.fnamemodify(notes_path, ':h')
+  if notes_path == vim.fn.expand('%') then
+    -- if vim.bo.modified or vim.b.__notes_modified == 1 then
     --   vim.cmd 'write'
-    --   local notesTail = vim.fn.fnamemodify(notesPath, ':t')
+    --   local notesTail = vim.fn.fnamemodify(notes_path, ':t')
     --   print("Your changes to '" .. notesTail .. "' are being committed.")
-    --   require('git-scripts').async_commit('', notesDirectory)
-    --   vim.b.notes_modified = 0
+    --   require('git-scripts').async_commit('', notes_directory)
+    --   vim.b.__notes_modified = 0
     -- end
     vim.cmd('edit #')
   else
-    require('git-scripts').async_pull(notesDirectory)
-    vim.b.notes_modified = 0
-    vim.cmd('edit ' .. notesPath)
+    require('git-scripts').async_pull(notes_directory)
+    -- vim.b.__notes_modified = 0
+    vim.cmd('edit ' .. notes_path)
     -- autocmd('BufWritePre', {
-    --   command = 'if &modified | let b:notes_modified = 1 | endif',
-    --   pattern = notesPath,
+    --   command = 'if &modified | let b:__notes_modified = 1 | endif',
+    --   pattern = notes_path,
     --   group = augroup('toggle_notes', {}),
     -- })
   end
@@ -36,16 +36,16 @@ end
 -- Works with plugins that change what a word is such as wordmotion (recognizes
 -- camelCase etc. as separate words).
 
-M.DeleteStartWord = function(word)
-  local cursorPos = vim.fn.getcurpos()
-  if cursorPos[3] < 3 then
+M.delete_start_word = function(word)
+  local cursor_pos = vim.fn.getcurpos()
+  if cursor_pos[3] < 3 then
     local bs = vim.api.nvim_replace_termcodes('<BS>', true, false, true)
     vim.api.nvim_feedkeys(bs, 'n', false)
   else
     vim.cmd('normal! b')
-    local cursorNew = vim.fn.getcurpos()
-    vim.fn.cursor(cursorPos[2], cursorPos[3])
-    if cursorPos[2] - cursorNew[2] ~= 0 then
+    local cursor_new = vim.fn.getcurpos()
+    vim.fn.cursor(cursor_pos[2], cursor_pos[3])
+    if cursor_pos[2] - cursor_new[2] ~= 0 then
       vim.cmd('normal! d0i')
     else
       local keys
@@ -65,7 +65,7 @@ end
 -- Works with plugins that change what a word is such as wordmotion ( which
 -- recognizes camelCase etc. as separate words).
 
-M.DeleteEndWord = function(word)
+M.delete_end_word = function(word)
   local keys
   if word == 'w' then
     keys = vim.api.nvim_replace_termcodes('<Space><Esc>vec', true, false, true)
@@ -80,14 +80,14 @@ end
 -- Paste from the global register '*'.
 -- If pasting a visual line selection of text, perform automatic indentation.
 
-M.GlobalPaste = function(pasteMode)
+M.paste = function(paste_mode)
   if vim.fn.getreg('*') == '' then
     return
   end
   if vim.fn.getregtype('*') == 'V' then
-    vim.cmd('normal! "*' .. pasteMode .. '`[v`]=`]$')
+    vim.cmd('normal! "*' .. paste_mode .. '`[v`]=`]$')
   else
-    vim.cmd('normal! "*' .. pasteMode)
+    vim.cmd('normal! "*' .. paste_mode)
   end
 end
 
@@ -146,27 +146,27 @@ endfunction
 -- Will only find a match after the indent has changed, stopping it from jumping
 -- just one line at a time.
 
-M.FindSameIndent = function(direction)
-  local indentChanged = false
-  local lineNum = vim.fn.getcurpos()[2]
-  local wantedIndent = vim.fn.indent(lineNum)
+M.same_indent = function(direction)
+  local indent_changed = false
+  local line_num = vim.fn.getcurpos()[2]
+  local wanted_indent = vim.fn.indent(line_num)
   vim.cmd('norm! ^')
   while true do
     if direction == 'Up' then
-      lineNum = lineNum - 1
+      line_num = line_num - 1
     elseif direction == 'Down' then
-      lineNum = lineNum + 1
+      line_num = line_num + 1
     else
       return
     end
-    local indent = vim.fn.indent(lineNum)
-    if indent ~= wantedIndent then
-      indentChanged = true
-    elseif indent == wantedIndent and indentChanged == true then
-      vim.cmd('normal ' .. lineNum .. 'G')
+    local indent = vim.fn.indent(line_num)
+    if indent ~= wanted_indent then
+      indent_changed = true
+    elseif indent == wanted_indent and indent_changed == true then
+      vim.cmd('normal ' .. line_num .. 'G')
       return
     end
-    if lineNum <= 0 or lineNum >= vim.fn.line('$') then
+    if line_num <= 0 or line_num >= vim.fn.line('$') then
       return
     end
   end
@@ -179,24 +179,24 @@ end
 -- greater than 15 lines, set this position in the jump list.
 -- Use ctrl-o and ctrl-i to go back and forth on the jump list.
 
-M.SetJump = function()
+M.set_jump = function()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
   if
     vim.bo.buftype == ''
-    and vim.b.jumpTextChanged == 1
+    and vim.b.__jump_text_changed == 1
     and (
-      vim.b.prevJumpCursor == nil
-      or vim.b.prevJumpBuffer == nil
-      or buffer ~= vim.b.prevJumpBuffer
-      or cursor[2] < vim.b.prevJumpCursor[2] - 15
-      or cursor[2] > vim.b.prevJumpCursor[2] + 15
+      vim.b.__jump_prev_cursor == nil
+      or vim.b.__jump_prev_buffer == nil
+      or buffer ~= vim.b.__jump_prev_buffer
+      or cursor[2] < vim.b.__jump_prev_cursor[2] - 15
+      or cursor[2] > vim.b.__jump_prev_cursor[2] + 15
     )
   then
     -- print 'Setting jump.'
-    vim.b.prevJumpCursor = cursor
-    vim.b.prevJumpBuffer = buffer
-    vim.b.jumpTextChanged = 0
+    vim.b.__jump_prev_cursor = cursor
+    vim.b.__jump_prev_buffer = buffer
+    vim.b.__jump_text_changed = 0
     vim.cmd("normal! m'") -- only save the line number
     -- vim.cmd 'normal! m`' -- save the column position too
   end
