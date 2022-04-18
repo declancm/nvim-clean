@@ -110,6 +110,7 @@ return require('packer').startup(function(use)
   use('norcalli/nvim-colorizer.lua') -- preview colors for color codes
   use('lukas-reineke/indent-blankline.nvim') -- indent guides
   use('b0o/incline.nvim') -- floating statuslines
+  use('akinsho/bufferline.nvim') -- buffer line with tabpage integration.
 
   -- COMMENTS:
 

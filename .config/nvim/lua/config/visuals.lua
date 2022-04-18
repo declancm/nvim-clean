@@ -183,10 +183,39 @@ indent.setup {
 }
 
 -- INCLINE:
+
 local incline_status, incline = pcall(require, 'incline')
 if not incline_status then
   print("'incline' executed with errors.")
   return
 end
 
--- incline.setup()
+incline.setup {
+  render = function(props)
+    local bufname = vim.api.nvim_buf_get_name(props.buf)
+    if bufname == '' then
+      return ''
+    else
+      bufname = vim.fn.fnamemodify(bufname, ':t')
+    end
+    return bufname
+  end,
+  -- ignore = { filetypes = { 'CHADTree' } },
+}
+
+-- BUFFERLINE:
+
+local bufferline_status, bufferline = pcall(require, 'bufferline')
+if not bufferline_status then
+  print("'bufferline' executed with errors.")
+  return
+end
+
+bufferline.setup {
+  options = {
+    mode = 'tabs',
+    diagnostics = 'nvim_lsp',
+    offsets = { { filetype = 'CHADTree', text_align = 'left' } },
+    always_show_bufferline = false,
+  },
+}

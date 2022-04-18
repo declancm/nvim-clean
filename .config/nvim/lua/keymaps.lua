@@ -153,5 +153,7 @@ keymap('n', '<Leader>bl', '<Cmd>ls | exec "buffer " . input("\\nEnter buffer: ")
 
 keymap('n', '<Leader>tn', '<Cmd>tab split<CR>', opts)
 keymap('n', '<Leader>tc', '<Cmd>tabclose<CR>', opts)
--- <C-PgUp> = prev. tab.
+keymap('n', '<Leader>tl', '<Cmd>tabnext<CR>', opts)
+keymap('n', '<Leader>th', '<Cmd>tabprevious<CR>', opts)
+-- <C-PgUp> = previous tab.
 -- <C-PgDown> = next tab.
