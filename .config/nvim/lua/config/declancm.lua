@@ -23,6 +23,7 @@ require('cinnamon').setup {
 -- WINDEX:
 
 require('windex').setup {
+  extra_keymaps = true,
   save_buffers = true,
 }
 

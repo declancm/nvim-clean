@@ -64,10 +64,10 @@ keymap('n', '<Leader>dsi', "<Cmd>lua require('dap').step_into()<CR>", opts)
 keymap('n', '<Leader>dso', "<Cmd>lua require('dap').step_out()<CR>", opts)
 
 -- Repl:
-keymap('n', '<Leader>dd', "<Cmd>lua require('config.debugging').OpenRepl('toggle')<CR>", opts)
+keymap('n', '<Leader>dd', "<Cmd>lua require('config.debugging').open_repl('toggle')<CR>", opts)
 -- keymap('n', '<Leader>dc', function()
 --   require('dap').continue()
---   OpenRepl()
+--   open_repl()
 -- end, opts)
 keymap('n', '<Leader>dq', function()
   require('dap').terminate()
@@ -75,7 +75,7 @@ keymap('n', '<Leader>dq', function()
 end, opts)
 
 require('dap').listeners.after.event_initialized['repl_open'] = function()
-  require('config.debugging').OpenRepl()
+  require('config.debugging').open_repl()
 end
 
 -- NVIM-DAP-VIRTUAL-TEXT:
@@ -104,19 +104,19 @@ keymap('n', '<Leader>du', "<Cmd>lua require('dapui').toggle()<CR>", opts)
 
 local M = {}
 
-M.OpenRepl = function(cmd)
+M.open_repl = function(cmd)
   cmd = cmd or 'open'
-  local winWidth = vim.api.nvim_win_get_width(0)
-  local winHeight = vim.api.nvim_win_get_height(0)
-  if winWidth >= 170 then
-    local width = math.floor(winWidth / 2)
+  local win_width = vim.api.nvim_win_get_width(0)
+  local win_height = vim.api.nvim_win_get_height(0)
+  if win_width >= 170 then
+    local width = math.floor(win_width / 2)
     if cmd == 'toggle' then
       require('dap').repl.toggle({ width = width }, 'belowright vertical split')
     else
       require('dap').repl.open({ width = width }, 'belowright vertical split')
     end
   else
-    local height = math.floor(winHeight / 3)
+    local height = math.floor(win_height / 3)
     if cmd == 'toggle' then
       require('dap').repl.toggle({ height = height }, 'belowright split')
     else

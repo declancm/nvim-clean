@@ -125,8 +125,8 @@ keymap('n', '<M-D>', '"*d', opts)
 -- WINDOWS:
 
 -- Creating windows.
-keymap('n', '<Leader>v', '<C-w>v', opts)
-keymap('n', '<Leader>s', '<C-w>s', opts)
+-- keymap('n', '<Leader>v', '<C-w>v', opts)
+-- keymap('n', '<Leader>s', '<C-w>s', opts)
 
 -- Resize windows.
 keymap('n', '<S-Up>', '<Cmd>resize +5<CR>', opts)

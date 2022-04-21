@@ -55,6 +55,9 @@ vim.cmd([[highlight CursorLineNr guifg=white]])
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 
+-- End of buffer:
+-- vim.cmd([[highlight EndOfBuffer guifg=NONE]])
+
 -- Transparent popup menus.
 -- vim.cmd [[highlight Pmenu ctermbg=0 guibg=NONE]]
 
@@ -70,6 +73,14 @@ if not lualine_status then
   return
 end
 
+local gps_status, gps = pcall(require, 'nvim-gps')
+if not gps_status then
+  print("'gps'executed with errors.")
+  return
+end
+
+gps.setup()
+
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -80,9 +91,9 @@ lualine.setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'branch' },
-    lualine_c = { 'filename' },
-    lualine_x = {
+    lualine_b = { 'filename' },
+    lualine_c = {
+      'branch',
       {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
@@ -93,8 +104,12 @@ lualine.setup {
           hint = ' ',
         },
       },
-      'encoding',
-      'filetype',
+    },
+    lualine_x = {
+      { gps.get_location, cond = gps.is_available },
+      -- 'encoding',
+      -- 'fileformat',
+      -- 'filetype',
     },
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
@@ -201,6 +216,7 @@ incline.setup {
     return bufname
   end,
   -- ignore = { filetypes = { 'CHADTree' } },
+  hide = { focused_win = true },
 }
 
 -- BUFFERLINE:

@@ -101,7 +101,10 @@ return require('packer').startup(function(use)
   use('folke/tokyonight.nvim') -- colorscheme
   use('navarasu/onedark.nvim') -- colorscheme
   use('luisiacc/gruvbox-baby') -- colorscheme
-  use('hoob3rt/lualine.nvim') -- better status line
+  use {
+    'hoob3rt/lualine.nvim', -- better status line
+    requires = { 'SmiteshP/nvim-gps' }, -- show current scope
+  }
   use {
     'lewis6991/gitsigns.nvim', -- git column icons
     tag = 'release',
