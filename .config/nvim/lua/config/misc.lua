@@ -53,3 +53,13 @@ autocmd('FileType', {
 
 keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>', opts)
 keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>', opts)
+
+-- BUFRESIZE:
+
+local bufresize_status, bufresize = pcall(require, 'bufresize')
+if not bufresize_status then
+  print("'bufresize' executed with errors.")
+  return
+end
+
+bufresize.setup()

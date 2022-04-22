@@ -125,7 +125,10 @@ return require('packer').startup(function(use)
   use('unblevable/quick-scope') -- highlight for f, F, t, T movements
   use('machakann/vim-sandwich') -- change surrounding chars
   use('arthurxavierx/vim-caser') -- word coercion
-  use('dkarter/bullets.vim') -- bullets
+  use {
+    'dkarter/bullets.vim', -- bullets
+    ft = { 'markdown', 'text' },
+  }
   use('chaoren/vim-wordmotion') -- camel case, snake case etc. become separate words
   -- use 'ggandor/lightspeed.nvim' -- another movement
 
@@ -143,6 +146,7 @@ return require('packer').startup(function(use)
   }
   use('tpope/vim-obsession') -- sessions
   use('tpope/vim-capslock') -- software capslock
+  use('kwkarlwang/bufresize.nvim') -- better buffer resizing
 
   -- MY_PLUGINS:
 
