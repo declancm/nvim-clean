@@ -83,17 +83,17 @@ gps.setup()
 
 lualine.setup {
   options = {
-    icons_enabled = true,
     theme = theme,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
-    disabled_filetypes = {},
+    globalstatus = true,
   },
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { 'filename' },
     lualine_c = {
       'branch',
+      'diff',
       {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
@@ -215,7 +215,6 @@ incline.setup {
     end
     return bufname
   end,
-  -- ignore = { filetypes = { 'CHADTree' } },
   hide = { focused_win = true },
 }
 

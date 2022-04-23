@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim', -- fuzzy finder
+    tag = 'nvim-0.6',
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'jvgrootveld/telescope-zoxide',
