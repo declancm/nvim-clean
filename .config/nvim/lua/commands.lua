@@ -1,4 +1,4 @@
-vim.api.nvim_add_user_command('E', function()
+vim.api.nvim_create_user_command('E', function()
   local saved = {}
   saved.splitright = vim.opt.splitright:get()
   vim.opt.splitright = false

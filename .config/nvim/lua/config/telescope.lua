@@ -114,10 +114,8 @@ autocmd('FileType', {
 
 local M = {}
 
-local options
-
 M.grep_notes = function()
-  options = {}
+  local options = {}
   -- options.search_dirs = { '~/notes/' }
   options.cwd = '~/notes/'
   options.prompt_title = 'Search Notes'
@@ -126,7 +124,7 @@ M.grep_notes = function()
 end
 
 M.grep_config = function()
-  options = {}
+  local options = {}
   -- options.search_dirs = { '~/.config/nvim/' }
   options.opts = { file_ignore_patterns = { '^runtime/' } }
   options.cwd = '~/.config/nvim/'
@@ -136,7 +134,7 @@ M.grep_config = function()
 end
 
 M.grep_neovim = function()
-  options = {}
+  local options = {}
   -- options.search_dirs = { '~/neovim/' }
   options.cwd = '~/neovim/'
   options.shorten_path = true

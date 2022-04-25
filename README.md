@@ -1,7 +1,7 @@
 # 🧼 The CLEAN Neovim Config 🧼
 
-This is my neovim lua config which is full of some heat 🔥 custom functions, 
-keymaps, and plugins configurations.
+This is my neovim nightly lua config which is full of some heat 🔥 custom
+functions, keymaps, and plugins configurations.
 
 Comes with three themes and two completion sources to choose between.
 
