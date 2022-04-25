@@ -96,6 +96,22 @@ keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>
 keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
 keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
 
+-- BUFFER_KEYMAPS:
+
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
+-- Telescope keymaps will close Explore window.
+autocmd('FileType', {
+  callback = function()
+    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
+  end,
+  pattern = 'netrw',
+  group = augroup('explore_telescope', {}),
+})
+
 local M = {}
 
 local options

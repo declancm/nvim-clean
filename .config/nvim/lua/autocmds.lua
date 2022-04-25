@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local keymap = vim.keymap.set
 
 -- Keep nvim config synced with remote.
 autocmd('VimEnter', {
@@ -31,6 +32,17 @@ autocmd('BufWritePost', {
 autocmd('BufWritePre', {
   command = 'let b:savedView = winsaveview() | keeppatterns %s/s+$//e | call winrestview(b:savedView)',
   group = augroup('remove_whitespace', {}),
+})
+
+-- Telescope keymaps will close Explore window.
+autocmd('FileType', {
+  callback = function()
+    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
+  end,
+  pattern = 'netrw',
+  group = augroup('explore_telescope', {}),
 })
 
 -- Setting options.

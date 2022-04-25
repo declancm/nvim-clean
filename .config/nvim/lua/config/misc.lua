@@ -1,6 +1,5 @@
 local opts = { silent = true }
 local keymap = vim.keymap.set
-local bufmap = vim.api.nvim_buf_set_keymap
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
@@ -32,9 +31,9 @@ keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
 -- Telescope keymaps will close chadtree.
 autocmd('FileType', {
   callback = function()
-    bufmap(0, 'n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-    bufmap(0, 'n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-    bufmap(0, 'n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
   end,
   pattern = 'CHADTree',
   group = augroup('chadtree_telescope', {}),

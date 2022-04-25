@@ -230,7 +230,10 @@ bufferline.setup {
   options = {
     mode = 'tabs',
     diagnostics = 'nvim_lsp',
-    offsets = { { filetype = 'CHADTree', text_align = 'left' } },
+    offsets = {
+      { filetype = 'netrw', text_align = 'left' },
+      -- { filetype = 'CHADTree', text_align = 'left' },
+    },
     always_show_bufferline = false,
   },
 }
