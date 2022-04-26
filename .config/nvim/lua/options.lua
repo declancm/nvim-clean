@@ -25,7 +25,7 @@ vim.opt.splitright = true -- Create new windows to the right.
 vim.opt.timeoutlen = 500 -- Maximum time between key presses for a keymap.
 vim.opt.mouse = 'a' -- Enable mouse.
 vim.opt.path:append('**')
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80
 vim.opt.pastetoggle = '<F9>'
 vim.opt.laststatus = 3 -- Use one status line for all windows.
 vim.opt.inccommand = 'split'

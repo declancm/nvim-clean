@@ -34,7 +34,7 @@ telescope.setup {
       },
     },
     prompt_prefix = '🔭 ',
-    selection_caret = '▶ ',
+    -- selection_caret = '▶ ',
   },
   pickers = {
     find_files = {
@@ -83,6 +83,11 @@ keymap('n', '<Leader>fs', "<Cmd>lua require('telescope.builtin').git_status()<CR
 -- List pickers.
 keymap('n', '<Leader>fp', "<Cmd>lua require('telescope.builtin').builtin()<CR>", opts)
 
+-- Custom pickers:
+keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>", opts)
+keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
+keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
+
 -- PLUGIN_KEYMAPS:
 
 -- Zoxide.
@@ -90,11 +95,6 @@ keymap('n', '<Leader>fz', '<Cmd>Telescope zoxide list<CR>', opts)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
-
--- Custom pickers:
-keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>", opts)
-keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
-keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
 
 -- BUFFER_KEYMAPS:
 
