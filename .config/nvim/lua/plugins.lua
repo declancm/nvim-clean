@@ -115,6 +115,11 @@ return require('packer').startup(function(use)
   use('lukas-reineke/indent-blankline.nvim') -- indent guides
   use('b0o/incline.nvim') -- floating statuslines
   use('akinsho/bufferline.nvim') -- buffer line with tabpage integration.
+  use {
+    'ms-jpq/chadtree', -- better filetree
+    branch = 'chad',
+    run = 'python3 -m chadtree deps',
+  }
 
   -- COMMENTS:
 
@@ -136,11 +141,6 @@ return require('packer').startup(function(use)
   -- MISC:
 
   use('mbbill/undotree') -- tree view of undo history
-  use {
-    'ms-jpq/chadtree', -- filetree
-    branch = 'chad',
-    run = 'python3 -m chadtree deps',
-  }
   use {
     'tpope/vim-fugitive', -- Git
     requires = { 'junegunn/gv.vim' },

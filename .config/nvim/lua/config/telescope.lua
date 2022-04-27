@@ -52,6 +52,7 @@ telescope.setup {
     },
   },
 }
+
 telescope.load_extension('fzf')
 telescope.load_extension('zoxide')
 telescope.load_extension('refactoring')
@@ -91,7 +92,7 @@ keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR
 -- PLUGIN_KEYMAPS:
 
 -- Zoxide.
-keymap('n', '<Leader>fz', '<Cmd>Telescope zoxide list<CR>', opts)
+keymap('n', '<Leader>fz', "<Cmd>lua require('telescope').extensions.zoxide.list()<CR>", opts)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
@@ -107,6 +108,7 @@ autocmd('FileType', {
     keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
     keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
     keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fz', "<Cmd>bd<CR><Cmd>lua require('telescope').extensions.zoxide.list()<CR>", { buffer = 0 })
   end,
   pattern = 'netrw',
   group = augroup('explore_telescope', {}),

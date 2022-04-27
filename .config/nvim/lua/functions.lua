@@ -145,6 +145,7 @@ endfunction
 -- Jump to the next line with the same indent size.
 -- Will only find a match after the indent has changed, stopping it from jumping
 -- just one line at a time.
+-- TODO: ignore empty lines
 
 M.same_indent = function(direction)
   local indent_changed = false

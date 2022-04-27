@@ -1,6 +1,9 @@
 local opts = { silent = true }
 local keymap = vim.keymap.set
 
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- THEME:
 
 local theme = vim.g.__selected_theme
@@ -232,8 +235,35 @@ bufferline.setup {
     diagnostics = 'nvim_lsp',
     offsets = {
       { filetype = 'netrw', text_align = 'left' },
-      -- { filetype = 'CHADTree', text_align = 'left' },
     },
     always_show_bufferline = false,
   },
 }
+
+-- CHADTREE:
+
+vim.api.nvim_set_var('chadtree_settings', {
+  ['options.close_on_open'] = true,
+  ['theme.text_colour_set'] = 'solarized_light',
+  ['options.session'] = false,
+  ['view.open_direction'] = 'right',
+})
+
+keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>', opts)
+keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>', opts)
+keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
+
+autocmd('FileType', {
+  callback = function()
+    -- Telescope keymaps will close chadtree.
+    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>fz', "<Cmd>bd<CR><Cmd>lua require('telescope').extensions.zoxide.list()<CR>", { buffer = 0 })
+
+    -- Disable indent guides for chadtree.
+    vim.b.indent_blankline_enabled = false
+  end,
+  pattern = 'CHADTree',
+  group = augroup('chadtree', {}),
+})

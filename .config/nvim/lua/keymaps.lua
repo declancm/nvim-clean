@@ -34,8 +34,7 @@ keymap('n', '<C-Up>', ':m .-2<CR>==', opts)
 keymap('n', '<C-Down>', ':m .+1<CR>==', opts)
 
 -- Improve the <Home> key.
-keymap('', '<Home>', '^<Cmd>normal! zH<CR>', opts)
-keymap('i', '<Home>', '<Esc>zHI', opts)
+keymap({ '', 'i' }, '<Home>', '<Cmd>norm! ^ze<CR>', opts)
 
 -- Stay centered during word search (replaced by vim-cinnamon).
 -- keymap('n', 'n', 'nzzzv', opts)
