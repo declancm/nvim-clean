@@ -124,7 +124,6 @@ return require('packer').startup(function(use)
   -- COMMENTS:
 
   use('numToStr/Comment.nvim') -- comments
-  -- use('numToStr/Comment.nvim') -- comments
 
   -- MOVEMENTS:
 

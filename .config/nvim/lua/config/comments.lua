@@ -37,7 +37,7 @@ end)
 local M = {}
 
 M.save_pos_comment = function(mode)
-  local _, row, column = unpack(vim.fn.getcurpos())
+  local row, column = unpack(vim.api.nvim_win_get_cursor(0))
   local width_before = vim.fn.strdisplaywidth(vim.fn.getline('.'))
   if mode == 'line' then
     require('Comment.api').locked.toggle_current_linewise()
@@ -45,8 +45,8 @@ M.save_pos_comment = function(mode)
     require('Comment.api').locked.toggle_linewise_op(vim.fn.visualmode())
   end
   local width_after = vim.fn.strdisplaywidth(vim.fn.getline('.'))
-  if column > vim.fn.indent('.') then
-    vim.fn.cursor(row, column + (width_after - width_before))
+  if column >= vim.fn.indent('.') then
+    vim.api.nvim_win_set_cursor(0, { row, column + width_after - width_before })
   end
 end
 
