@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { silent = true }
 
 -- TREESITTER:
@@ -57,11 +57,15 @@ end
 
 -- Debug operations:
 
-local debug = ":lua require('refactoring').debug"
-
-keymap('n', '<Leader>rf', debug .. '.printf({below = false})<CR>', {})
-keymap('v', '<Leader>rv', debug .. '.print_var({})<CR>', {})
-keymap('n', '<Leader>rc', debug .. '.cleanup({})<CR>', {})
+keymap('n', '<Leader>rf', function()
+  require('refactoring').debug.printf { below = false }
+end)
+keymap('v', '<Leader>rv', function()
+  require('refactoring').debug.print_var {}
+end)
+keymap('n', '<Leader>rc', function()
+  require('refactoring').debug.cleanup {}
+end)
 
 -- Prompt type operations:
 refactoring.setup {

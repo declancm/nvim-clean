@@ -37,9 +37,15 @@ autocmd('BufWritePre', {
 -- Telescope keymaps will close Explore window.
 autocmd('FileType', {
   callback = function()
-    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>ff', function()
+      require('telescope.builtin').find_files()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fg', function()
+      require('telescope.builtin').live_grep()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fb', function()
+      require('telescope.builtin').buffers()
+    end, { buffer = 0 })
   end,
   pattern = 'netrw',
   group = augroup('explore_telescope', {}),

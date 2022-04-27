@@ -256,10 +256,18 @@ keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
 autocmd('FileType', {
   callback = function()
     -- Telescope keymaps will close chadtree.
-    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fz', "<Cmd>bd<CR><Cmd>lua require('telescope').extensions.zoxide.list()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>ff', function()
+      require('telescope.builtin').find_files()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fg', function()
+      require('telescope.builtin').live_grep()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fb', function()
+      require('telescope.builtin').buffers()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fz', function()
+      require('telescope').extensions.zoxide.list()
+    end, { buffer = 0 })
 
     -- Disable indent guides for chadtree.
     vim.b.indent_blankline_enabled = false

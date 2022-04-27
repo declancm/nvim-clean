@@ -1,4 +1,3 @@
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- COMMENT:
@@ -28,8 +27,12 @@ comment.setup {
   post_hook = nil,
 }
 
-keymap({ 'i', 'n' }, '<C-_>', "<Cmd>lua require('config.comments').save_pos_comment('line')<CR>", opts)
-keymap('x', '<C-_>', "<Esc><Cmd>lua require('config.comments').save_pos_comment('visual')<CR>", opts)
+keymap({ 'i', 'n' }, '<C-_>', function()
+  require('config.comments').save_pos_comment('line')
+end)
+keymap('x', '<C-_>', function()
+  require('config.comments').save_pos_comment('visual')
+end)
 
 local M = {}
 

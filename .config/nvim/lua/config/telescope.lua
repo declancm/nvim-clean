@@ -63,39 +63,73 @@ local opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- File pickers.
-keymap('n', '<Leader>ff', "<Cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-keymap('n', '<Leader>fg', "<Cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap('n', '<Leader>ff', function()
+  require('telescope.builtin').find_files()
+end, opts)
+keymap('n', '<Leader>fg', function()
+  require('telescope.builtin').live_grep()
+end, opts)
 
 -- Vim pickers.
-keymap('n', '<Leader>fb', "<Cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-keymap('n', '<Leader>fh', "<Cmd>lua require('telescope.builtin').command_history()<CR>", opts)
-keymap('n', '<Leader>fq', "<Cmd>lua require('telescope.builtin').quickfix()<CR>", opts)
-keymap('n', '<Leader>fl', "<Cmd>lua require('telescope.builtin').loclist()<CR>", opts)
+keymap('n', '<Leader>fb', function()
+  require('telescope.builtin').buffers()
+end, opts)
+keymap('n', '<Leader>fh', function()
+  require('telescope.builtin').command_history()
+end, opts)
+keymap('n', '<Leader>fq', function()
+  require('telescope.builtin').quickfix()
+end, opts)
+keymap('n', '<Leader>fl', function()
+  require('telescope.builtin').loclist()
+end, opts)
 
 -- LSP pickers.
-keymap('n', '<Leader>fd', "<Cmd>lua require('telescope.builtin').diagnostics()<CR>", opts)
-keymap('n', '<Leader>fr', "<Cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
-keymap('n', '<Leader>fi', "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
-keymap('n', '<Leader>fa', "<Cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+keymap('n', '<Leader>fd', function()
+  require('telescope.builtin').diagnostics()
+end, opts)
+keymap('n', '<Leader>fr', function()
+  require('telescope.builtin').lsp_references()
+end, opts)
+keymap('n', '<Leader>fi', function()
+  require('telescope.builtin').lsp_implementations()
+end, opts)
+keymap('n', '<Leader>fa', function()
+  require('telescope.builtin').lsp_code_actions()
+end, opts)
 
 -- Git:
-keymap('n', '<Leader>fs', "<Cmd>lua require('telescope.builtin').git_status()<CR>", opts)
+keymap('n', '<Leader>fs', function()
+  require('telescope.builtin').git_status()
+end, opts)
 
 -- List pickers.
-keymap('n', '<Leader>fp', "<Cmd>lua require('telescope.builtin').builtin()<CR>", opts)
+keymap('n', '<Leader>fp', function()
+  require('telescope.builtin').builtin()
+end, opts)
 
 -- Custom pickers:
-keymap('n', '<Leader>fn', "<Cmd>lua require('config.telescope').grep_notes()<CR>", opts)
-keymap('n', '<Leader>fc', "<Cmd>lua require('config.telescope').grep_config()<CR>", opts)
-keymap('n', '<Leader>fv', "<Cmd>lua require('config.telescope').grep_neovim()<CR>", opts)
+keymap('n', '<Leader>fn', function()
+  require('config.telescope').grep_notes()
+end, opts)
+keymap('n', '<Leader>fc', function()
+  require('config.telescope').grep_config()
+end, opts)
+keymap('n', '<Leader>fv', function()
+  require('config.telescope').grep_neovim()
+end, opts)
 
 -- PLUGIN_KEYMAPS:
 
 -- Zoxide.
-keymap('n', '<Leader>fz', "<Cmd>lua require('telescope').extensions.zoxide.list()<CR>", opts)
+keymap('n', '<Leader>fz', function()
+  require('telescope').extensions.zoxide.list()
+end, opts)
 
 -- Refactoring.
-keymap('v', '<Leader>fr', "<Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", opts)
+keymap('v', '<Leader>fr', function()
+  require('telescope').extensions.refactoring.refactors()
+end, opts)
 
 -- BUFFER_KEYMAPS:
 
@@ -105,10 +139,18 @@ local augroup = vim.api.nvim_create_augroup
 -- Telescope keymaps will close Explore window.
 autocmd('FileType', {
   callback = function()
-    keymap('n', '<Leader>ff', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').find_files()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fg', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').live_grep()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fb', "<Cmd>bd<CR><Cmd>lua require('telescope.builtin').buffers()<CR>", { buffer = 0 })
-    keymap('n', '<Leader>fz', "<Cmd>bd<CR><Cmd>lua require('telescope').extensions.zoxide.list()<CR>", { buffer = 0 })
+    keymap('n', '<Leader>ff', function()
+      require('telescope.builtin').find_files()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fg', function()
+      require('telescope.builtin').live_grep()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fb', function()
+      require('telescope.builtin').buffers()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fz', function()
+      require('telescope').extensions.zoxide.list()
+    end, { buffer = 0 })
   end,
   pattern = 'netrw',
   group = augroup('explore_telescope', {}),

@@ -136,7 +136,7 @@ return require('packer').startup(function(use)
     ft = { 'markdown', 'text' },
   }
   use('chaoren/vim-wordmotion') -- camel case, snake case etc. become separate words
-  -- use 'ggandor/lightspeed.nvim' -- another movement
+  use('mizlan/iswap.nvim') -- interactive swap
 
   -- MISC:
 
