@@ -12,7 +12,7 @@ if not iswap_status then
 end
 
 iswap.setup {
-  keys = '123456789',
+  keys = '123456789abcdefghijklmnopqrstuvwxyz',
   hl_snipe = 'ErrorMsg',
   autoswap = true,
 }

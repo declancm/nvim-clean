@@ -59,77 +59,76 @@ telescope.load_extension('refactoring')
 
 -- KEYMAPS:
 
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- File pickers.
 keymap('n', '<Leader>ff', function()
   require('telescope.builtin').find_files()
-end, opts)
+end)
 keymap('n', '<Leader>fg', function()
   require('telescope.builtin').live_grep()
-end, opts)
+end)
 
 -- Vim pickers.
 keymap('n', '<Leader>fb', function()
   require('telescope.builtin').buffers()
-end, opts)
+end)
 keymap('n', '<Leader>fh', function()
   require('telescope.builtin').command_history()
-end, opts)
+end)
 keymap('n', '<Leader>fq', function()
   require('telescope.builtin').quickfix()
-end, opts)
+end)
 keymap('n', '<Leader>fl', function()
   require('telescope.builtin').loclist()
-end, opts)
+end)
 
 -- LSP pickers.
 keymap('n', '<Leader>fd', function()
   require('telescope.builtin').diagnostics()
-end, opts)
+end)
 keymap('n', '<Leader>fr', function()
   require('telescope.builtin').lsp_references()
-end, opts)
+end)
 keymap('n', '<Leader>fi', function()
   require('telescope.builtin').lsp_implementations()
-end, opts)
+end)
 keymap('n', '<Leader>fa', function()
   require('telescope.builtin').lsp_code_actions()
-end, opts)
+end)
 
 -- Git:
 keymap('n', '<Leader>fs', function()
   require('telescope.builtin').git_status()
-end, opts)
+end)
 
 -- List pickers.
 keymap('n', '<Leader>fp', function()
   require('telescope.builtin').builtin()
-end, opts)
+end)
 
 -- Custom pickers:
 keymap('n', '<Leader>fn', function()
   require('config.telescope').grep_notes()
-end, opts)
+end)
 keymap('n', '<Leader>fc', function()
   require('config.telescope').grep_config()
-end, opts)
+end)
 keymap('n', '<Leader>fv', function()
   require('config.telescope').grep_neovim()
-end, opts)
+end)
 
 -- PLUGIN_KEYMAPS:
 
 -- Zoxide.
 keymap('n', '<Leader>fz', function()
   require('telescope').extensions.zoxide.list()
-end, opts)
+end)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', function()
   require('telescope').extensions.refactoring.refactors()
-end, opts)
+end)
 
 -- BUFFER_KEYMAPS:
 
@@ -147,6 +146,10 @@ autocmd('FileType', {
     end, { buffer = 0 })
     keymap('n', '<Leader>fb', function()
       require('telescope.builtin').buffers()
+    end, { buffer = 0 })
+    keymap('n', '<Leader>fs', function()
+      vim.cmd('bd')
+      require('telescope.builtin').git_status()
     end, { buffer = 0 })
     keymap('n', '<Leader>fz', function()
       require('telescope').extensions.zoxide.list()

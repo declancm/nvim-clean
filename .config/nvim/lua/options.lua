@@ -10,6 +10,7 @@ vim.opt.showmode = true
 vim.opt.cmdheight = 2
 vim.opt.incsearch = true -- Incremental search.
 vim.opt.hlsearch = false
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrap = false -- Disable line wrap.
 vim.opt.expandtab = true -- Convert tabs into spaces.
