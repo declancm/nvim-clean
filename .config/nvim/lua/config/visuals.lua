@@ -1,4 +1,3 @@
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -209,16 +208,13 @@ if not incline_status then
 end
 
 incline.setup {
-  render = function(props)
-    local bufname = vim.api.nvim_buf_get_name(props.buf)
-    if bufname == '' then
-      return ''
-    else
-      bufname = vim.fn.fnamemodify(bufname, ':t')
-    end
-    return bufname
-  end,
-  hide = { focused_win = true },
+  ignore = {
+    filetypes = { 'CHADTree' },
+    floating_wins = true,
+  },
+  hide = {
+    only_win = true,
+  },
 }
 
 -- BUFFERLINE:
