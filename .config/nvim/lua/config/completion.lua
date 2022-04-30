@@ -119,7 +119,17 @@ function M.CMP_setup(on_attach)
   }
   lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.sumneko_lua.setup {
-    settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim' } } } },
+    settings = {
+      Lua = {
+        runtime = { version = 'LuaJIT' },
+        diagnostics = {
+          globals = { 'vim' },
+          ignoreDir = { '**/undodir/' },
+        },
+        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+        telemetry = { enable = false },
+      },
+    },
     on_attach = on_attach,
     capabilities = capabilities,
   }
@@ -185,7 +195,17 @@ function M.COQ_setup(on_attach)
   })
   lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
-    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+    settings = {
+      Lua = {
+        runtime = { version = 'LuaJIT' },
+        diagnostics = {
+          globals = { 'vim' },
+          ignoreDir = { '**/undodir/' },
+        },
+        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+        telemetry = { enable = false },
+      },
+    },
     on_attach = on_attach,
   })
   -- lsp.tsserver.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
