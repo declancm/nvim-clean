@@ -148,6 +148,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-obsession') -- sessions
   use('tpope/vim-capslock') -- software capslock
   use('kwkarlwang/bufresize.nvim') -- better buffer resizing
+  use('dstein64/vim-startuptime')
 
   -- MY_PLUGINS:
 
