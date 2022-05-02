@@ -71,6 +71,7 @@ function M.CMP_setup(on_attach)
       ['<CR>'] = cmp.mapping.confirm(),
     },
     sources = {
+      { name = 'calc' },
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'path' },

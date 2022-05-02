@@ -13,7 +13,7 @@ if not lsp_status then
 end
 
 local on_attach = function(client, bufnr)
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     -- Format on save.
     autocmd('BufWritePre', {
       callback = function()
@@ -125,7 +125,7 @@ null.setup {
     null.builtins.formatting.stylua,
   },
   on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
       -- Format on save.
       autocmd('BufWritePre', {
         callback = function()

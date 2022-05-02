@@ -208,12 +208,12 @@ if not incline_status then
 end
 
 incline.setup {
+  hide = {
+    only_win = true,
+  },
   ignore = {
     filetypes = { 'CHADTree' },
     floating_wins = true,
-  },
-  hide = {
-    only_win = true,
   },
 }
 

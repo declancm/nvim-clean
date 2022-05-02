@@ -50,6 +50,7 @@ return require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },
+      'hrsh7th/cmp-calc'
     },
   }
 
