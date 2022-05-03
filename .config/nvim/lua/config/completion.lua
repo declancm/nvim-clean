@@ -110,8 +110,8 @@ function M.CMP_setup(on_attach)
 
   -- LSP setup:
   local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, "lua/?.lua")
-  table.insert(runtime_path, "lua/?/init.lua")
+  table.insert(runtime_path, 'lua/?.lua')
+  table.insert(runtime_path, 'lua/?/init.lua')
 
   lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
@@ -134,7 +134,7 @@ function M.CMP_setup(on_attach)
         workspace = {
           library = vim.api.nvim_get_runtime_file('', true),
           ignoreDir = { 'undodir' },
-      },
+        },
         telemetry = { enable = false },
       },
     },
@@ -194,8 +194,8 @@ function M.COQ_setup(on_attach)
 
   -- LSP setup:
   local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, "lua/?.lua")
-  table.insert(runtime_path, "lua/?/init.lua")
+  table.insert(runtime_path, 'lua/?.lua')
+  table.insert(runtime_path, 'lua/?/init.lua')
 
   lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
@@ -210,8 +210,8 @@ function M.COQ_setup(on_attach)
     settings = {
       Lua = {
         runtime = {
-         version = 'LuaJIT',
-         path = runtime_path,
+          version = 'LuaJIT',
+          path = runtime_path,
         },
         diagnostics = { globals = { 'vim' } },
         workspace = {

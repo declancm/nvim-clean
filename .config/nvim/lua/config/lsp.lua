@@ -13,11 +13,11 @@ if not lsp_status then
 end
 
 local on_attach = function(client, bufnr)
-  if client.server_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     -- Format on save.
     autocmd('BufWritePre', {
       callback = function()
-        vim.lsp.buf.formatting_sync()
+        vim.lsp.buf.format { async = true }
       end,
       buffer = bufnr,
       group = augroup('lsp_format', { clear = false }),
@@ -125,11 +125,11 @@ null.setup {
     null.builtins.formatting.stylua,
   },
   on_attach = function(client, bufnr)
-    if client.server_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
       -- Format on save.
       autocmd('BufWritePre', {
         callback = function()
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.format { async = true }
         end,
         buffer = bufnr,
         group = augroup('lsp_format', { clear = false }),
