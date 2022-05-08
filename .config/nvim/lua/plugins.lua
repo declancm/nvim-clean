@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },
-      'hrsh7th/cmp-calc'
+      'hrsh7th/cmp-calc',
     },
   }
 
@@ -156,6 +156,7 @@ return require('packer').startup(function(use)
     -- Local files.
     use('~/plugins/cinnamon.nvim')
     use('~/plugins/windex.nvim')
+    use('~/plugins/maximize.nvim')
     use('~/plugins/vim2vscode')
     use('~/plugins/git-scripts.nvim')
   else

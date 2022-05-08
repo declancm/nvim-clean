@@ -1,4 +1,3 @@
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- VIM2VSCODE:
@@ -18,7 +17,7 @@ require('cinnamon').setup {
   scroll_limit = 100,
 }
 
--- keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>", opts)
+-- keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>")
 
 -- WINDEX:
 
@@ -28,4 +27,8 @@ require('windex').setup {
 }
 
 -- Open lazygit:
-keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('all', 'lazygit')<CR>", opts)
+keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('all', 'lazygit')<CR>")
+
+-- MAXIMIZE:
+
+require('maximize').setup { default_keymaps = false }

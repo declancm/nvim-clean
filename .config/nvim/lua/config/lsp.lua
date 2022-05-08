@@ -17,7 +17,8 @@ local on_attach = function(client, bufnr)
     -- Format on save.
     autocmd('BufWritePre', {
       callback = function()
-        vim.lsp.buf.format { async = true }
+        vim.lsp.buf.format()
+        vim.cmd('retab')
       end,
       buffer = bufnr,
       group = augroup('lsp_format', { clear = false }),
@@ -129,7 +130,8 @@ null.setup {
       -- Format on save.
       autocmd('BufWritePre', {
         callback = function()
-          vim.lsp.buf.format { async = true }
+          vim.lsp.buf.format()
+          vim.cmd('retab')
         end,
         buffer = bufnr,
         group = augroup('lsp_format', { clear = false }),
