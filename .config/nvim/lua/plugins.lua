@@ -95,7 +95,9 @@ return require('packer').startup(function(use)
   }
   use {
     'iamcco/markdown-preview.nvim', -- preview markdown in browser
-    run = 'cd app && yarn install',
+    run = function()
+      vim.fn['mkdp#util#install']()
+    end,
   }
 
   -- VISUALS:
