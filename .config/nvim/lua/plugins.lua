@@ -164,7 +164,7 @@ return require('packer').startup(function(use)
   else
     use('declancm/cinnamon.nvim') -- neovim smooth scrolling
     use('declancm/windex.nvim') -- cleaner window movements
-    use('~/plugins/maximize.nvim') -- window maximizing
+    use('declancm/maximize.nvim') -- window maximizing
     use('declancm/vim2vscode') -- open current buffers in vscode
     use('declancm/git-scripts.nvim') -- async git functions
   end
