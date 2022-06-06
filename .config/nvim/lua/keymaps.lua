@@ -1,6 +1,9 @@
 local opts = { silent = true }
 local keymap = vim.keymap.set
 
+-- Undo:
+keymap({ 'n', 'v' }, '<C-z>', 'u')
+
 -- Source config file.
 keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>', opts)
 

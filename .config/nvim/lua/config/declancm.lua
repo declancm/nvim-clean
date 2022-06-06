@@ -15,6 +15,7 @@ local keymap = vim.keymap.set
 require('cinnamon').setup {
   extra_keymaps = true,
   scroll_limit = 100,
+  extended_keymaps = true,
 }
 
 -- keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>")
