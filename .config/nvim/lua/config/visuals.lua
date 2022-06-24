@@ -81,7 +81,11 @@ if not gps_status then
   return
 end
 
-gps.setup()
+gps.setup { disable_icons = true }
+
+local function maximize_status()
+  return vim.t.maximized and ' ' or ''
+end
 
 lualine.setup {
   options = {
@@ -109,12 +113,12 @@ lualine.setup {
     },
     lualine_x = {
       { gps.get_location, cond = gps.is_available },
-      -- 'encoding',
-      -- 'fileformat',
-      -- 'filetype',
     },
     lualine_y = { 'progress' },
-    lualine_z = { 'location' },
+    lualine_z = {
+      'location',
+      maximize_status,
+    },
   },
   inactive_sections = {
     lualine_a = {},
@@ -169,7 +173,7 @@ todo.setup {
   -- signs = false,
 }
 
-keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>', opts)
+keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>')
 
 -- COLORIZER:
 
@@ -245,9 +249,9 @@ vim.api.nvim_set_var('chadtree_settings', {
   ['view.open_direction'] = 'right',
 })
 
-keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>', opts)
-keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>', opts)
-keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>', opts)
+keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>')
+keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>')
+keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>')
 
 autocmd('FileType', {
   callback = function()
