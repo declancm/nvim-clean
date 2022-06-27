@@ -32,3 +32,5 @@ vim.opt.laststatus = 3 -- Use one status line for all windows.
 vim.opt.inccommand = 'split'
 vim.opt.shortmess:remove('S') -- Show count for search results.
 -- vim.opt.lazyredraw = true
+vim.opt.autowrite = true
+-- vim.opt.autowriteall = true

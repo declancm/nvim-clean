@@ -27,22 +27,18 @@ comment.setup {
   post_hook = nil,
 }
 
-keymap({ 'i', 'n' }, '<C-_>', function()
-  require('config.comments').save_pos_comment('line')
-end)
-keymap('x', '<C-_>', function()
-  require('config.comments').save_pos_comment('visual')
-end)
+keymap({ 'i', 'n' }, '<C-_>', "<Cmd>lua require('config.comments').save_pos_comment()<CR>")
+keymap('x', '<C-_>', "<Esc><Cmd>lua require('config.comments').save_pos_comment('visual')<CR>")
 
 local M = {}
 
 M.save_pos_comment = function(mode)
   local row, column = unpack(vim.api.nvim_win_get_cursor(0))
   local width_before = vim.fn.strdisplaywidth(vim.fn.getline('.'))
-  if mode == 'line' then
-    require('Comment.api').locked.toggle_current_linewise()
-  elseif mode == 'visual' then
+  if mode == 'visual' then
     require('Comment.api').locked.toggle_linewise_op(vim.fn.visualmode())
+  else
+    require('Comment.api').locked.toggle_current_linewise()
   end
   local width_after = vim.fn.strdisplaywidth(vim.fn.getline('.'))
   if column >= vim.fn.indent('.') then

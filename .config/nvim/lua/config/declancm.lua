@@ -16,6 +16,8 @@ require('cinnamon').setup {
   scroll_limit = 100,
 }
 
+keymap({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg', 0, 0, 3)<CR>")
+keymap({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1, 3)<CR>")
 -- keymap('n', 'gd', "<Cmd>lua Cinnamon.Scroll('definition')<CR>")
 
 -- WINDEX:
