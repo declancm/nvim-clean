@@ -1,5 +1,4 @@
 local keymap = vim.keymap.set
-local opts = { silent = true }
 
 -- TREESITTER:
 
@@ -41,7 +40,7 @@ vim.g.symbols_outline = {
   preview_bg_highlight = '',
 }
 
-keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>', opts)
+keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>')
 
 -- REFACTORING:
 

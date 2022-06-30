@@ -13,6 +13,7 @@ require('git-scripts').setup()
 require('cinnamon').setup {
   extra_keymaps = true,
   extended_keymaps = true,
+  -- hide_cursor = true,
   scroll_limit = 100,
 }
 

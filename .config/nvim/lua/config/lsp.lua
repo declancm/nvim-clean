@@ -1,4 +1,3 @@
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -34,27 +33,27 @@ local on_attach = function(client, bufnr)
 end
 
 -- LSP dianostic keymaps:
-keymap('n', '<Leader>e', vim.diagnostic.open_float, opts)
-keymap('n', '[d', vim.diagnostic.goto_prev, opts)
-keymap('n', ']d', vim.diagnostic.goto_next, opts)
--- keymap('n', '<Leader>q', vim.diagnostic.setloclist, opts)
+keymap('n', '<Leader>e', vim.diagnostic.open_float)
+keymap('n', '[d', vim.diagnostic.goto_prev)
+keymap('n', ']d', vim.diagnostic.goto_next)
+-- keymap('n', '<Leader>q', vim.diagnostic.setloclist)
 
 -- LSP buffer keymaps:
-keymap('n', 'gd', vim.lsp.buf.definition, opts)
-keymap('n', 'gD', vim.lsp.buf.declaration, opts)
-keymap('n', 'gt', vim.lsp.buf.type_definition, opts)
-keymap('n', 'gr', vim.lsp.buf.references, opts)
-keymap('n', 'gi', vim.lsp.buf.implementation, opts)
-keymap('n', 'H', vim.lsp.buf.hover, opts)
-keymap('n', '<C-h>', vim.lsp.buf.signature_help, opts)
-keymap('n', '<Leader>rn', vim.lsp.buf.rename, opts)
-keymap('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
--- keymap('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
--- keymap('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+keymap('n', 'gd', vim.lsp.buf.definition)
+keymap('n', 'gD', vim.lsp.buf.declaration)
+keymap('n', 'gt', vim.lsp.buf.type_definition)
+keymap('n', 'gr', vim.lsp.buf.references)
+keymap('n', 'gi', vim.lsp.buf.implementation)
+keymap('n', 'H', vim.lsp.buf.hover)
+keymap('n', '<C-h>', vim.lsp.buf.signature_help)
+keymap('n', '<Leader>rn', vim.lsp.buf.rename)
+keymap('n', '<Leader>ca', vim.lsp.buf.code_action)
+-- keymap('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder)
+-- keymap('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder)
 -- keymap('n', '<Leader>wl', function()
 --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
--- end, opts)
--- keymap('n', '<Leader>f', vim.lsp.buf.formatting, opts)
+-- end)
+-- keymap('n', '<Leader>f', vim.lsp.buf.formatting)
 
 -- Go to definition in split window:
 keymap('n', '<Leader>gd', function()
@@ -64,7 +63,7 @@ keymap('n', '<Leader>gd', function()
     vim.cmd('split')
   end
   vim.lsp.buf.definition()
-end, opts)
+end)
 
 -- Format on command.
 vim.cmd('command! Format lua vim.lsp.buf.formatting_sync()')

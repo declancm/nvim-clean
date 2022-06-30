@@ -1,9 +1,8 @@
-local opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- UNDOTREE:
 
-keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>', opts)
+keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>')
 -- u is undo
 -- <C-R> is redo
 
@@ -14,8 +13,8 @@ vim.g.bullets_enable_in_empty_buffers = 0
 
 -- MARKDOWN-PREVIEW:
 
-keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>', opts)
-keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>', opts)
+keymap('n', '<Leader>md', '<Cmd>MarkdownPreview<CR>')
+keymap('n', '<Leader>ms', '<Cmd>MarkdownPreviewStop<CR>')
 
 -- BUFRESIZE:
 

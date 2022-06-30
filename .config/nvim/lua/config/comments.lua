@@ -41,7 +41,7 @@ M.save_pos_comment = function(mode)
     require('Comment.api').locked.toggle_current_linewise()
   end
   local width_after = vim.fn.strdisplaywidth(vim.fn.getline('.'))
-  if column >= vim.fn.indent('.') then
+  if column >= vim.fn.indent('.') and column + width_after - width_before >= 0 then
     vim.api.nvim_win_set_cursor(0, { row, column + width_after - width_before })
   end
 end

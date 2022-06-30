@@ -159,7 +159,7 @@ gitsigns.setup {
 
 local gs = package.loaded.gitsigns
 
-keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame, opts)
+keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame)
 
 -- TODO-COMMENTS:
 
