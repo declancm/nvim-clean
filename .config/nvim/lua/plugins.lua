@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
 
   use('neovim/nvim-lspconfig') -- collection of lsp configurations
   use('jose-elias-alvarez/null-ls.nvim') -- use neovim as a language server
-  -- use 'tami5/lspsaga.nvim' -- lsp functions
+  -- use 'glepnir/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
 
   -- COMPLETION:
