@@ -43,6 +43,11 @@ end
 
 spellsitter.setup()
 
+if vim.g.__enable_spellchecker then
+  vim.opt.spell = true -- Enable spellchecker.
+  vim.opt.spelllang = 'en_us' -- Set spellchecker language to English US.
+end
+
 -- SYMBOLS-OUTLINE:
 
 vim.g.symbols_outline = {
