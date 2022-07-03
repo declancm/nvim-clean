@@ -22,7 +22,6 @@ return require('packer').startup(function(use)
 
   use('nvim-lua/plenary.nvim') -- lua functions
   use('kyazdani42/nvim-web-devicons') -- icons library
-  -- use('ms-jpq/lua-async-await')
 
   -- LSP:
 
@@ -72,7 +71,7 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/playground',
+      -- 'nvim-treesitter/playground',
     },
   }
   use('lewis6991/spellsitter.nvim') -- spellchecker
@@ -87,13 +86,13 @@ return require('packer').startup(function(use)
 
   -- LANGUAGE_SPECIFIC:
 
-  use {
-    'tpope/vim-dadbod', -- database interaction
-    requires = {
-      'kristijanhusak/vim-dadbod-completion',
-      'kristijanhusak/vim-dadbod-ui',
-    },
-  }
+  -- use {
+  --   'tpope/vim-dadbod', -- database interaction
+  --   requires = {
+  --     'kristijanhusak/vim-dadbod-completion',
+  --     'kristijanhusak/vim-dadbod-ui',
+  --   },
+  -- }
   use {
     'iamcco/markdown-preview.nvim', -- preview markdown in browser
     run = function()
@@ -134,10 +133,6 @@ return require('packer').startup(function(use)
   use('unblevable/quick-scope') -- highlight for f, F, t, T movements
   use('machakann/vim-sandwich') -- change surrounding chars
   use('arthurxavierx/vim-caser') -- word coercion
-  use {
-    'dkarter/bullets.vim', -- bullets
-    ft = { 'markdown', 'text' },
-  }
   use('chaoren/vim-wordmotion') -- camel case, snake case etc. become separate words
   use('mizlan/iswap.nvim') -- interactive swap
 
@@ -148,10 +143,15 @@ return require('packer').startup(function(use)
     'tpope/vim-fugitive', -- Git
     requires = { 'junegunn/gv.vim' },
   }
+  use {
+    'dkarter/bullets.vim', -- bullets
+    ft = { 'markdown', 'text' },
+  }
   use('tpope/vim-obsession') -- sessions
   use('tpope/vim-capslock') -- software capslock
   use('kwkarlwang/bufresize.nvim') -- better buffer resizing
-  use('dstein64/vim-startuptime')
+  use('luukvbaal/stabilize.nvim') -- stabile window events
+  -- use('dstein64/vim-startuptime')
 
   -- MY_PLUGINS:
 

@@ -25,3 +25,13 @@ if not bufresize_status then
 end
 
 bufresize.setup()
+
+-- STABILIZE:
+
+local stabilize_status, stabilize = pcall(require, 'stabilize')
+if not stabilize_status then
+  print("'stabilize' executed with errors.")
+  return
+end
+
+stabilize.setup()
