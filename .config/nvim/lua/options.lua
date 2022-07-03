@@ -34,3 +34,5 @@ vim.opt.shortmess:remove('S') -- Show count for search results.
 -- vim.opt.lazyredraw = true
 vim.opt.autowrite = true
 -- vim.opt.autowriteall = true
+vim.opt.spell = true -- Enable spellchecker.
+vim.opt.spelllang = 'en_us' -- Set spellchecker language to English US.

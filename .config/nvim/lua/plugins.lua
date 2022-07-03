@@ -75,6 +75,7 @@ return require('packer').startup(function(use)
       'nvim-treesitter/playground',
     },
   }
+  use('lewis6991/spellsitter.nvim') -- spellchecker
   use('simrat39/symbols-outline.nvim')
   use('ThePrimeagen/refactoring.nvim') -- extract, inline and print debug
 

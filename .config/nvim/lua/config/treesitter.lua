@@ -33,6 +33,16 @@ treesitter.setup {
   },
 }
 
+-- SPELLSITTER:
+
+local spellsitter_status, spellsitter = pcall(require, 'spellsitter')
+if not spellsitter_status then
+  print("'spellsitter' executed with errors.")
+  return
+end
+
+spellsitter.setup()
+
 -- SYMBOLS-OUTLINE:
 
 vim.g.symbols_outline = {
