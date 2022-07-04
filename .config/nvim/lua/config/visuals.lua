@@ -201,29 +201,26 @@ incline.setup {
     local color = 'none'
     local color2 = 'none'
     if theme == 'gruvbox' then
-      -- color = '#3c3836'
       color = '#504945'
       color2 = '#a89984'
     elseif theme == 'tokyonight' then
-      -- color = '#1f2335'
       color = '#3b4261'
       color2 = '#7aa2f7'
     end
     local bufname = vim.api.nvim_buf_get_name(props.buf)
-    local res = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or ''
-    if res ~= '' and maximize_status() ~= '' then
+    if bufname ~= '' and maximize_status() ~= '' then
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. res .. ' ', guibg = color },
-        { '', guibg = color, guifg = color2 },
+        { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
+        { '', guibg = color2, guifg = color },
         { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
-        -- { '', guibg = 'none', guifg = color },
+        { '', guibg = 'none', guifg = color2 },
       }
-    elseif res ~= '' then
+    elseif bufname ~= '' then
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. res .. ' ', guibg = color },
-        -- { '', guibg = 'none', guifg = color },
+        { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
+        { '', guibg = 'none', guifg = color },
       }
     end
     return {

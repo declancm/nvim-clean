@@ -1,8 +1,8 @@
 local theme, completion, spellchecker
 
 -- THEME:
-theme = 'gruvbox'
--- theme = 'tokyonight'
+-- theme = 'gruvbox'
+theme = 'tokyonight'
 
 -- COMPLETION:
 completion = 'cmp' -- Lots of good sources.
