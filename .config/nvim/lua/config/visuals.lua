@@ -212,6 +212,21 @@ if not incline_status then
 end
 
 incline.setup {
+  render = function(props)
+    local color = 'none'
+    if theme == 'gruvbox' then
+      color = '#3c3836'
+    elseif theme == 'onedark' then
+      color = '#31353f'
+    elseif theme == 'tokyonight' then
+      color = '#1f2335'
+    end
+    local bufname = vim.api.nvim_buf_get_name(props.buf)
+    local res = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or ''
+    return {
+      { res, guibg = color },
+    }
+  end,
   hide = {
     only_win = true,
   },
