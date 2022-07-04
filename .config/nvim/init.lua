@@ -2,7 +2,6 @@ local theme, completion, spellchecker
 
 -- THEME:
 theme = 'gruvbox'
--- theme = 'onedark'
 -- theme = 'tokyonight'
 
 -- COMPLETION:

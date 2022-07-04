@@ -103,7 +103,6 @@ return require('packer').startup(function(use)
   -- VISUALS:
 
   use('folke/tokyonight.nvim') -- colorscheme
-  use('navarasu/onedark.nvim') -- colorscheme
   use('luisiacc/gruvbox-baby') -- colorscheme
   use {
     'hoob3rt/lualine.nvim', -- better status line

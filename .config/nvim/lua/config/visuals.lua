@@ -8,7 +8,7 @@ local augroup = vim.api.nvim_create_augroup
 local theme = vim.g.__selected_theme
 
 vim.opt.background = 'dark'
-vim.opt.colorcolumn = '80'
+-- vim.opt.colorcolumn = '80'
 
 -- GRUVBOX:
 
@@ -19,24 +19,6 @@ if theme == 'gruvbox' then
   vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#3c3836]])
   vim.cmd([[highlight LineNr guifg=#458588]])
   vim.cmd([[highlight Pmenu ctermbg=0 guibg=#3c3836]])
-end
-
--- ONEDARK:
-
-if theme == 'onedark' then
-  local onedark_status, onedark = pcall(require, 'onedark')
-  if not onedark_status then
-    print("'onedark' executed with errors.")
-    return
-  end
-  onedark.setup {
-    style = 'dark',
-    transparent = true,
-    -- code_style = { comments = 'none' },
-  }
-  vim.cmd([[colorscheme onedark]])
-  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#31353f]])
-  vim.cmd([[highlight LineNr guifg=#61AFEF]])
 end
 
 -- TOKYONIGHT:
@@ -83,10 +65,6 @@ end
 
 gps.setup { disable_icons = true }
 
-local function maximize_status()
-  return vim.t.maximized and ' ' or ''
-end
-
 lualine.setup {
   options = {
     theme = theme,
@@ -96,9 +74,8 @@ lualine.setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'filename' },
+    lualine_b = { 'branch' },
     lualine_c = {
-      'branch',
       'diff',
       {
         'diagnostics',
@@ -115,10 +92,7 @@ lualine.setup {
       { gps.get_location, cond = gps.is_available },
     },
     lualine_y = { 'progress' },
-    lualine_z = {
-      'location',
-      maximize_status,
-    },
+    lualine_z = { 'location' },
   },
   inactive_sections = {
     lualine_a = {},
@@ -211,28 +185,55 @@ if not incline_status then
   return
 end
 
+local function maximize_status()
+  return vim.t.maximized and ' ' or ''
+end
+
 incline.setup {
-  render = function(props)
-    local color = 'none'
-    if theme == 'gruvbox' then
-      color = '#3c3836'
-    elseif theme == 'onedark' then
-      color = '#31353f'
-    elseif theme == 'tokyonight' then
-      color = '#1f2335'
-    end
-    local bufname = vim.api.nvim_buf_get_name(props.buf)
-    local res = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or ''
-    return {
-      { res, guibg = color },
-    }
-  end,
-  hide = {
-    only_win = true,
-  },
+  -- hide = {
+  --   only_win = true,
+  -- },
   ignore = {
     filetypes = { 'CHADTree' },
     floating_wins = true,
+  },
+  render = function(props)
+    local color = 'none'
+    local color2 = 'none'
+    if theme == 'gruvbox' then
+      -- color = '#3c3836'
+      color = '#504945'
+      color2 = '#a89984'
+    elseif theme == 'tokyonight' then
+      -- color = '#1f2335'
+      color = '#3b4261'
+      color2 = '#7aa2f7'
+    end
+    local bufname = vim.api.nvim_buf_get_name(props.buf)
+    local res = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or ''
+    if res ~= '' and maximize_status() ~= '' then
+      return {
+        { '', guibg = 'none', guifg = color },
+        { ' ' .. res .. ' ', guibg = color },
+        { '', guibg = color, guifg = color2 },
+        { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
+        -- { '', guibg = 'none', guifg = color },
+      }
+    elseif res ~= '' then
+      return {
+        { '', guibg = 'none', guifg = color },
+        { ' ' .. res .. ' ', guibg = color },
+        -- { '', guibg = 'none', guifg = color },
+      }
+    end
+    return {
+      { '' },
+    }
+  end,
+  window = {
+    margin = {
+      horizontal = 0,
+    },
   },
 }
 
