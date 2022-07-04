@@ -61,60 +61,82 @@ telescope.load_extension('refactoring')
 
 local keymap = vim.keymap.set
 
+local function close_buffer()
+  local ft = vim.bo.filetype
+  if ft == 'CHADTree' then
+    vim.cmd('bd')
+  end
+end
+
 -- File pickers.
 keymap('n', '<Leader>ff', function()
+  close_buffer()
   require('telescope.builtin').find_files()
 end)
 keymap('n', '<Leader>fg', function()
+  close_buffer()
   require('telescope.builtin').live_grep()
 end)
 
 -- Vim pickers.
 keymap('n', '<Leader>fb', function()
+  close_buffer()
   require('telescope.builtin').buffers()
 end)
 keymap('n', '<Leader>fh', function()
+  close_buffer()
   require('telescope.builtin').command_history()
 end)
 keymap('n', '<Leader>fq', function()
+  close_buffer()
   require('telescope.builtin').quickfix()
 end)
 keymap('n', '<Leader>fl', function()
+  close_buffer()
   require('telescope.builtin').loclist()
 end)
 
 -- LSP pickers.
 keymap('n', '<Leader>fd', function()
+  close_buffer()
   require('telescope.builtin').diagnostics()
 end)
 keymap('n', '<Leader>fr', function()
+  close_buffer()
   require('telescope.builtin').lsp_references()
 end)
 keymap('n', '<Leader>fi', function()
+  close_buffer()
   require('telescope.builtin').lsp_implementations()
 end)
 keymap('n', '<Leader>fa', function()
+  close_buffer()
   require('telescope.builtin').lsp_code_actions()
 end)
 
 -- Git:
 keymap('n', '<Leader>fs', function()
+  close_buffer()
   require('telescope.builtin').git_status()
 end)
 
 -- List pickers.
 keymap('n', '<Leader>fp', function()
+  close_buffer()
   require('telescope.builtin').builtin()
 end)
 
 -- Custom pickers:
 keymap('n', '<Leader>fn', function()
+  close_buffer()
   require('config.telescope').grep_notes()
 end)
 keymap('n', '<Leader>fc', function()
+  close_buffer()
   require('config.telescope').grep_config()
 end)
 keymap('n', '<Leader>fv', function()
+  close_buffer()
   require('config.telescope').grep_neovim()
 end)
 
@@ -122,42 +144,17 @@ end)
 
 -- Zoxide.
 keymap('n', '<Leader>fz', function()
+  close_buffer()
   require('telescope').extensions.zoxide.list()
 end)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', function()
+  close_buffer()
   require('telescope').extensions.refactoring.refactors()
 end)
 
--- BUFFER_KEYMAPS:
-
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
--- Telescope keymaps will close Explore window.
-autocmd('FileType', {
-  callback = function()
-    keymap('n', '<Leader>ff', function()
-      require('telescope.builtin').find_files()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fg', function()
-      require('telescope.builtin').live_grep()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fb', function()
-      require('telescope.builtin').buffers()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fs', function()
-      vim.cmd('bd')
-      require('telescope.builtin').git_status()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fz', function()
-      require('telescope').extensions.zoxide.list()
-    end, { buffer = 0 })
-  end,
-  pattern = 'netrw',
-  group = augroup('explore_telescope', {}),
-})
+-- CUSTOM_PICKERS:
 
 local M = {}
 

@@ -81,7 +81,7 @@ return require('packer').startup(function(use)
   -- DEBUGGING:
 
   use('mfussenegger/nvim-dap') -- debugging
-  use('theHamsta/nvim-dap-virtual-text')
+  use('theHamsta/nvim-dap-virtual-text') -- debugging virtual text
   use('rcarriga/nvim-dap-ui') -- debugging ui
 
   -- LANGUAGE_SPECIFIC:
@@ -149,8 +149,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-obsession') -- sessions
   use('tpope/vim-capslock') -- software capslock
   use('kwkarlwang/bufresize.nvim') -- better buffer resizing
-  use('luukvbaal/stabilize.nvim') -- stabile window events
-  -- use('dstein64/vim-startuptime')
+  -- use('luukvbaal/stabilize.nvim') -- stabile window events
 
   -- MY_PLUGINS:
 

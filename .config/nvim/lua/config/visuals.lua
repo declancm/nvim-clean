@@ -1,8 +1,5 @@
 local keymap = vim.keymap.set
 
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
 -- THEME:
 
 local theme = vim.g.__selected_theme
@@ -265,34 +262,3 @@ vim.api.nvim_set_var('chadtree_settings', {
 keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>')
 keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>')
 keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>')
-
-autocmd('FileType', {
-  callback = function()
-    -- Telescope keymaps will close chadtree.
-    keymap('n', '<Leader>ff', function()
-      vim.cmd('bd')
-      require('telescope.builtin').find_files()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fg', function()
-      vim.cmd('bd')
-      require('telescope.builtin').live_grep()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fb', function()
-      vim.cmd('bd')
-      require('telescope.builtin').buffers()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fs', function()
-      vim.cmd('bd')
-      require('telescope.builtin').git_status()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fz', function()
-      vim.cmd('bd')
-      require('telescope').extensions.zoxide.list()
-    end, { buffer = 0 })
-
-    -- Disable indent guides for chadtree.
-    vim.b.indent_blankline_enabled = false
-  end,
-  pattern = 'CHADTree',
-  group = augroup('chadtree', {}),
-})
