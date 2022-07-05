@@ -46,6 +46,16 @@ vim.opt.cursorlineopt = 'number'
 -- vim.opt.list = true
 -- vim.opt.listchars:append 'eol:↴'
 
+-- NAVIC:
+
+local navic_status, navic = pcall(require, 'nvim-navic')
+if not navic_status then
+  print("'navic'executed with errors.")
+  return
+end
+
+navic.setup()
+
 -- LUALINE:
 
 local lualine_status, lualine = pcall(require, 'lualine')
@@ -53,14 +63,6 @@ if not lualine_status then
   print("'lualine' executed with errors.")
   return
 end
-
-local gps_status, gps = pcall(require, 'nvim-gps')
-if not gps_status then
-  print("'gps'executed with errors.")
-  return
-end
-
-gps.setup { disable_icons = true }
 
 lualine.setup {
   options = {
@@ -86,7 +88,7 @@ lualine.setup {
       },
     },
     lualine_x = {
-      { gps.get_location, cond = gps.is_available },
+      { navic.get_location, cond = navic.is_available },
     },
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
@@ -187,9 +189,6 @@ local function maximize_status()
 end
 
 incline.setup {
-  -- hide = {
-  --   only_win = true,
-  -- },
   ignore = {
     filetypes = { 'CHADTree' },
     floating_wins = true,
@@ -209,6 +208,7 @@ incline.setup {
       return {
         { '', guibg = 'none', guifg = color },
         { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
+        -- { ' ' .. vim.fn.fnamemodify(bufname, ':p:.') .. ' ', guibg = color },
         { '', guibg = color2, guifg = color },
         { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
         { '', guibg = 'none', guifg = color2 },
@@ -217,6 +217,7 @@ incline.setup {
       return {
         { '', guibg = 'none', guifg = color },
         { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
+        -- { ' ' .. vim.fn.fnamemodify(bufname, ':p:.') .. ' ', guibg = color },
         { '', guibg = 'none', guifg = color },
       }
     end

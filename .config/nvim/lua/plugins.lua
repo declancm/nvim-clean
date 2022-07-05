@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
   use('luisiacc/gruvbox-baby') -- colorscheme
   use {
     'hoob3rt/lualine.nvim', -- better status line
-    requires = { 'SmiteshP/nvim-gps' }, -- show current scope
+    requires = { 'SmiteshP/nvim-navic' }, -- show current scope
   }
   use {
     'lewis6991/gitsigns.nvim', -- git column icons
