@@ -31,6 +31,11 @@ treesitter.setup {
       },
     },
   },
+
+  -- AUTOTAG:
+  autotag = {
+    enable = true,
+  },
 }
 
 -- SPELLSITTER:

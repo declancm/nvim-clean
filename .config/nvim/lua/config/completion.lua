@@ -117,6 +117,7 @@ function M.CMP_setup(on_attach)
   lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.cmake.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.eslint.setup { on_attach = on_attach, capabilities = capabilities }
+  lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.powershell_es.setup {
     bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
     on_attach = on_attach,
@@ -201,6 +202,7 @@ function M.COQ_setup(on_attach)
   lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+  lsp.html.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
     bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
     on_attach = on_attach,

@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
   use('jose-elias-alvarez/null-ls.nvim') -- use neovim as a language server
   -- use 'glepnir/lspsaga.nvim' -- lsp functions
   -- use 'folke/trouble.nvim' -- pretty lists
+  use('windwp/nvim-autopairs') -- create pairs
 
   -- COMPLETION:
 
@@ -72,6 +73,7 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       -- 'nvim-treesitter/playground',
+      'windwp/nvim-ts-autotag',
     },
   }
   use('lewis6991/spellsitter.nvim') -- spellchecker
@@ -80,9 +82,13 @@ return require('packer').startup(function(use)
 
   -- DEBUGGING:
 
-  use('mfussenegger/nvim-dap') -- debugging
-  use('theHamsta/nvim-dap-virtual-text') -- debugging virtual text
-  use('rcarriga/nvim-dap-ui') -- debugging ui
+  use {
+    'mfussenegger/nvim-dap', -- debugging
+    requires = {
+      'theHamsta/nvim-dap-virtual-text',
+      'rcarriga/nvim-dap-ui',
+    },
+  }
 
   -- LANGUAGE_SPECIFIC:
 
@@ -150,6 +156,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-capslock') -- software capslock
   use('kwkarlwang/bufresize.nvim') -- better buffer resizing
   -- use('luukvbaal/stabilize.nvim') -- stabile window events
+  use('antoinemadec/FixCursorHold.nvim') -- fix a bug with neovim autocmds
 
   -- MY_PLUGINS:
 

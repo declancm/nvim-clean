@@ -56,6 +56,7 @@ bashls              npm i -g bash-language-server
 clangd              sudo apt-get install clangd-12
 cmake               pip3 install cmake-language-server
 eslint              npm i -g vscode-langservers-extracted
+html                npm i -g vscode-langservers-extracted
 powershell_es       https://github.com/PowerShell/PowerShellEditorServices/releases
                     Extract the zip file to '~/lsp/PowerShellEditorServices'.
                     (Set 'bundle_path' to PowerShellEditorServices root directory)
