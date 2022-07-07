@@ -73,9 +73,9 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       -- 'nvim-treesitter/playground',
-      'windwp/nvim-ts-autotag',
     },
   }
+  use('windwp/nvim-ts-autotag') -- create tags
   use('lewis6991/spellsitter.nvim') -- spellchecker
   use('simrat39/symbols-outline.nvim')
   use('ThePrimeagen/refactoring.nvim') -- extract, inline and print debug
@@ -92,13 +92,13 @@ return require('packer').startup(function(use)
 
   -- LANGUAGE_SPECIFIC:
 
-  -- use {
-  --   'tpope/vim-dadbod', -- database interaction
-  --   requires = {
-  --     'kristijanhusak/vim-dadbod-completion',
-  --     'kristijanhusak/vim-dadbod-ui',
-  --   },
-  -- }
+  use {
+    'tpope/vim-dadbod', -- database interaction
+    requires = {
+      'kristijanhusak/vim-dadbod-completion',
+      'kristijanhusak/vim-dadbod-ui',
+    },
+  }
   use {
     'iamcco/markdown-preview.nvim', -- preview markdown in browser
     run = function()
@@ -123,11 +123,6 @@ return require('packer').startup(function(use)
   use('lukas-reineke/indent-blankline.nvim') -- indent guides
   use('b0o/incline.nvim') -- floating statuslines
   use('akinsho/bufferline.nvim') -- buffer line with tabpage integration.
-  use {
-    'ms-jpq/chadtree', -- better filetree
-    branch = 'chad',
-    run = 'python3 -m chadtree deps',
-  }
 
   -- COMMENTS:
 
@@ -155,7 +150,11 @@ return require('packer').startup(function(use)
   use('tpope/vim-obsession') -- sessions
   use('tpope/vim-capslock') -- software capslock
   use('kwkarlwang/bufresize.nvim') -- better buffer resizing
-  -- use('luukvbaal/stabilize.nvim') -- stabile window events
+  use {
+    'ms-jpq/chadtree', -- better filetree
+    branch = 'chad',
+    run = 'python3 -m chadtree deps',
+  }
   use('antoinemadec/FixCursorHold.nvim') -- fix a bug with neovim autocmds
 
   -- MY_PLUGINS:

@@ -26,12 +26,15 @@ end
 
 bufresize.setup()
 
--- -- STABILIZE:
+-- CHADTREE:
 
--- local stabilize_status, stabilize = pcall(require, 'stabilize')
--- if not stabilize_status then
---   print("'stabilize' executed with errors.")
---   return
--- end
+vim.api.nvim_set_var('chadtree_settings', {
+  ['options.close_on_open'] = true,
+  ['theme.text_colour_set'] = 'solarized_light',
+  ['options.session'] = false,
+  -- ['view.open_direction'] = 'right',
+})
 
--- stabilize.setup()
+keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>')
+keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>')
+keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>')

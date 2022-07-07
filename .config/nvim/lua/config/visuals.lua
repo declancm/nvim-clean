@@ -203,24 +203,31 @@ incline.setup {
       color = '#3b4261'
       color2 = '#7aa2f7'
     end
+
     local bufname = vim.api.nvim_buf_get_name(props.buf)
-    if bufname ~= '' and maximize_status() ~= '' then
+    if bufname ~= '' then
+      bufname = vim.fn.fnamemodify(bufname, ':p:.')
+      if #bufname >= 40 then
+        bufname = '...' .. bufname:sub(-37)
+      end
+
+      if maximize_status() ~= '' then
+        return {
+          { '', guibg = 'none', guifg = color },
+          { ' ' .. bufname .. ' ', guibg = color },
+          { '', guibg = color2, guifg = color },
+          { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
+          { '', guibg = 'none', guifg = color2 },
+        }
+      end
+
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
-        -- { ' ' .. vim.fn.fnamemodify(bufname, ':p:.') .. ' ', guibg = color },
-        { '', guibg = color2, guifg = color },
-        { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
-        { '', guibg = 'none', guifg = color2 },
-      }
-    elseif bufname ~= '' then
-      return {
-        { '', guibg = 'none', guifg = color },
-        { ' ' .. vim.fn.fnamemodify(bufname, ':t') .. ' ', guibg = color },
-        -- { ' ' .. vim.fn.fnamemodify(bufname, ':p:.') .. ' ', guibg = color },
+        { ' ' .. bufname .. ' ', guibg = color },
         { '', guibg = 'none', guifg = color },
       }
     end
+
     return {
       { '' },
     }
@@ -246,20 +253,8 @@ bufferline.setup {
     diagnostics = 'nvim_lsp',
     offsets = {
       { filetype = 'netrw', text_align = 'left' },
+      { filetype = 'CHADTree', text_align = 'left' },
     },
     always_show_bufferline = false,
   },
 }
-
--- CHADTREE:
-
-vim.api.nvim_set_var('chadtree_settings', {
-  ['options.close_on_open'] = true,
-  ['theme.text_colour_set'] = 'solarized_light',
-  ['options.session'] = false,
-  ['view.open_direction'] = 'right',
-})
-
-keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>')
-keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>')
-keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>')

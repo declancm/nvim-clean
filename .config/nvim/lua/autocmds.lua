@@ -34,23 +34,6 @@ autocmd('BufWritePre', {
   group = augroup('remove_whitespace', {}),
 })
 
--- Telescope keymaps will close Explore window.
-autocmd('FileType', {
-  callback = function()
-    keymap('n', '<Leader>ff', function()
-      require('telescope.builtin').find_files()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fg', function()
-      require('telescope.builtin').live_grep()
-    end, { buffer = 0 })
-    keymap('n', '<Leader>fb', function()
-      require('telescope.builtin').buffers()
-    end, { buffer = 0 })
-  end,
-  pattern = 'netrw',
-  group = augroup('explore_telescope', {}),
-})
-
 -- Setting options.
 autocmd({ 'FileType', 'BufWritePost' }, {
   callback = function()
