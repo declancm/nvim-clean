@@ -210,11 +210,15 @@ incline.setup {
       if #bufname >= 40 then
         bufname = '...' .. bufname:sub(-37)
       end
+      local tail = vim.fn.fnamemodify(bufname, ':t')
+      bufname = bufname:sub(0, #bufname - #tail)
 
       if maximize_status() ~= '' then
         return {
           { '', guibg = 'none', guifg = color },
-          { ' ' .. bufname .. ' ', guibg = color },
+          { ' ' .. bufname, guibg = color },
+          { tail, gui = 'underline', guibg = color },
+          { ' ', guibg = color },
           { '', guibg = color2, guifg = color },
           { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
           { '', guibg = 'none', guifg = color2 },
@@ -223,7 +227,9 @@ incline.setup {
 
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. bufname .. ' ', guibg = color },
+        { ' ' .. bufname, guibg = color },
+        { tail, gui = 'underline', guibg = color },
+        { ' ', guibg = color },
         { '', guibg = 'none', guifg = color },
       }
     end
