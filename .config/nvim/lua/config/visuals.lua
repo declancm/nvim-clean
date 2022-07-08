@@ -196,12 +196,15 @@ incline.setup {
   render = function(props)
     local color = 'none'
     local color2 = 'none'
+    local color3 = 'none'
     if theme == 'gruvbox' then
-      color = '#504945'
+      color = '#3c3836'
       color2 = '#a89984'
+      color3 = '#7c6f64'
     elseif theme == 'tokyonight' then
       color = '#3b4261'
       color2 = '#7aa2f7'
+      color3 = '#737aa2'
     end
 
     local bufname = vim.api.nvim_buf_get_name(props.buf)
@@ -216,9 +219,8 @@ incline.setup {
       if maximize_status() ~= '' then
         return {
           { '', guibg = 'none', guifg = color },
-          { ' ' .. bufname, guibg = color },
-          { tail, gui = 'underline', guibg = color },
-          { ' ', guibg = color },
+          { ' ' .. bufname, guibg = color, guifg = color3 },
+          { tail .. ' ', guibg = color },
           { '', guibg = color2, guifg = color },
           { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
           { '', guibg = 'none', guifg = color2 },
@@ -227,9 +229,8 @@ incline.setup {
 
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. bufname, guibg = color },
-        { tail, gui = 'underline', guibg = color },
-        { ' ', guibg = color },
+        { ' ' .. bufname, guibg = color, guifg = color3 },
+        { tail .. ' ', guibg = color },
         { '', guibg = 'none', guifg = color },
       }
     end
