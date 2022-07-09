@@ -209,17 +209,22 @@ incline.setup {
 
     local bufname = vim.api.nvim_buf_get_name(props.buf)
     if bufname ~= '' then
-      bufname = vim.fn.fnamemodify(bufname, ':p:.')
-      if #bufname >= 40 then
-        bufname = '...' .. bufname:sub(-37)
-      end
+      bufname = vim.fn.fnamemodify(bufname, ':.')
       local tail = vim.fn.fnamemodify(bufname, ':t')
-      bufname = bufname:sub(0, #bufname - #tail)
+      local head = ''
+      if #tail > 37 then
+        tail = '...' .. bufname:sub(-37)
+      elseif #bufname > 40 then
+        bufname = '...' .. bufname:sub(-37)
+        head = bufname:sub(0, #bufname - #tail)
+      else
+        head = bufname:sub(0, #bufname - #tail)
+      end
 
       if maximize_status() ~= '' then
         return {
           { '', guibg = 'none', guifg = color },
-          { ' ' .. bufname, guibg = color, guifg = color3 },
+          { ' ' .. head, guibg = color, guifg = color3 },
           { tail .. ' ', guibg = color },
           { '', guibg = color2, guifg = color },
           { ' ' .. maximize_status() .. ' ', guibg = color2, guifg = color },
@@ -229,7 +234,7 @@ incline.setup {
 
       return {
         { '', guibg = 'none', guifg = color },
-        { ' ' .. bufname, guibg = color, guifg = color3 },
+        { ' ' .. head, guibg = color, guifg = color3 },
         { tail .. ' ', guibg = color },
         { '', guibg = 'none', guifg = color },
       }
