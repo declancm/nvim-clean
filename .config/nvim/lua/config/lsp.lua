@@ -74,7 +74,7 @@ keymap('n', '<Leader>gd', function()
 end)
 
 -- Format on command.
-vim.cmd('command! Format lua vim.lsp.buf.formatting_sync()')
+vim.cmd('command! Format lua vim.lsp.buf.format()')
 
 -- AUTOPAIRS:
 

@@ -71,11 +71,11 @@ function M.CMP_setup(on_attach)
       ['<CR>'] = cmp.mapping.confirm(),
     },
     sources = {
+      { name = 'luasnip' },
       { name = 'calc' },
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'path' },
-      { name = 'luasnip' },
       -- { name = 'buffer', keyword_length = 3 },
       { name = 'buffer' },
       { name = 'tmux', max_item_count = 3 },
@@ -116,6 +116,7 @@ function M.CMP_setup(on_attach)
   lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.cmake.setup { on_attach = on_attach, capabilities = capabilities }
+  lsp.cssls.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.eslint.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.powershell_es.setup {
@@ -201,6 +202,7 @@ function M.COQ_setup(on_attach)
   lsp.bashls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.clangd.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.cmake.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
+  lsp.cssls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.html.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.powershell_es.setup(coq.lsp_ensure_capabilities {

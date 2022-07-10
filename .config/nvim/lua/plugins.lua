@@ -156,6 +156,7 @@ return require('packer').startup(function(use)
     run = 'python3 -m chadtree deps',
   }
   use('antoinemadec/FixCursorHold.nvim') -- fix a bug with neovim autocmds
+  use('lewis6991/impatient.nvim') -- faster loading times
 
   -- MY_PLUGINS:
 

@@ -39,13 +39,14 @@ autocmd({ 'FileType', 'BufWritePost' }, {
   callback = function()
     vim.cmd('set fo-=cro')
     -- vim.cmd 'set fo-=ro' -- Comments automatically wrap at 80 characters.
-    local fts = { 'html', 'javascript', 'json', 'lua', 'markdown', 'ps1' }
-    local size = 4
+    local fts = { 'css', 'html', 'javascript', 'json', 'lua', 'markdown', 'ps1' }
+    local size
     for _, value in ipairs(fts) do
       if value == vim.bo.ft then
         size = 2
       end
     end
+    size = size or 4
     vim.opt_local.shiftwidth = size
     vim.opt_local.tabstop = size
     vim.opt_local.softtabstop = size

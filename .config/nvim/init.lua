@@ -1,3 +1,6 @@
+-- TODO:
+-- Create a keymap to start a live-server in a website directory
+
 local theme, completion, spellchecker
 
 -- THEME:
@@ -5,8 +8,8 @@ local theme, completion, spellchecker
 theme = 'tokyonight'
 
 -- COMPLETION:
-completion = 'cmp' -- Lots of good sources.
--- completion = 'coq' -- Faster completion. Requires 'python3-venv'.
+-- completion = 'cmp' -- Lots of good sources.
+completion = 'coq' -- Faster completion. Requires 'python3-venv'.
 
 -- SPELLCHECKER:
 spellchecker = false
@@ -20,6 +23,8 @@ vim.g.python3_host_prog = '/bin/python3' -- Starts python3.
 vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
+
+require('impatient')
 
 require('autocmds')
 
@@ -55,6 +60,7 @@ INSTALLATION:
 bashls              npm i -g bash-language-server
 clangd              sudo apt-get install clangd-12
 cmake               pip3 install cmake-language-server
+cssls               npm i -g vsocde-langservers-extracted
 eslint              npm i -g vscode-langservers-extracted
 html                npm i -g vscode-langservers-extracted
 powershell_es       https://github.com/PowerShell/PowerShellEditorServices/releases
