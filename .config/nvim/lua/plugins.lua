@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
   -- DEPENDENCIES:
 
   use('nvim-lua/plenary.nvim') -- lua functions
+  use('nvim-lua/popup.nvim') -- popup api
   use('kyazdani42/nvim-web-devicons') -- icons library
 
   -- LSP:
@@ -61,6 +62,7 @@ return require('packer').startup(function(use)
     tag = 'nvim-0.6',
     requires = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'nvim-telescope/telescope-file-browser.nvim',
       'jvgrootveld/telescope-zoxide',
     },
   }

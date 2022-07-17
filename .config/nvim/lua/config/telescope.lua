@@ -54,6 +54,7 @@ telescope.setup {
 }
 
 telescope.load_extension('fzf')
+telescope.load_extension('file_browser')
 telescope.load_extension('zoxide')
 telescope.load_extension('refactoring')
 
@@ -126,21 +127,13 @@ keymap('n', '<Leader>fp', function()
   require('telescope.builtin').builtin()
 end)
 
--- Custom pickers:
-keymap('n', '<Leader>fn', function()
-  close_buffer()
-  require('config.telescope').grep_notes()
-end)
-keymap('n', '<Leader>fc', function()
-  close_buffer()
-  require('config.telescope').grep_config()
-end)
-keymap('n', '<Leader>fv', function()
-  close_buffer()
-  require('config.telescope').grep_neovim()
-end)
-
 -- PLUGIN_KEYMAPS:
+
+-- Telescope File Browser:
+keymap('n', '<Leader>tf', function()
+  close_buffer()
+  require('telescope').extensions.file_browser.file_browser()
+end)
 
 -- Zoxide.
 keymap('n', '<Leader>fz', function()
@@ -153,37 +146,3 @@ keymap('v', '<Leader>fr', function()
   close_buffer()
   require('telescope').extensions.refactoring.refactors()
 end)
-
--- CUSTOM_PICKERS:
-
-local M = {}
-
-M.grep_notes = function()
-  local options = {}
-  -- options.search_dirs = { '~/notes/' }
-  options.cwd = '~/notes/'
-  options.prompt_title = 'Search Notes'
-  options.shorten_path = true
-  require('telescope.builtin').live_grep(options)
-end
-
-M.grep_config = function()
-  local options = {}
-  -- options.search_dirs = { '~/.config/nvim/' }
-  options.opts = { file_ignore_patterns = { '^runtime/' } }
-  options.cwd = '~/.config/nvim/'
-  options.prompt_title = 'Config Files'
-  options.shorten_path = true
-  require('telescope.builtin').find_files(options)
-end
-
-M.grep_neovim = function()
-  local options = {}
-  -- options.search_dirs = { '~/neovim/' }
-  options.cwd = '~/neovim/'
-  options.shorten_path = true
-  options.prompt_title = 'Search Neovim'
-  require('telescope.builtin').live_grep(options)
-end
-
-return M

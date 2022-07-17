@@ -169,11 +169,11 @@ end
 indent.setup {
   char = '▏', -- faint line
   -- char = '▎', -- thick line
+  -- char = '╎', -- dotted line
   show_trailing_blankline_indent = false,
   max_indent_increase = 1,
   use_treesittter = true,
   -- show_current_context = true,
-  -- show_current_context_start = true,
 }
 
 -- INCLINE:

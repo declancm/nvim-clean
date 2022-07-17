@@ -13,12 +13,11 @@ require('git-scripts').setup()
 require('cinnamon').setup {
   extra_keymaps = true,
   extended_keymaps = true,
+  override_keymaps = true,
   -- hide_cursor = true,
-  scroll_limit = 100,
+  max_length = 500,
+  scroll_limit = 500,
 }
-
--- keymap({ 'n', 'x' }, '<ScrollWheelUp>', "<Cmd>lua Scroll('<ScrollWheelUp>')<CR>")
--- keymap({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheelDown>')<CR>")
 
 keymap({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg', 0, 0, 3)<CR>")
 keymap({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1, 3)<CR>")
