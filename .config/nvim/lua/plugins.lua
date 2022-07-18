@@ -116,10 +116,7 @@ return require('packer').startup(function(use)
     'hoob3rt/lualine.nvim', -- better status line
     requires = { 'SmiteshP/nvim-navic' }, -- show current scope
   }
-  use {
-    'lewis6991/gitsigns.nvim', -- git column icons
-    tag = 'release',
-  }
+  use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git column icons
   use('folke/todo-comments.nvim') -- better todo comments
   use('norcalli/nvim-colorizer.lua') -- preview colors for color codes
   use('lukas-reineke/indent-blankline.nvim') -- indent guides
@@ -128,7 +125,7 @@ return require('packer').startup(function(use)
 
   -- COMMENTS:
 
-  use('numToStr/Comment.nvim') -- comments
+  use { 'numToStr/Comment.nvim', tag = 'v0.6.1' } -- comments
 
   -- MOVEMENTS:
 

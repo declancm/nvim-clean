@@ -48,7 +48,9 @@ end
 
 spellsitter.setup()
 
-if vim.g.__enable_spellchecker then
+local spellchecker = require('user-config').spellchecker
+
+if spellchecker then
   vim.opt.spell = true -- Enable spellchecker.
   vim.opt.spelllang = 'en_us' -- Set spellchecker language to English US.
 end

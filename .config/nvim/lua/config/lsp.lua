@@ -88,7 +88,7 @@ autopairs.setup()
 
 -- COMPLETION:
 
-local completion = vim.g.__selected_completion or 'cmp'
+local completion = require('user-config').completion
 
 if completion == 'cmp' then
   require('config.completion').CMP_setup(on_attach)

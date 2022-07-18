@@ -2,7 +2,7 @@ local keymap = vim.keymap.set
 
 -- THEME:
 
-local theme = vim.g.__selected_theme
+local theme = require('user-config').theme
 
 vim.opt.background = 'dark'
 -- vim.opt.colorcolumn = '80'

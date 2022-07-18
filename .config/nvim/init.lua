@@ -1,23 +1,3 @@
--- TODO:
--- Create a keymap to start a live-server in a website directory
-
-local theme, completion, spellchecker
-
--- THEME:
--- theme = 'gruvbox'
-theme = 'tokyonight'
-
--- COMPLETION:
--- completion = 'cmp' -- Lots of good sources.
-completion = 'coq' -- Faster completion. Requires 'python3-venv'.
-
--- SPELLCHECKER:
-spellchecker = false
-
-vim.g.__selected_theme = theme
-vim.g.__selected_completion = completion
-vim.g.__enable_spellchecker = spellchecker
-
 -- PRE-CONFIG_OPTIONS:
 vim.g.python3_host_prog = '/bin/python3' -- Starts python3.
 vim.opt.syntax = 'on' -- Enable syntax highlighting.
