@@ -4,8 +4,7 @@ vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
-require('impatient')
-
+pcall(require, 'impatient')
 require('autocmds')
 
 -- PLUGIN_CONFIGS:
@@ -28,6 +27,12 @@ require('options')
 --[[
 
 These installation instructions are for Ubuntu.
+
+---------------
+-- CLIPBOARD --
+---------------
+
+xsel                sudo apt-get install xsel
 
 -----------------
 -- LSP SERVERS --
@@ -77,6 +82,8 @@ stylua              cargo install stylua
 
 INSTALLATION:
 
+ripgrep             sudo apt-get install ripgrep
+fd                  sudo apt install fd-find
 fzf                 sudo apt-get install fzf
 zoxide              sudo apt install zoxide
 
