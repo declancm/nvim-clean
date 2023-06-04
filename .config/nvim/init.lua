@@ -98,6 +98,6 @@ zoxide              Add to your .bashrc (or .zshrc etc.):
 
 INSTALLATION:
 
-treesitter          npm install treesitter
+treesitter          npm install tree-sitter
 
 ]]
