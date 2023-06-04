@@ -33,8 +33,9 @@ sudo apt install stow
 ```
 
 ```bash
+cd ~
 git clone https://github.com/declancm/nvim-clean.git
-stow nvim-clean
+cd nvim-clean && stow .
 ```
 
 📦 Information on packages required for plugins is at the bottom of init.lua.
