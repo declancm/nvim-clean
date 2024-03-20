@@ -262,9 +262,6 @@ bufferline.setup {
   options = {
     mode = 'tabs',
     diagnostics = 'nvim_lsp',
-    offsets = {
-      { filetype = 'netrw', text_align = 'left' },
-    },
     always_show_bufferline = false,
   },
 }

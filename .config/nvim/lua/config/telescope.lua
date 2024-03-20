@@ -62,68 +62,49 @@ telescope.load_extension('refactoring')
 
 local keymap = vim.keymap.set
 
-local function close_buffer()
-  local ft = vim.bo.filetype
-  if ft == 'netrw' then
-    vim.cmd('bd')
-  end
-end
-
 -- File pickers.
 keymap('n', '<Leader>ff', function()
-  close_buffer()
   require('telescope.builtin').find_files()
 end)
 keymap('n', '<Leader>fg', function()
-  close_buffer()
   require('telescope.builtin').live_grep()
 end)
 
 -- Vim pickers.
 keymap('n', '<Leader>fb', function()
-  close_buffer()
   require('telescope.builtin').buffers()
 end)
 keymap('n', '<Leader>fh', function()
-  close_buffer()
   require('telescope.builtin').command_history()
 end)
 keymap('n', '<Leader>fq', function()
-  close_buffer()
   require('telescope.builtin').quickfix()
 end)
 keymap('n', '<Leader>fl', function()
-  close_buffer()
   require('telescope.builtin').loclist()
 end)
 
 -- LSP pickers.
 keymap('n', '<Leader>fd', function()
-  close_buffer()
   require('telescope.builtin').diagnostics()
 end)
 keymap('n', '<Leader>fr', function()
-  close_buffer()
   require('telescope.builtin').lsp_references()
 end)
 keymap('n', '<Leader>fi', function()
-  close_buffer()
   require('telescope.builtin').lsp_implementations()
 end)
 keymap('n', '<Leader>fa', function()
-  close_buffer()
   require('telescope.builtin').lsp_code_actions()
 end)
 
 -- Git:
 keymap('n', '<Leader>fs', function()
-  close_buffer()
   require('telescope.builtin').git_status()
 end)
 
 -- List pickers.
 keymap('n', '<Leader>fp', function()
-  close_buffer()
   require('telescope.builtin').builtin()
 end)
 
@@ -131,18 +112,15 @@ end)
 
 -- Telescope File Browser:
 keymap('n', '<Leader>tf', function()
-  close_buffer()
   require('telescope').extensions.file_browser.file_browser()
 end)
 
 -- Zoxide.
 keymap('n', '<Leader>fz', function()
-  close_buffer()
   require('telescope').extensions.zoxide.list()
 end)
 
 -- Refactoring.
 keymap('v', '<Leader>fr', function()
-  close_buffer()
   require('telescope').extensions.refactoring.refactors()
 end)
