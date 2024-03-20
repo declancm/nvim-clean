@@ -2,7 +2,9 @@
 
 sudo apt-get update
 sudo apt update && sudo apt upgrade -y
-sudo apt install cargo python3-pip -y
+
+# install dependencies
+sudo apt install build-essential cmake cargo python3-pip -y
 
 # install nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
