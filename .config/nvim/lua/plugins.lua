@@ -17,7 +17,6 @@ require("lazy").setup({
   -- DEPENDENCIES:
 
   'nvim-lua/plenary.nvim', -- lua functions
-  'nvim-lua/popup.nvim', -- popup api
   'kyazdani42/nvim-web-devicons', -- icons library
 
   -- LSP:
