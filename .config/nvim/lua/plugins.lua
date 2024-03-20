@@ -56,11 +56,17 @@ require("lazy").setup({
   {
     'nvim-telescope/telescope.nvim', -- fuzzy finder
     dependencies = {
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      'nvim-telescope/telescope-file-browser.nvim',
-      'jvgrootveld/telescope-zoxide',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
     },
   },
+  -- 'nvim-telescope/telescope-file-browser.nvim',
+  -- 'jvgrootveld/telescope-zoxide',
 
   -- TREESITTER:
 
