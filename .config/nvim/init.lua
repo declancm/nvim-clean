@@ -4,7 +4,7 @@ vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
-pcall(require, 'impatient')
+vim.loader.enable()
 require('autocmds')
 
 -- PLUGIN_CONFIGS:

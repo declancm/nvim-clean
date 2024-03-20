@@ -154,7 +154,6 @@ require("lazy").setup({
     branch = 'chad',
     run = 'python3 -m chadtree deps',
   },
-  'lewis6991/impatient.nvim', -- faster loading times
 
   -- MY_PLUGINS:
 
