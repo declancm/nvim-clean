@@ -61,66 +61,34 @@ telescope.load_extension('refactoring')
 -- KEYMAPS:
 
 local keymap = vim.keymap.set
+local builtin = require('telescope.builtin')
 
 -- File pickers.
-keymap('n', '<Leader>ff', function()
-  require('telescope.builtin').find_files()
-end)
-keymap('n', '<Leader>fg', function()
-  require('telescope.builtin').live_grep()
-end)
+keymap('n', '<Leader>ff', builtin.find_files, {})
+keymap('n', '<Leader>fg', builtin.live_grep, {})
 
 -- Vim pickers.
-keymap('n', '<Leader>fb', function()
-  require('telescope.builtin').buffers()
-end)
-keymap('n', '<Leader>fh', function()
-  require('telescope.builtin').command_history()
-end)
-keymap('n', '<Leader>fq', function()
-  require('telescope.builtin').quickfix()
-end)
-keymap('n', '<Leader>fl', function()
-  require('telescope.builtin').loclist()
-end)
+keymap('n', '<Leader>fb', builtin.buffers, {})
+keymap('n', '<Leader>fh', builtin.command_history, {})
+keymap('n', '<Leader>fq', builtin.quickfix, {})
+keymap('n', '<Leader>fl', builtin.loclist, {})
 
--- LSP pickers.
-keymap('n', '<Leader>fd', function()
-  require('telescope.builtin').diagnostics()
-end)
-keymap('n', '<Leader>fr', function()
-  require('telescope.builtin').lsp_references()
-end)
-keymap('n', '<Leader>fi', function()
-  require('telescope.builtin').lsp_implementations()
-end)
-keymap('n', '<Leader>fa', function()
-  require('telescope.builtin').lsp_code_actions()
-end)
+-- -- LSP pickers.
+-- keymap('n', '<Leader>fd', builtin.diagnostics, {})
+-- keymap('n', '<Leader>fr', builtin.lsp_references, {})
+-- keymap('n', '<Leader>fi', builtin.lsp_implementations, {})
+-- keymap('n', '<Leader>fa', builtin.lsp_code_actions, {})
 
 -- Git:
-keymap('n', '<Leader>fs', function()
-  require('telescope.builtin').git_status()
-end)
+keymap('n', '<Leader>fs', builtin.git_status, {})
 
 -- List pickers.
-keymap('n', '<Leader>fp', function()
-  require('telescope.builtin').builtin()
-end)
+keymap('n', '<Leader>fp', builtin.builtin, {})
 
 -- PLUGIN_KEYMAPS:
 
 -- Telescope File Browser:
-keymap('n', '<Leader>tf', function()
-  require('telescope').extensions.file_browser.file_browser()
-end)
-
--- Zoxide.
-keymap('n', '<Leader>fz', function()
-  require('telescope').extensions.zoxide.list()
-end)
+keymap('n', '<Leader>tf', require('telescope').extensions.file_browser.file_browser, {})
 
 -- Refactoring.
-keymap('v', '<Leader>fr', function()
-  require('telescope').extensions.refactoring.refactors()
-end)
+keymap('v', '<Leader>fr', require('telescope').extensions.refactoring.refactors, {})
