@@ -1,47 +1,45 @@
--- Clone packer if it doesn't already exist.
-local path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(path)) > 0 then
-  local command = { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path }
-  PackerBootstrap = vim.fn.system(command)
+-- Bootstrap
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-
--- Packer uses a floating window.
-require('packer').init {
-  display = {
-    open_fn = function()
-      return require('packer.util').float { border = 'rounded' }
-    end,
-  },
-}
+vim.opt.rtp:prepend(lazypath)
 
 -- Installing plugins.
-return require('packer').startup(function(use)
-  use('wbthomason/packer.nvim') -- plugin manager
+require("lazy").setup({
+  'wbthomason/packer.nvim', -- plugin manager
 
   -- DEPENDENCIES:
 
-  use('nvim-lua/plenary.nvim') -- lua functions
-  use('nvim-lua/popup.nvim') -- popup api
-  use('kyazdani42/nvim-web-devicons') -- icons library
+  'nvim-lua/plenary.nvim', -- lua functions
+  'nvim-lua/popup.nvim', -- popup api
+  'kyazdani42/nvim-web-devicons', -- icons library
 
   -- LSP:
 
-  use('neovim/nvim-lspconfig') -- collection of lsp configurations
-  use('jose-elias-alvarez/null-ls.nvim') -- use neovim as a language server
-  -- use 'glepnir/lspsaga.nvim' -- lsp functions
-  -- use 'folke/trouble.nvim' -- pretty lists
-  use('windwp/nvim-autopairs') -- create pairs
+  'neovim/nvim-lspconfig', -- collection of lsp configurations
+  'jose-elias-alvarez/null-ls.nvim', -- use neovim as a language server
+  -- 'glepnir/lspsaga.nvim' -- lsp functions
+  -- 'folke/trouble.nvim' -- pretty lists
+  'windwp/nvim-autopairs', -- create pairs
 
   -- COMPLETION:
 
-  use {
+  {
     'ms-jpq/coq_nvim', -- auto-completion
     branch = 'coq',
-    requires = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } }, -- snippets
-  }
-  use {
+    dependencies = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } }, -- snippets
+  },
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'L3MON4D3/LuaSnip', -- snippets
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
@@ -53,129 +51,124 @@ return require('packer').startup(function(use)
       -- { 'tzachar/cmp-tabnine', run = './install.sh' },
       'hrsh7th/cmp-calc',
     },
-  }
+  },
 
   -- TELESCOPE:
 
-  use {
+  {
     'nvim-telescope/telescope.nvim', -- fuzzy finder
     tag = 'nvim-0.6',
-    requires = {
+    dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-file-browser.nvim',
       'jvgrootveld/telescope-zoxide',
     },
-  }
+  },
 
   -- TREESITTER:
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
     run = ':TSUpdate',
-    requires = {
+    dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       -- 'nvim-treesitter/playground',
     },
-  }
-  use('windwp/nvim-ts-autotag') -- create tags
-  use('lewis6991/spellsitter.nvim') -- spellchecker
-  use('simrat39/symbols-outline.nvim')
-  use('ThePrimeagen/refactoring.nvim') -- extract, inline and print debug
+  },
+  'windwp/nvim-ts-autotag', -- create tags
+  'lewis6991/spellsitter.nvim', -- spellchecker
+  'simrat39/symbols-outline.nvim',
+  'ThePrimeagen/refactoring.nvim', -- extract, inline and print debug
 
   -- DEBUGGING:
 
-  use {
+  {
     'mfussenegger/nvim-dap', -- debugging
-    requires = {
+    dependencies = {
       'theHamsta/nvim-dap-virtual-text',
       'rcarriga/nvim-dap-ui',
     },
-  }
+  },
 
   -- LANGUAGE_SPECIFIC:
 
-  use {
+  {
     'tpope/vim-dadbod', -- database interaction
-    requires = {
+    dependencies = {
       'kristijanhusak/vim-dadbod-completion',
       'kristijanhusak/vim-dadbod-ui',
     },
-  }
-  use {
+  },
+  {
     'iamcco/markdown-preview.nvim', -- preview markdown in browser
     run = function()
       vim.fn['mkdp#util#install']()
     end,
-  }
+  },
 
   -- VISUALS:
 
-  use('folke/tokyonight.nvim') -- colorscheme
-  use('luisiacc/gruvbox-baby') -- colorscheme
-  use {
+  'folke/tokyonight.nvim', -- colorscheme
+  'luisiacc/gruvbox-baby', -- colorscheme
+  {
     'hoob3rt/lualine.nvim', -- better status line
-    requires = { 'SmiteshP/nvim-navic' }, -- show current scope
-  }
-  use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git column icons
-  use('folke/todo-comments.nvim') -- better todo comments
-  use('norcalli/nvim-colorizer.lua') -- preview colors for color codes
-  use('lukas-reineke/indent-blankline.nvim') -- indent guides
-  use('b0o/incline.nvim') -- floating statuslines
-  use('akinsho/bufferline.nvim') -- buffer line with tabpage integration.
+    dependencies = { 'SmiteshP/nvim-navic' }, -- show current scope
+  },
+  { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
+  'folke/todo-comments.nvim', -- better todo comments
+  'norcalli/nvim-colorizer.lua', -- preview colors for color codes
+  'lukas-reineke/indent-blankline.nvim', -- indent guides
+  'b0o/incline.nvim', -- floating statuslines
+  'akinsho/bufferline.nvim', -- buffer line with tabpage integration.
 
   -- COMMENTS:
 
-  use { 'numToStr/Comment.nvim', tag = 'v0.6.1' } -- comments
+  { 'numToStr/Comment.nvim', tag = 'v0.6.1' }, -- comments
 
   -- MOVEMENTS:
 
-  use('unblevable/quick-scope') -- highlight for f, F, t, T movements
-  use('machakann/vim-sandwich') -- change surrounding chars
-  use('arthurxavierx/vim-caser') -- word coercion
-  use('chaoren/vim-wordmotion') -- camel case, snake case etc. become separate words
-  use('mizlan/iswap.nvim') -- interactive swap
+  'unblevable/quick-scope', -- highlight for f, F, t, T movements
+  'machakann/vim-sandwich', -- change surrounding chars
+  'arthurxavierx/vim-caser', -- word coercion
+  'chaoren/vim-wordmotion', -- camel case, snake case etc. become separate words
+  'mizlan/iswap.nvim', -- interactive swap
 
   -- MISC:
 
-  use('mbbill/undotree') -- tree view of undo history
-  use {
+  'mbbill/undotree', -- tree view of undo history
+  {
     'tpope/vim-fugitive', -- Git
-    requires = { 'junegunn/gv.vim' },
-  }
-  use {
+    dependencies = { 'junegunn/gv.vim' },
+  },
+  {
     'dkarter/bullets.vim', -- bullets
     ft = { 'markdown', 'text' },
-  }
-  use('tpope/vim-obsession') -- sessions
-  use('tpope/vim-capslock') -- software capslock
-  use('kwkarlwang/bufresize.nvim') -- better buffer resizing
-  use {
+  },
+  'tpope/vim-obsession', -- sessions
+  'tpope/vim-capslock', -- software capslock
+  'kwkarlwang/bufresize.nvim', -- better buffer resizing
+  {
     'ms-jpq/chadtree', -- better filetree
     branch = 'chad',
     run = 'python3 -m chadtree deps',
-  }
-  use('antoinemadec/FixCursorHold.nvim') -- fix a bug with neovim autocmds
-  use('lewis6991/impatient.nvim') -- faster loading times
+  },
+  'antoinemadec/FixCursorHold.nvim', -- fix a bug with neovim autocmds
+  'lewis6991/impatient.nvim', -- faster loading times
 
   -- MY_PLUGINS:
 
-  if vim.fn.getenv('USER') == 'declancm' then
-    -- Local files.
-    use('~/plugins/cinnamon.nvim')
-    use('~/plugins/windex.nvim')
-    use('~/plugins/maximize.nvim')
-    use('~/plugins/vim2vscode')
-    use('~/plugins/git-scripts.nvim')
-  else
-    use('declancm/cinnamon.nvim') -- neovim smooth scrolling
-    use('declancm/windex.nvim') -- cleaner window movements
-    use('declancm/maximize.nvim') -- window maximizing
-    use('declancm/vim2vscode') -- open current buffers in vscode
-    use('declancm/git-scripts.nvim') -- async git functions
-  end
-
-  -- Install packer if it was just git cloned.
-  if PackerBootstrap then
-    require('packer').sync()
-  end
-end)
+  -- if vim.fn.getenv('USER') == 'declancm' then
+  --   -- Local files.
+  --   '~/plugins/cinnamon.nvim',
+  --   '~/plugins/windex.nvim',
+  --   '~/plugins/maximize.nvim',
+  --   '~/plugins/vim2vscode',
+  --   '~/plugins/git-scripts.nvim',
+  -- else
+  'declancm/cinnamon.nvim', -- neovim smooth scrolling
+  'declancm/windex.nvim', -- cleaner window movements
+  'declancm/maximize.nvim', -- window maximizing
+  'declancm/vim2vscode', -- open current buffers in vscode
+  'declancm/git-scripts.nvim' -- async git functions
+  -- end
+})
