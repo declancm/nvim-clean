@@ -66,7 +66,6 @@ require("lazy").setup({
 
   {
     'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
-    run = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       -- 'nvim-treesitter/playground',
