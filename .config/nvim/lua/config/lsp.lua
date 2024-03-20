@@ -126,33 +126,3 @@ function vim.lsp.util.open_floating_preview(contents, syntax, options, ...)
   options.border = options.border or border
   return orig_util_open_floating_preview(contents, syntax, options, ...)
 end
-
--- NULL-LS:
-
-local null_status, null = pcall(require, 'null-ls')
-if not null_status then
-  print("'null-ls' executed with errors.")
-  return
-end
-
-null.setup {
-  debug = false,
-  sources = {
-    null.builtins.formatting.black,
-    null.builtins.formatting.prettier,
-    null.builtins.formatting.stylua,
-  },
-  on_attach = function(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-      -- Format on save.
-      autocmd('BufWritePre', {
-        callback = function()
-          vim.lsp.buf.format()
-          vim.cmd('retab')
-        end,
-        buffer = bufnr,
-        group = augroup('lsp_format', { clear = false }),
-      })
-    end
-  end,
-}

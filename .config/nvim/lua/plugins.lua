@@ -22,8 +22,6 @@ require("lazy").setup({
   -- LSP:
 
   'neovim/nvim-lspconfig', -- collection of lsp configurations
-  'jose-elias-alvarez/null-ls.nvim', -- use neovim as a language server
-  -- 'glepnir/lspsaga.nvim' -- lsp functions
   -- 'folke/trouble.nvim' -- pretty lists
   'windwp/nvim-autopairs', -- create pairs
 
