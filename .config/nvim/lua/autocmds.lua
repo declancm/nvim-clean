@@ -48,13 +48,6 @@ autocmd({ 'FileType', 'BufWritePost' }, {
   group = augroup('setting_options', {}),
 })
 
--- Opening nvim at a directory will open chadtree.
-autocmd('StdinReadPre', { command = 'let s:std_in=1', group = augroup('open_chadtree', {}) })
-autocmd('VimEnter', {
-  command = "if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exec 'CHADopen' | exec 'cd '.argv()[0] | endif",
-  group = augroup('open_chadtree', {}),
-})
-
 -- Make the clipboard work in WSL.
 autocmd('VimEnter', {
   callback = function()

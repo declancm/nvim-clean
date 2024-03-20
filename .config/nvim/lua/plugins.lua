@@ -149,11 +149,6 @@ require("lazy").setup({
   'tpope/vim-obsession', -- sessions
   'tpope/vim-capslock', -- software capslock
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
-  {
-    'ms-jpq/chadtree', -- better filetree
-    branch = 'chad',
-    run = 'python3 -m chadtree deps',
-  },
 
   -- MY_PLUGINS:
 
