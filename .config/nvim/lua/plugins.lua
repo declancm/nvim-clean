@@ -57,7 +57,6 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim', -- fuzzy finder
-    tag = 'nvim-0.6',
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-file-browser.nvim',
