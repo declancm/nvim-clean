@@ -125,7 +125,7 @@ function M.CMP_setup(on_attach)
     capabilities = capabilities,
   }
   lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
-  lsp.sumneko_lua.setup {
+  lsp.lua_ls.setup {
     settings = {
       Lua = {
         runtime = {
@@ -179,7 +179,7 @@ function M.COQ_setup(on_attach)
   if not coq_status then
     print("'coq' executed with errors.")
     -- Setup diagnostics in init.lua if coq wasn't executed successfully.
-    lsp.sumneko_lua.setup {
+    lsp.lua_ls.setup {
       settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
       on_attach = on_attach,
     }
@@ -202,7 +202,7 @@ function M.COQ_setup(on_attach)
     on_attach = on_attach,
   })
   lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-  lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities {
+  lsp.lua_ls.setup(coq.lsp_ensure_capabilities {
     settings = {
       Lua = {
         runtime = {
