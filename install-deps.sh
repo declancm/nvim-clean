@@ -41,4 +41,4 @@ cargo install zoxide --locked
 npm install tree-sitter
 
 # chadtree
-apt install python3-venv -y
+sudo apt install python3-venv -y
