@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Installing plugins.
 require("lazy").setup({
-  'wbthomason/packer.nvim', -- plugin manager
-
   -- DEPENDENCIES:
 
   'nvim-lua/plenary.nvim', -- lua functions

@@ -3,9 +3,6 @@ local keymap = vim.keymap.set
 -- Undo:
 keymap({ 'n', 'v' }, '<C-z>', 'u')
 
--- Source config file.
-keymap('n', '<Leader>sc', '<Cmd>wa | so $MYVIMRC | PackerCompile<CR>')
-
 -- Toggle your notes file and keep it synced with the github remote.
 keymap('n', '<Leader>nt', function()
   require('functions').toggle_notes('~/notes/notes.txt')

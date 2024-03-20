@@ -21,13 +21,6 @@ autocmd('TextYankPost', {
   group = augroup('highlight_yank', {}),
 })
 
--- Packer.
-autocmd('BufWritePost', {
-  command = 'source <afile> | PackerCompile',
-  pattern = '**/.config/nvim/lua/plugins.lua',
-  group = augroup('packer_user_config', {}),
-})
-
 -- Delete whitespace on the end of lines.
 autocmd('BufWritePre', {
   command = 'let b:savedView = winsaveview() | keeppatterns %s/s+$//e | call winrestview(b:savedView)',
