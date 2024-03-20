@@ -154,7 +154,6 @@ require("lazy").setup({
     branch = 'chad',
     run = 'python3 -m chadtree deps',
   },
-  'antoinemadec/FixCursorHold.nvim', -- fix a bug with neovim autocmds
   'lewis6991/impatient.nvim', -- faster loading times
 
   -- MY_PLUGINS:
