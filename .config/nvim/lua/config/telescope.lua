@@ -64,7 +64,7 @@ local keymap = vim.keymap.set
 
 local function close_buffer()
   local ft = vim.bo.filetype
-  if ft == 'CHADTree' or ft == 'netrw' then
+  if ft == 'netrw' then
     vim.cmd('bd')
   end
 end

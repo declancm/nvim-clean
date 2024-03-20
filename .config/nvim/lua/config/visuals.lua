@@ -190,7 +190,6 @@ end
 
 incline.setup {
   ignore = {
-    filetypes = { 'CHADTree' },
     floating_wins = true,
   },
   render = function(props)
@@ -265,7 +264,6 @@ bufferline.setup {
     diagnostics = 'nvim_lsp',
     offsets = {
       { filetype = 'netrw', text_align = 'left' },
-      { filetype = 'CHADTree', text_align = 'left' },
     },
     always_show_bufferline = false,
   },

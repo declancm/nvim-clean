@@ -25,16 +25,3 @@ if not bufresize_status then
 end
 
 bufresize.setup()
-
--- CHADTREE:
-
-vim.api.nvim_set_var('chadtree_settings', {
-  ['options.close_on_open'] = true,
-  ['theme.text_colour_set'] = 'solarized_light',
-  ['options.session'] = false,
-  -- ['view.open_direction'] = 'right',
-})
-
-keymap('n', '<Leader>ct', '<Cmd>CHADopen<CR>')
-keymap('n', '<Leader>cl', '<Cmd>CHADopen --version-ctl<CR>')
-keymap('n', '<Leader>cq', '<Cmd>call setqflist([])<CR>')
