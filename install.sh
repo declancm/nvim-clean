@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt-get update
 sudo apt update && sudo apt upgrade -y
 sudo apt install cargo python3-pip
