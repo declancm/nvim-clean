@@ -60,7 +60,6 @@ require("lazy").setup({
     },
   },
   -- 'nvim-telescope/telescope-file-browser.nvim',
-  -- 'jvgrootveld/telescope-zoxide',
 
   -- TREESITTER:
 
