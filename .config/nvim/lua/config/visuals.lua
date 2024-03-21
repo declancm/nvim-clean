@@ -113,25 +113,9 @@ if not gitsigns_status then
   return
 end
 
-gitsigns.setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    changedelete = {
-      hl = 'GitSignsDelete',
-      numhl = 'GitSignsDeleteNr',
-      linehl = 'GitSignsDeleteLn',
-    },
-  },
-  current_line_blame_opts = {
-    delay = 0,
-    ignore_whitespace = true,
-  },
-  keymaps = {},
-}
+gitsigns.setup()
 
 local gs = package.loaded.gitsigns
-
 keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame)
 
 -- TODO-COMMENTS:
