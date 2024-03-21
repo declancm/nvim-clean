@@ -14,7 +14,6 @@ require('config.treesitter')
 require('config.debugging')
 require('config.visuals')
 require('config.comments')
-require('config.movements')
 require('config.misc')
 require('config.declancm')
 
