@@ -128,7 +128,6 @@ require("lazy").setup({
   'tpope/vim-dadbod', -- database interaction
   'tpope/vim-fugitive', -- Git wrapper
   'tpope/vim-obsession', -- sessions
-  'mbbill/undotree', -- tree view of undo history
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
 
   -- MY_PLUGINS:
