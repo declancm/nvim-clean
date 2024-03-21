@@ -24,6 +24,7 @@ npm install typescript typescript-language-server
 npm install vim-language-server
 pip3 install cmake-language-server
 pip3 install pyright
+git clone https://github.com/LuaLS/lua-language-server ~/lua-language-server && cd ~/lua-language-server && ./make.sh; cd $OLDPWD
 
 # formatting
 pip3 install black
