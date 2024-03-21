@@ -21,7 +21,6 @@ require('config.declancm')
 
 require('functions')
 require('keymaps')
-require('commands')
 require('options')
 
 --[[
