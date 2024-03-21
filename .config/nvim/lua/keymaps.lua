@@ -3,11 +3,6 @@ local keymap = vim.keymap.set
 -- Undo:
 keymap({ 'n', 'v' }, '<C-z>', 'u')
 
--- Toggle your notes file and keep it synced with the github remote.
-keymap('n', '<Leader>nt', function()
-  require('functions').toggle_notes('~/notes/notes.txt')
-end)
-
 -- MOVEMENT:
 
 -- Replace a word then press '.' to change next occurence.
