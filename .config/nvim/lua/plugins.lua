@@ -124,12 +124,9 @@ require("lazy").setup({
 
   'tpope/vim-surround', -- change surrounding chars
   'tpope/vim-dadbod', -- database interaction
-  'mbbill/undotree', -- tree view of undo history
-  {
-    'tpope/vim-fugitive', -- Git
-    dependencies = { 'junegunn/gv.vim' },
-  },
+  'tpope/vim-fugitive', -- Git wrapper
   'tpope/vim-obsession', -- sessions
+  'mbbill/undotree', -- tree view of undo history
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
 
   -- MY_PLUGINS:
