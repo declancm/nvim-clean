@@ -46,16 +46,6 @@ vim.opt.cursorlineopt = 'number'
 -- vim.opt.list = true
 -- vim.opt.listchars:append 'eol:↴'
 
--- NAVIC:
-
-local navic_status, navic = pcall(require, 'nvim-navic')
-if not navic_status then
-  print("'navic'executed with errors.")
-  return
-end
-
-navic.setup()
-
 -- LUALINE:
 
 local lualine_status, lualine = pcall(require, 'lualine')

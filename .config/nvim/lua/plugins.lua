@@ -99,13 +99,7 @@ require("lazy").setup({
   'luisiacc/gruvbox-baby', -- colorscheme
   {
     'hoob3rt/lualine.nvim', -- better status line
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      {
-        'SmiteshP/nvim-navic',
-        dependencies = { 'neovim/nvim-lspconfig' }
-      }
-    }, -- show current scope
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
   'folke/todo-comments.nvim', -- better todo comments
