@@ -48,13 +48,13 @@ keymap('x', '>', '>gv')
 keymap('x', '<', '<gv')
 
 -- Delete the start of the word.
--- keymap('i', '<C-H>', function()
---   require('functions').delete_start_word('w')
--- end)
+keymap('i', '<C-H>', function()
+  require('functions').delete_start_word('w')
+end)
 -- keymap('i', '<M-BS>', function()
 --   require('functions').delete_start_word('W')
 -- end)
--- keymap('c', '<C-H>', '<C-w>', {})
+keymap('c', '<C-H>', '<C-w>', {})
 
 -- Delete the end of the word.
 -- keymap('i', '<C-Del>', function()
