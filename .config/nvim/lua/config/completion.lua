@@ -119,11 +119,11 @@ function M.CMP_setup(on_attach)
   lsp.cssls.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.eslint.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.html.setup { on_attach = on_attach, capabilities = capabilities }
-  lsp.powershell_es.setup {
-    bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  -- lsp.powershell_es.setup {
+  --   bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
+  --   on_attach = on_attach,
+  --   capabilities = capabilities,
+  -- }
   lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities }
   lsp.lua_ls.setup {
     settings = {
@@ -197,10 +197,10 @@ function M.COQ_setup(on_attach)
   lsp.cssls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.html.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-  lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
-    bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
-    on_attach = on_attach,
-  })
+  -- lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
+  --   bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
+  --   on_attach = on_attach,
+  -- })
   lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.lua_ls.setup(coq.lsp_ensure_capabilities {
     settings = {
