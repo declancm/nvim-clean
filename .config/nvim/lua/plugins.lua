@@ -65,6 +65,7 @@ require("lazy").setup({
 
   -- TREESITTER:
 
+  'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
   {
     'nvim-treesitter/nvim-treesitter-textobjects', -- syntax aware text-objects
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
