@@ -160,20 +160,18 @@ colorizer.setup()
 
 -- INDENT_BLANKLINE:
 
-local indent_status, indent = pcall(require, 'indent_blankline')
+local indent_status, ibl = pcall(require, 'ibl')
 if not indent_status then
   print("'indent_blankline' executed with errors.")
   return
 end
 
-indent.setup {
-  char = '▏', -- faint line
-  -- char = '▎', -- thick line
-  -- char = '╎', -- dotted line
-  show_trailing_blankline_indent = false,
-  max_indent_increase = 1,
-  use_treesittter = true,
-  -- show_current_context = true,
+ibl.setup {
+  indent = {
+    char = '▏', -- faint line
+    -- char = '▎', -- thick line
+    -- char = '╎', -- dotted line
+  }
 }
 
 -- INCLINE:
