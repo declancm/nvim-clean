@@ -99,13 +99,6 @@ require("lazy").setup({
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
   'lukas-reineke/indent-blankline.nvim', -- indent guides
-  {
-    'b0o/incline.nvim', -- floating statuslines
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      'SmiteshP/nvim-navic'
-    }
-  },
   'akinsho/bufferline.nvim', -- buffer line with tabpage integration.
 
   -- COMMENTS:

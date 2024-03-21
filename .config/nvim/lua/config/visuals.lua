@@ -112,16 +112,6 @@ ibl.setup {
   }
 }
 
--- INCLINE:
-
-local incline_status, incline = pcall(require, 'incline')
-if not incline_status then
-  print("'incline' executed with errors.")
-  return
-end
-
-incline.setup()
-
 -- BUFFERLINE:
 
 local bufferline_status, bufferline = pcall(require, 'bufferline')
