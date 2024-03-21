@@ -18,10 +18,10 @@ sudo apt install xsel -y
 
 # lsp servers
 sudo apt install clangd-12 -y
-npm install bash-language-server
-npm install vscode-langservers-extracted
-npm install typescript typescript-language-server
-npm install vim-language-server
+npm install -g bash-language-server
+npm install -g vscode-langservers-extracted
+npm install -g typescript-language-server
+npm install -g vim-language-server
 pip3 install cmake-language-server
 pip3 install pyright
 git clone https://github.com/LuaLS/lua-language-server ~/lua-language-server && cd ~/lua-language-server && ./make.sh; cd $OLDPWD
