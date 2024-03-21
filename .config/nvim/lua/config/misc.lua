@@ -6,11 +6,6 @@ keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>')
 -- u is undo
 -- <C-R> is redo
 
--- BULLETS:
-
-vim.g.bullets_enabled_file_types = { 'markdown', 'text' }
-vim.g.bullets_enable_in_empty_buffers = 0
-
 -- BUFRESIZE:
 
 local bufresize_status, bufresize = pcall(require, 'bufresize')

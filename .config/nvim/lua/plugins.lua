@@ -147,10 +147,6 @@ require("lazy").setup({
     'tpope/vim-fugitive', -- Git
     dependencies = { 'junegunn/gv.vim' },
   },
-  {
-    'dkarter/bullets.vim', -- bullets
-    ft = { 'markdown', 'text' },
-  },
   'tpope/vim-obsession', -- sessions
   'tpope/vim-capslock', -- software capslock
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
