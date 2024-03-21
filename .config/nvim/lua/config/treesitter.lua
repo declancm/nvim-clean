@@ -38,15 +38,6 @@ treesitter.setup {
   },
 }
 
--- SYMBOLS-OUTLINE:
-
-vim.g.symbols_outline = {
-  auto_close = true,
-  preview_bg_highlight = '',
-}
-
-keymap('n', '<Leader>so', '<Cmd>SymbolsOutline<CR>')
-
 -- REFACTORING:
 
 local refactoring_status, refactoring = pcall(require, 'refactoring')

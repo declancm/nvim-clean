@@ -74,7 +74,6 @@ require("lazy").setup({
     },
   },
   'windwp/nvim-ts-autotag', -- create tags
-  'simrat39/symbols-outline.nvim',
   {
     'ThePrimeagen/refactoring.nvim', -- extract, inline and print debug
     dependencies = {
