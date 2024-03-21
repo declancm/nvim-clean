@@ -132,16 +132,6 @@ todo.setup {
 
 keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>')
 
--- COLORIZER:
-
-local colorizer_status, colorizer = pcall(require, 'colorizer')
-if not colorizer_status then
-  print("'colorizer' executed with errors.")
-  return
-end
-
-colorizer.setup()
-
 -- INDENT_BLANKLINE:
 
 local indent_status, ibl = pcall(require, 'ibl')

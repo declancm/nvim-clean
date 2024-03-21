@@ -122,7 +122,6 @@ require("lazy").setup({
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
   'folke/todo-comments.nvim', -- better todo comments
-  'norcalli/nvim-colorizer.lua', -- preview colors for color codes
   'lukas-reineke/indent-blankline.nvim', -- indent guides
   'b0o/incline.nvim', -- floating statuslines
   'akinsho/bufferline.nvim', -- buffer line with tabpage integration.
