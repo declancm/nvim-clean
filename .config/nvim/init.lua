@@ -1,6 +1,5 @@
 -- PRE-CONFIG_OPTIONS:
 vim.g.python3_host_prog = '/bin/python3' -- Starts python3.
-vim.opt.syntax = 'on' -- Enable syntax highlighting.
 vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
