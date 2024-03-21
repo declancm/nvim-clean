@@ -66,11 +66,8 @@ require("lazy").setup({
   -- TREESITTER:
 
   {
-    'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      -- 'nvim-treesitter/playground',
-    },
+    'nvim-treesitter/nvim-treesitter-textobjects', -- syntax aware text-objects
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
   {
     'windwp/nvim-ts-autotag', -- create tags
