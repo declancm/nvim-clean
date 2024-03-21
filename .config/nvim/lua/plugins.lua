@@ -73,7 +73,10 @@ require("lazy").setup({
       -- 'nvim-treesitter/playground',
     },
   },
-  'windwp/nvim-ts-autotag', -- create tags
+  {
+    'windwp/nvim-ts-autotag', -- create tags
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }
+  },
   {
     'ThePrimeagen/refactoring.nvim', -- extract, inline and print debug
     dependencies = {
