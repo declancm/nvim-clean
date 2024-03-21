@@ -38,23 +38,6 @@ treesitter.setup {
   },
 }
 
--- SPELLSITTER:
-
-local spellsitter_status, spellsitter = pcall(require, 'spellsitter')
-if not spellsitter_status then
-  print("'spellsitter' executed with errors.")
-  return
-end
-
-spellsitter.setup()
-
-local spellchecker = require('user-config').spellchecker
-
-if spellchecker then
-  vim.opt.spell = true -- Enable spellchecker.
-  vim.opt.spelllang = 'en_us' -- Set spellchecker language to English US.
-end
-
 -- SYMBOLS-OUTLINE:
 
 vim.g.symbols_outline = {

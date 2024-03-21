@@ -33,3 +33,5 @@ vim.opt.shortmess:remove('S') -- Show count for search results.
 -- vim.opt.lazyredraw = true
 vim.opt.autowrite = true
 -- vim.opt.autowriteall = true
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
