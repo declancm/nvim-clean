@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local keymap = vim.keymap.set
 
 -- Keep nvim config synced with remote.
 autocmd('VimEnter', {
