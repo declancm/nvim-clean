@@ -101,13 +101,6 @@ require("lazy").setup({
   -- LANGUAGE_SPECIFIC:
 
   {
-    'tpope/vim-dadbod', -- database interaction
-    dependencies = {
-      'kristijanhusak/vim-dadbod-completion',
-      'kristijanhusak/vim-dadbod-ui',
-    },
-  },
-  {
     'iamcco/markdown-preview.nvim', -- preview markdown in browser
     run = function()
       vim.fn['mkdp#util#install']()
@@ -143,6 +136,7 @@ require("lazy").setup({
 
   -- MISC:
 
+  'tpope/vim-dadbod', -- database interaction
   'mbbill/undotree', -- tree view of undo history
   {
     'tpope/vim-fugitive', -- Git
