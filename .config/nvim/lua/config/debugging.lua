@@ -99,10 +99,6 @@ require('dap').listeners.after.event_initialized['repl_open'] = function()
   require('config.debugging').open_repl()
 end
 
--- NVIM-DAP-VIRTUAL-TEXT:
-
-require('nvim-dap-virtual-text').setup()
-
 -- NVIM-DAP-UI:
 
 require('dapui').setup {
