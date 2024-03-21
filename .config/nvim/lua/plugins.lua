@@ -136,7 +136,6 @@ require("lazy").setup({
   'unblevable/quick-scope', -- highlight for f, F, t, T movements
   'machakann/vim-sandwich', -- change surrounding chars
   'chaoren/vim-wordmotion', -- camel case, snake case etc. become separate words
-  'mizlan/iswap.nvim', -- interactive swap
 
   -- MISC:
 
