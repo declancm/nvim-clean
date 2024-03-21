@@ -1,34 +1,5 @@
 local M = {}
 
--- NOTES:
-
--- Toggle your notes file and keep it synced with the github remote.
--- Requires 'declancm/git-scripts.nvim'.
-
-M.toggle_notes = function(notes_path)
-  notes_path = vim.fn.expand(notes_path)
-  local notes_directory = vim.fn.fnamemodify(notes_path, ':h')
-  if notes_path == vim.fn.expand('%') then
-    -- if vim.bo.modified or vim.b.__notes_modified == 1 then
-    --   vim.cmd 'write'
-    --   local notesTail = vim.fn.fnamemodify(notes_path, ':t')
-    --   print("Your changes to '" .. notesTail .. "' are being committed.")
-    --   require('git-scripts').async_commit('', notes_directory)
-    --   vim.b.__notes_modified = 0
-    -- end
-    vim.cmd('edit #')
-  else
-    require('git-scripts').async_pull(notes_directory)
-    -- vim.b.__notes_modified = 0
-    vim.cmd('edit ' .. notes_path)
-    -- autocmd('BufWritePre', {
-    --   command = 'if &modified | let b:__notes_modified = 1 | endif',
-    --   pattern = notes_path,
-    --   group = augroup('toggle_notes', {}),
-    -- })
-  end
-end
-
 -- CTRL-BS:
 
 -- Delete the start of the word.
