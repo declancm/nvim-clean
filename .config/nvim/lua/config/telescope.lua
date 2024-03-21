@@ -54,7 +54,6 @@ telescope.setup {
 }
 
 telescope.load_extension('fzf')
-telescope.load_extension('file_browser')
 telescope.load_extension('refactoring')
 
 -- KEYMAPS:
@@ -85,9 +84,6 @@ keymap('n', '<Leader>fs', builtin.git_status, {})
 keymap('n', '<Leader>fp', builtin.builtin, {})
 
 -- PLUGIN_KEYMAPS:
-
--- Telescope File Browser:
-keymap('n', '<Leader>tf', require('telescope').extensions.file_browser.file_browser, {})
 
 -- Refactoring.
 keymap('v', '<Leader>fr', require('telescope').extensions.refactoring.refactors, {})

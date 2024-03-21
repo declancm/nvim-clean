@@ -62,7 +62,6 @@ require("lazy").setup({
       },
     },
   },
-  -- 'nvim-telescope/telescope-file-browser.nvim',
 
   -- TREESITTER:
 
