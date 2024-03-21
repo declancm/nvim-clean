@@ -96,20 +96,6 @@ gitsigns.setup {
 local gs = package.loaded.gitsigns
 keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame)
 
--- TODO-COMMENTS:
-
-local todo_status, todo = pcall(require, 'todo-comments')
-if not todo_status then
-  print("'todo-comments' executed with errors.")
-  return
-end
-
-todo.setup {
-  -- signs = false,
-}
-
-keymap('n', '<Leader>ft', '<Cmd>TodoTelescope<CR>')
-
 -- INDENT_BLANKLINE:
 
 local indent_status, ibl = pcall(require, 'ibl')

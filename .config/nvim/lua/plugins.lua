@@ -98,7 +98,6 @@ require("lazy").setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' }
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
-  'folke/todo-comments.nvim', -- better todo comments
   'lukas-reineke/indent-blankline.nvim', -- indent guides
   {
     'b0o/incline.nvim', -- floating statuslines
