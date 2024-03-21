@@ -14,11 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Installing plugins.
 require("lazy").setup({
-  -- DEPENDENCIES:
-
-  'nvim-lua/plenary.nvim', -- lua functions
-  'kyazdani42/nvim-web-devicons', -- icons library
-
   -- LSP:
 
   'neovim/nvim-lspconfig', -- collection of lsp configurations
@@ -104,7 +99,13 @@ require("lazy").setup({
   'luisiacc/gruvbox-baby', -- colorscheme
   {
     'hoob3rt/lualine.nvim', -- better status line
-    dependencies = { 'SmiteshP/nvim-navic' }, -- show current scope
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      {
+        'SmiteshP/nvim-navic',
+        dependencies = { 'neovim/nvim-lspconfig' }
+      }
+    }, -- show current scope
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
   'folke/todo-comments.nvim', -- better todo comments
