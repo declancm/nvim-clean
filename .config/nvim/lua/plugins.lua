@@ -118,11 +118,11 @@ require("lazy").setup({
   -- MOVEMENTS:
 
   'unblevable/quick-scope', -- highlight for f, F, t, T movements
-  'machakann/vim-sandwich', -- change surrounding chars
   'chaoren/vim-wordmotion', -- camel case, snake case etc. become separate words
 
   -- MISC:
 
+  'tpope/vim-surround', -- change surrounding chars
   'tpope/vim-dadbod', -- database interaction
   'mbbill/undotree', -- tree view of undo history
   {
