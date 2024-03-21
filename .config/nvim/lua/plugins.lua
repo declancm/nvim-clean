@@ -128,7 +128,7 @@ require("lazy").setup({
 
   -- COMMENTS:
 
-  { 'numToStr/Comment.nvim', tag = 'v0.6.1' }, -- comments
+  'numToStr/Comment.nvim', -- comments
 
   -- MOVEMENTS:
 
