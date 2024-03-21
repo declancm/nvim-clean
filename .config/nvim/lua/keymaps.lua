@@ -48,13 +48,6 @@ keymap({ '', 'i' }, '<Home>', '<Cmd>norm! ^ze<CR>')
 -- Don't move during J.
 keymap('n', 'J', 'm`J``')
 
--- Adding more undo break points.
-keymap('i', ',', ',<C-g>u')
-keymap('i', '.', '.<C-g>u')
-keymap('i', '!', '!<C-g>u')
-keymap('i', '?', '?<C-g>u')
-keymap('i', '<CR>', '<CR><C-g>u')
-
 -- Highlight after indenting.
 keymap('x', '>', '>gv')
 keymap('x', '<', '<gv')
@@ -157,12 +150,6 @@ keymap('n', '<S-Up>', '<Cmd>resize +5<CR>')
 keymap('n', '<S-Down>', '<Cmd>resize -5<CR>')
 keymap('n', '<S-Right>', '<Cmd>vertical resize +5<CR>')
 keymap('n', '<S-Left>', '<Cmd>vertical resize -5<CR>')
-
--- Save and quit all windows.
-keymap('n', 'ZA', '<Cmd>xall<CR>')
-
--- Close other windows.
-keymap('n', 'ZO', '<Cmd>wa<CR><Cmd>only<CR>')
 
 -- BUFFERS:
 
