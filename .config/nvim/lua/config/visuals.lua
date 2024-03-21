@@ -113,7 +113,11 @@ if not gitsigns_status then
   return
 end
 
-gitsigns.setup()
+gitsigns.setup {
+  current_line_blame_opts = {
+    delay = 0
+  }
+}
 
 local gs = package.loaded.gitsigns
 keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame)
