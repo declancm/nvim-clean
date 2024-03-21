@@ -5,7 +5,6 @@ vim.opt.termguicolors = true -- Enable 24-bit RGB.
 vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 
 vim.loader.enable()
-require('autocmds')
 
 -- PLUGIN_CONFIGS:
 require('plugins')
@@ -19,6 +18,7 @@ require('config.movements')
 require('config.misc')
 require('config.declancm')
 
+require('autocmds')
 require('functions')
 require('keymaps')
 require('options')
