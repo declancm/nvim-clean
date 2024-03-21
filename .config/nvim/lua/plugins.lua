@@ -130,7 +130,6 @@ require("lazy").setup({
     dependencies = { 'junegunn/gv.vim' },
   },
   'tpope/vim-obsession', -- sessions
-  'tpope/vim-capslock', -- software capslock
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
 
   -- MY_PLUGINS:
