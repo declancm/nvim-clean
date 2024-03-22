@@ -77,11 +77,11 @@ keymap('n', 'Y', 'yg_')
 keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>")
 keymap('x', '<Leader>y', "\"0y<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>")
 
--- Paste from global register '*' and highlight.
-keymap('n', '<Leader>p', '"*p`[v`]')
-keymap('n', '<Leader>P', '"*P`[v`]')
+-- Paste and highlight.
+keymap('n', '<Leader>p', 'p`[v`]')
+keymap('n', '<Leader>P', 'P`[v`]')
 
--- Paste from the global register '*' and if pasting a visual line selection of
+-- Paste and if pasting a visual line selection of
 -- text, perform automatic indentation.
 keymap('n', 'p', function()
   require('functions').paste('p')

@@ -52,13 +52,10 @@ end
 -- If pasting a visual line selection of text, perform automatic indentation.
 
 M.paste = function(paste_mode)
-  if vim.fn.getreg('*') == '' then
-    return
-  end
   if vim.fn.getregtype('*') == 'V' then
-    vim.cmd('normal! "*' .. paste_mode .. '`[v`]=`]$')
+    vim.cmd('normal! ' .. paste_mode .. '`[v`]=`]$')
   else
-    vim.cmd('normal! "*' .. paste_mode)
+    vim.cmd('normal! ' .. paste_mode)
   end
 end
 
