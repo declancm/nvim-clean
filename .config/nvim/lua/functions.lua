@@ -46,19 +46,6 @@ M.delete_end_word = function(word)
   vim.api.nvim_feedkeys(keys, 'm', false)
 end
 
--- IMPROVED_PASTE:
-
--- Paste from the global register '*'.
--- If pasting a visual line selection of text, perform automatic indentation.
-
-M.paste = function(paste_mode)
-  if vim.fn.getregtype('*') == 'V' then
-    vim.cmd('normal! ' .. paste_mode .. '`[v`]=`]$')
-  else
-    vim.cmd('normal! ' .. paste_mode)
-  end
-end
-
 -- SEARCH:
 
 -- Enter pattern to get a count for total matches in file.

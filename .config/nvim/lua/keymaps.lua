@@ -18,14 +18,6 @@ keymap('', '<Leader>ij', function()
 end)
 
 -- Moving text.
-keymap('x', '<C-k>', ":m '<-2<CR>gv=gv")
-keymap('x', '<C-j>', ":m '>+1<CR>gv=gv")
-keymap('i', '<C-k>', '<Esc>:m .-2<CR>==a')
-keymap('i', '<C-j>', '<Esc>:m .+1<CR>==a')
-keymap('n', '<C-k>', ':m .-2<CR>==')
-keymap('n', '<C-j>', ':m .+1<CR>==')
-
--- Moving text with arrows.
 keymap('x', '<C-Up>', ":m '<-2<CR>gv=gv")
 keymap('x', '<C-Down>', ":m '>+1<CR>gv=gv")
 keymap('i', '<C-Up>', '<Esc>:m .-2<CR>==a')
@@ -36,14 +28,10 @@ keymap('n', '<C-Down>', ':m .+1<CR>==')
 -- Improve the <Home> key.
 keymap({ '', 'i' }, '<Home>', '<Cmd>norm! ^ze<CR>')
 
--- Stay centered during word search (replaced by vim-cinnamon).
--- keymap('n', 'n', 'nzzzv')
--- keymap('n', 'N', 'Nzzzv')
-
 -- Don't move during J.
 keymap('n', 'J', 'm`J``')
 
--- Highlight after indenting.
+-- Stay highlighted when indenting.
 keymap('x', '>', '>gv')
 keymap('x', '<', '<gv')
 
@@ -73,39 +61,12 @@ keymap('n', '<Leader>/', '<Cmd>call VimGrep()<CR>')
 -- Y works like D and C.
 keymap('n', 'Y', 'yg_')
 
--- Yank and append to the '*' register using the same type as the '*' register.
-keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>")
-keymap('x', '<Leader>y', "\"0y<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>")
-
--- Paste and highlight.
-keymap('n', '<Leader>p', 'p`[v`]')
-keymap('n', '<Leader>P', 'P`[v`]')
-
--- Paste and if pasting a visual line selection of
--- text, perform automatic indentation.
-keymap('n', 'p', function()
-  require('functions').paste('p')
-end)
-keymap('n', 'P', function()
-  require('functions').paste('P')
-end)
-keymap('n', 'gp', function()
-  require('functions').paste('gp')
-end)
-keymap('n', 'gP', function()
-  require('functions').paste('gP')
-end)
-
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x')
 keymap({ 'n', 'x' }, 'd', '"_d')
 keymap('n', 'D', '"_D')
 keymap({ 'n', 'x' }, 'c', '"_c')
 keymap('n', 'C', '"_C')
-
--- Cut is now Leader d.
-keymap({ 'n', 'x' }, '<M-d>', '"*d')
-keymap('n', '<M-D>', '"*d')
 
 -- LISTS:
 
