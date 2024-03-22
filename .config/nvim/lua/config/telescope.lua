@@ -38,10 +38,11 @@ telescope.setup {
   },
   pickers = {
     find_files = {
+      file_ignore_patterns = { 'node_modules', '.git', '.venv' },
       find_command = { 'rg', '--ignore', '--follow', '--hidden', '--files' },
-      file_ignore_patterns = { '^.git/' },
     },
     live_grep = {
+      file_ignore_patterns = { 'node_modules', '.git', '.venv' },
       additional_args = function(opts)
         return { '--hidden' }
       end
