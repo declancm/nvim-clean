@@ -26,12 +26,6 @@ require('options')
 
 These installation instructions are for Ubuntu.
 
----------------
--- CLIPBOARD --
----------------
-
-xsel                sudo apt-get install xsel
-
 -----------------
 -- LSP SERVERS --
 -----------------

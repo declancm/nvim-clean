@@ -71,10 +71,7 @@ keymap('n', '<Leader>/', '<Cmd>call VimGrep()<CR>')
 -- COPY_AND_PASTE:
 
 -- Y works like D and C.
-keymap('n', 'Y', '"*yg_')
-
--- Yank to global clipboard.
-keymap({ 'n', 'x' }, 'y', '"*y')
+keymap('n', 'Y', 'yg_')
 
 -- Yank and append to the '*' register using the same type as the '*' register.
 keymap('x', '<Leader>Y', "\"0yg_<Cmd>call setreg('*', getreg('*') . getreg('0'), getregtype('*'))<CR>")

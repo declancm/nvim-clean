@@ -13,9 +13,6 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 21.7.1
 npm install -g node-gyp
 
-# clipboard
-sudo apt install xsel -y
-
 # lsp servers
 sudo apt install clangd-12 -y
 npm install -g bash-language-server

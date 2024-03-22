@@ -41,24 +41,6 @@ autocmd({ 'FileType', 'BufWritePost' }, {
   group = augroup('setting_options', {}),
 })
 
--- Make the clipboard work in WSL.
-autocmd('VimEnter', {
-  callback = function()
-    if vim.fn.has('unix') then
-      local file = io.open('/proc/version', 'r')
-      local text = file:read('a')
-      if text:find('microsoft', 1, true) then
-        autocmd('TextYankPost', {
-          command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",
-          group = augroup('clipboard', {}),
-        })
-      end
-      file:close()
-    end
-  end,
-  group = augroup('clipboard', {}),
-})
-
 -- Setting jump points.
 autocmd('InsertEnter', { command = 'let b:__jump_text_changed = 0', group = augroup('set_jump', { clear = false }) })
 autocmd('TextChangedI', { command = 'let b:__jump_text_changed = 1', group = augroup('set_jump', { clear = false }) })
