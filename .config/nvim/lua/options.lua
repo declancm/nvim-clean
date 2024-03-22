@@ -29,9 +29,6 @@ vim.opt.path:append('**')
 -- vim.opt.textwidth = 80
 vim.opt.inccommand = 'split'
 vim.opt.shortmess:remove('S') -- Show count for search results.
--- vim.opt.lazyredraw = true
-vim.opt.autowrite = true
--- vim.opt.autowriteall = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us'
 vim.opt.clipboard = 'unnamedplus' -- Required for win32yank.
