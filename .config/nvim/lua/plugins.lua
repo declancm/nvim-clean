@@ -96,7 +96,7 @@ require("lazy").setup({
   -- MOVEMENTS:
 
   'unblevable/quick-scope', -- highlight for f, F, t, T movements
-  'chaoren/vim-wordmotion', -- camel case, snake case etc. become separate words
+  -- 'chaoren/vim-wordmotion', -- camel case, snake case etc. become separate words
 
   -- MISC:
 
