@@ -48,16 +48,10 @@ vim.opt.cursorlineopt = 'number'
 
 -- LUALINE:
 
-local lualine_status, lualine = pcall(require, 'lualine')
-if not lualine_status then
-  print("'lualine' executed with errors.")
-  return
-end
-
-lualine.setup {
+require('lualine').setup {
   options = {
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
   },
   sections = {
     lualine_b = {
@@ -81,13 +75,7 @@ lualine.setup {
 
 -- GITSIGNS:
 
-local gitsigns_status, gitsigns = pcall(require, 'gitsigns')
-if not gitsigns_status then
-  print("'gitsigns' executed with errors.")
-  return
-end
-
-gitsigns.setup {
+require('gitsigns').setup {
   current_line_blame_opts = {
     delay = 0
   }
@@ -98,13 +86,7 @@ keymap({ 'n', 'x' }, '<Leader>tb', gs.toggle_current_line_blame)
 
 -- INDENT_BLANKLINE:
 
-local indent_status, ibl = pcall(require, 'ibl')
-if not indent_status then
-  print("'indent_blankline' executed with errors.")
-  return
-end
-
-ibl.setup {
+require('ibl').setup {
   indent = {
     char = '▏', -- faint line
     -- char = '▎', -- thick line
@@ -114,13 +96,7 @@ ibl.setup {
 
 -- BUFFERLINE:
 
-local bufferline_status, bufferline = pcall(require, 'bufferline')
-if not bufferline_status then
-  print("'bufferline' executed with errors.")
-  return
-end
-
-bufferline.setup {
+require('bufferline').setup {
   options = {
     mode = 'tabs',
     diagnostics = 'nvim_lsp',
