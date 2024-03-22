@@ -43,10 +43,6 @@ function M.setup(on_attach)
   lsp.cssls.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.eslint.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.html.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
-  -- lsp.powershell_es.setup(coq.lsp_ensure_capabilities {
-  --   bundle_path = vim.fn.expand('$HOME/lsp/PowerShellEditorServices'),
-  --   on_attach = on_attach,
-  -- })
   lsp.pyright.setup(coq.lsp_ensure_capabilities { on_attach = on_attach })
   lsp.lua_ls.setup(coq.lsp_ensure_capabilities {
     settings = {
