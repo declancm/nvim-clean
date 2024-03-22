@@ -78,13 +78,7 @@ vim.cmd('command! Format lua vim.lsp.buf.format()')
 
 -- AUTOPAIRS:
 
-local autopairs_status, autopairs = pcall(require, 'nvim-autopairs')
-if not autopairs_status then
-  print("'autopairs' executed with errors.")
-  return
-end
-
-autopairs.setup()
+require('nvim-autopairs').setup()
 
 -- COQ:
 

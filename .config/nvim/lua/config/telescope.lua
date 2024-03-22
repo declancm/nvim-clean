@@ -1,11 +1,6 @@
 -- TELESCOPE:
 
-local telescope_status, telescope = pcall(require, 'telescope')
-if not telescope_status then
-  print("'telescope' executed with errors.")
-  return
-end
-
+local telescope = require('telescope')
 local actions = require('telescope.actions')
 
 telescope.setup {

@@ -2,13 +2,7 @@ local keymap = vim.keymap.set
 
 -- TREESITTER:
 
-local treesitter_status, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not treesitter_status then
-  print("'treesitter' executed with errors.")
-  return
-end
-
-treesitter.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = 'all',
   highlight = {
     enable = true,
@@ -40,11 +34,7 @@ treesitter.setup {
 
 -- REFACTORING:
 
-local refactoring_status, refactoring = pcall(require, 'refactoring')
-if not refactoring_status then
-  print("'refactoring' executed with errors.")
-  return
-end
+local refactoring = require('refactoring')
 
 -- Refactoring operations:
 
@@ -53,13 +43,13 @@ end
 -- Debug operations:
 
 keymap('n', '<Leader>rf', function()
-  require('refactoring').debug.printf { below = false }
+  refactoring.debug.printf { below = false }
 end)
 keymap('v', '<Leader>rv', function()
-  require('refactoring').debug.print_var {}
+  refactoring.debug.print_var {}
 end)
 keymap('n', '<Leader>rc', function()
-  require('refactoring').debug.cleanup {}
+  refactoring.debug.cleanup {}
 end)
 
 -- Prompt type operations:
