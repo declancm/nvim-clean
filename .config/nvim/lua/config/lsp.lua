@@ -70,7 +70,7 @@ require('nvim-autopairs').setup()
 
 -- COQ:
 
-require('coq.completion').setup(on_attach)
+require('config.coq').setup(on_attach)
 
 -- LSPCONFIG-UI:
 
