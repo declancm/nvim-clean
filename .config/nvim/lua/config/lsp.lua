@@ -5,8 +5,6 @@ local augroup = vim.api.nvim_create_augroup
 
 -- LSPCONFIG:
 
-require('lspconfig')
-
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
     -- Format on save.
