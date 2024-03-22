@@ -5,11 +5,7 @@ local augroup = vim.api.nvim_create_augroup
 
 -- LSPCONFIG:
 
-local lsp_status = pcall(require, 'lspconfig')
-if not lsp_status then
-  print("'lspconfig' executed with errors.")
-  return
-end
+require('lspconfig')
 
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
