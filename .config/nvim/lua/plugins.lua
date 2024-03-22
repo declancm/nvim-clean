@@ -130,8 +130,6 @@ require("lazy").setup({
   -- else
   'declancm/cinnamon.nvim', -- neovim smooth scrolling
   'declancm/windex.nvim', -- cleaner window movements
-  'declancm/maximize.nvim', -- window maximizing
-  'declancm/vim2vscode', -- open current buffers in vscode
-  'declancm/git-scripts.nvim' -- async git functions
+  'declancm/vim2vscode' -- open current buffers in vscode
   -- end
 })
