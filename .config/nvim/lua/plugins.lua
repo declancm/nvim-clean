@@ -32,6 +32,7 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim', -- fuzzy finder
+    branch = '0.1.x',
     dependencies = {
       {
         'nvim-lua/plenary.nvim',
