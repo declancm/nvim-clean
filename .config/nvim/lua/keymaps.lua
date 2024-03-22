@@ -96,14 +96,6 @@ keymap('n', 'gP', function()
   require('functions').paste('gP')
 end)
 
--- Paste from the global register '*' and enter insert mode at the end.
-keymap({ 'i', 'n' }, '<M-p>', function()
-  require('functions').paste('p')
-end)
-keymap({ 'i', 'n' }, '<M-P>', function()
-  require('functions').paste('P')
-end)
-
 -- c, d and x are now delete without yanking.
 keymap('n', 'x', '"_x')
 keymap({ 'n', 'x' }, 'd', '"_d')
