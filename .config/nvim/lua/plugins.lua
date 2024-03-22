@@ -23,9 +23,9 @@ require("lazy").setup({
   -- COMPLETION:
 
   {
-    'ms-jpq/coq_nvim', -- auto-completion
+    'ms-jpq/coq_nvim',                                               -- auto-completion
     branch = 'coq',
-    dependencies = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } }, -- snippets
+    dependencies = { 'ms-jpq/coq.artifacts', branch = 'artifacts' }, -- snippets
   },
 
   -- TELESCOPE:
@@ -34,26 +34,24 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', -- fuzzy finder
     branch = '0.1.x',
     dependencies = {
+      'nvim-lua/plenary.nvim',
       {
-        'nvim-lua/plenary.nvim',
-        {
-          'nvim-telescope/telescope-fzf-native.nvim',
-          build = 'make'
-        }
-      },
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make'
+      }
     },
   },
 
   -- TREESITTER:
 
-  'nvim-treesitter/nvim-treesitter', -- treesitter in neovim
+  'nvim-treesitter/nvim-treesitter',               -- treesitter in neovim
   {
     'nvim-treesitter/nvim-treesitter-textobjects', -- syntax aware text-objects
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    dependencies = 'nvim-treesitter/nvim-treesitter'
   },
   {
     'windwp/nvim-ts-autotag', -- create tags
-    dependencies = { 'nvim-treesitter/nvim-treesitter' }
+    dependencies = 'nvim-treesitter/nvim-treesitter'
   },
   {
     'ThePrimeagen/refactoring.nvim', -- extract, inline and print debug
@@ -70,22 +68,26 @@ require("lazy").setup({
     dependencies = {
       {
         'rcarriga/nvim-dap-ui',
-        dependencies = { "nvim-neotest/nvim-nio" }
+        dependencies = "nvim-neotest/nvim-nio"
       },
     },
   },
 
   -- VISUALS:
 
-  'folke/tokyonight.nvim', -- colorscheme
-  'luisiacc/gruvbox-baby', -- colorscheme
+  'folke/tokyonight.nvim',  -- colorscheme
+  'luisiacc/gruvbox-baby',  -- colorscheme
   {
     'hoob3rt/lualine.nvim', -- better status line
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    dependencies = 'nvim-tree/nvim-web-devicons'
   },
   { 'lewis6991/gitsigns.nvim', tag = 'release' }, -- git column icons
-  'lukas-reineke/indent-blankline.nvim', -- indent guides
-  'akinsho/bufferline.nvim', -- buffer line with tabpage integration.
+  'lukas-reineke/indent-blankline.nvim',          -- indent guides
+  {
+    'akinsho/bufferline.nvim',                    -- buffer line with tabpage integration.
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons'
+  },
 
   -- COMMENTS:
 
@@ -98,10 +100,10 @@ require("lazy").setup({
 
   -- MISC:
 
-  'tpope/vim-surround', -- change surrounding chars
-  'tpope/vim-dadbod', -- database interaction
-  'tpope/vim-fugitive', -- Git wrapper
-  'tpope/vim-obsession', -- sessions
+  'tpope/vim-surround',        -- change surrounding chars
+  'tpope/vim-dadbod',          -- database interaction
+  'tpope/vim-fugitive',        -- Git wrapper
+  'tpope/vim-obsession',       -- sessions
   'kwkarlwang/bufresize.nvim', -- better buffer resizing
 
   -- MY_PLUGINS:
@@ -115,7 +117,7 @@ require("lazy").setup({
   --   '~/plugins/git-scripts.nvim',
   -- else
   'declancm/cinnamon.nvim', -- neovim smooth scrolling
-  'declancm/windex.nvim', -- cleaner window movements
-  'declancm/vim2vscode' -- open current buffers in vscode
+  'declancm/windex.nvim',   -- cleaner window movements
+  'declancm/vim2vscode'     -- open current buffers in vscode
   -- end
 })

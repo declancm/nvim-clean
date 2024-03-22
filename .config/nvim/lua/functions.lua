@@ -138,15 +138,15 @@ M.set_jump = function()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
   if
-    vim.bo.buftype == ''
-    and vim.b.__jump_text_changed == 1
-    and (
-      vim.b.__jump_prev_cursor == nil
-      or vim.b.__jump_prev_buffer == nil
-      or buffer ~= vim.b.__jump_prev_buffer
-      or cursor[2] < vim.b.__jump_prev_cursor[2] - 15
-      or cursor[2] > vim.b.__jump_prev_cursor[2] + 15
-    )
+      vim.bo.buftype == ''
+      and vim.b.__jump_text_changed == 1
+      and (
+        vim.b.__jump_prev_cursor == nil
+        or vim.b.__jump_prev_buffer == nil
+        or buffer ~= vim.b.__jump_prev_buffer
+        or cursor[2] < vim.b.__jump_prev_cursor[2] - 15
+        or cursor[2] > vim.b.__jump_prev_cursor[2] + 15
+      )
   then
     -- print 'Setting jump.'
     vim.b.__jump_prev_cursor = cursor

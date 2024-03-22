@@ -1,7 +1,6 @@
 local M = {}
 
 function M.config()
-
   vim.g.coq_settings = {
     auto_start = 'shut-up',
     keymap = { jump_to_mark = '<c-n>' },
@@ -10,7 +9,6 @@ function M.config()
       preview = { border = 'rounded' }
     }
   }
-
 end
 
 function M.setup(on_attach)
