@@ -1,3 +1,0 @@
--- BUFRESIZE:
-
-require('bufresize').setup()
