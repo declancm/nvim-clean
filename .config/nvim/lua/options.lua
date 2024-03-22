@@ -34,4 +34,4 @@ vim.opt.autowrite = true
 -- vim.opt.autowriteall = true
 vim.opt.spell = true
 vim.opt.spelllang = 'en_us'
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus' -- Required for win32yank.
