@@ -1,11 +1,5 @@
 local keymap = vim.keymap.set
 
--- UNDOTREE:
-
-keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR><Cmd>wincmd p<CR>')
--- u is undo
--- <C-R> is redo
-
 -- BUFRESIZE:
 
 local bufresize_status, bufresize = pcall(require, 'bufresize')
