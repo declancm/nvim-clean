@@ -11,12 +11,6 @@ if not lsp_status then
   return
 end
 
-local navic_status, navic = pcall(require, 'nvim-navic')
-if not navic_status then
-  print("'navic' executed with errors.")
-  return
-end
-
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
     -- Format on save.
@@ -36,8 +30,6 @@ local on_attach = function(client, bufnr)
     end,
     group = augroup('lsp_loclist', { clear = false }),
   })
-  -- Navic setup.
-  navic.attach(client, bufnr)
 end
 
 -- LSP dianostic keymaps:
