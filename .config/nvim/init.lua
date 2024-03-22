@@ -6,6 +6,7 @@ vim.cmd('let mapleader = "\\<BS>"') -- Set Leader for keymaps.
 vim.loader.enable()
 
 -- PLUGIN_CONFIGS:
+require('config.coq').config() -- needs to be before lazy setup
 require('plugins')
 require('config.lsp')
 require('config.telescope')

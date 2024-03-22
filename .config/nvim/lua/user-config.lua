@@ -4,8 +4,4 @@ local M = {}
 -- M.theme = 'gruvbox'
 M.theme = 'tokyonight'
 
--- COMPLETION:
--- M.completion = 'cmp' -- Lots of good sources.
-M.completion = 'coq' -- Faster completion. Requires 'python3-venv'.
-
 return M

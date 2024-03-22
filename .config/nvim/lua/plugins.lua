@@ -27,21 +27,6 @@ require("lazy").setup({
     branch = 'coq',
     dependencies = { { 'ms-jpq/coq.artifacts', branch = 'artifacts' } }, -- snippets
   },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'L3MON4D3/LuaSnip', -- snippets
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'andersevenrud/cmp-tmux',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim',
-      -- { 'tzachar/cmp-tabnine', run = './install.sh' },
-      'hrsh7th/cmp-calc',
-    },
-  },
 
   -- TELESCOPE:
 

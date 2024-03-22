@@ -86,15 +86,9 @@ end
 
 autopairs.setup()
 
--- COMPLETION:
+-- COQ:
 
-local completion = require('user-config').completion
-
-if completion == 'cmp' then
-  require('config.completion').CMP_setup(on_attach)
-elseif completion == 'coq' then
-  require('config.completion').COQ_setup(on_attach)
-end
+require('coq.completion').setup(on_attach)
 
 -- LSPCONFIG-UI:
 
