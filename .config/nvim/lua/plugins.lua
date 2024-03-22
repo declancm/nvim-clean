@@ -75,8 +75,16 @@ require("lazy").setup({
 
   -- VISUALS:
 
-  'folke/tokyonight.nvim',  -- colorscheme
-  'luisiacc/gruvbox-baby',  -- colorscheme
+  {
+    'folke/tokyonight.nvim', -- colorscheme
+    lazy = false,
+    priority = 1000
+  },
+  {
+    'luisiacc/gruvbox-baby', -- colorscheme
+    lazy = false,
+    priority = 1000
+  },
   {
     'hoob3rt/lualine.nvim', -- better status line
     dependencies = 'nvim-tree/nvim-web-devicons'
