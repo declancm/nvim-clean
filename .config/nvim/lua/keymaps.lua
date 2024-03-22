@@ -10,10 +10,10 @@ keymap('n', 'cn', '<Cmd>call setreg("/", "\\\\<" . expand("<cword>") . "\\\\>", 
 keymap('n', 'cN', '<Cmd>call setreg("/", "\\\\<" . expand("<cword>") . "\\\\>", "v")<CR>"_cgN')
 
 -- Jump to the next line with the same indent size.
-keymap('', '<Leader>iu', function()
+keymap('', '<Leader>ik', function()
   require('functions').same_indent('Up')
 end)
-keymap('', '<Leader>id', function()
+keymap('', '<Leader>ij', function()
   require('functions').same_indent('Down')
 end)
 
