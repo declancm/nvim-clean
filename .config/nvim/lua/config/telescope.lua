@@ -39,9 +39,13 @@ telescope.setup {
   pickers = {
     find_files = {
       find_command = { 'rg', '--ignore', '--follow', '--hidden', '--files' },
-      -- hidden = true,
       file_ignore_patterns = { '^.git/' },
     },
+    live_grep = {
+      additional_args = function(opts)
+        return { '--hidden' }
+      end
+    }
   },
   extensions = {
     fzf = {
