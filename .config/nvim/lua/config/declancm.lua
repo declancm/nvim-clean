@@ -4,10 +4,6 @@ local keymap = vim.keymap.set
 
 -- vim.g.vim2vscode_no_defaults = 1
 
--- GIT-SCRIPTS:
-
-require('git-scripts').setup()
-
 -- CINNAMON-SCROLL:
 
 require('cinnamon').setup {
@@ -33,6 +29,3 @@ require('windex').setup {
 -- Open lazygit:
 keymap('n', '<C-g>', "<Cmd>lua require('windex').toggle_terminal('all', 'lazygit')<CR>")
 
--- MAXIMIZE:
-
--- require('maximize').setup()

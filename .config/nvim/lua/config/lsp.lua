@@ -5,18 +5,6 @@ local augroup = vim.api.nvim_create_augroup
 
 -- LSPCONFIG:
 
-local lsp_status = pcall(require, 'lspconfig')
-if not lsp_status then
-  print("'lspconfig' executed with errors.")
-  return
-end
-
-local navic_status, navic = pcall(require, 'nvim-navic')
-if not navic_status then
-  print("'navic' executed with errors.")
-  return
-end
-
 local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
     -- Format on save.
@@ -36,8 +24,6 @@ local on_attach = function(client, bufnr)
     end,
     group = augroup('lsp_loclist', { clear = false }),
   })
-  -- Navic setup.
-  navic.attach(client, bufnr)
 end
 
 -- LSP dianostic keymaps:
@@ -78,23 +64,11 @@ vim.cmd('command! Format lua vim.lsp.buf.format()')
 
 -- AUTOPAIRS:
 
-local autopairs_status, autopairs = pcall(require, 'nvim-autopairs')
-if not autopairs_status then
-  print("'autopairs' executed with errors.")
-  return
-end
+require('nvim-autopairs').setup()
 
-autopairs.setup()
+-- COQ:
 
--- COMPLETION:
-
-local completion = require('user-config').completion
-
-if completion == 'cmp' then
-  require('config.completion').CMP_setup(on_attach)
-elseif completion == 'coq' then
-  require('config.completion').COQ_setup(on_attach)
-end
+require('config.coq').setup(on_attach)
 
 -- LSPCONFIG-UI:
 
@@ -126,33 +100,3 @@ function vim.lsp.util.open_floating_preview(contents, syntax, options, ...)
   options.border = options.border or border
   return orig_util_open_floating_preview(contents, syntax, options, ...)
 end
-
--- NULL-LS:
-
-local null_status, null = pcall(require, 'null-ls')
-if not null_status then
-  print("'null-ls' executed with errors.")
-  return
-end
-
-null.setup {
-  debug = false,
-  sources = {
-    null.builtins.formatting.black,
-    null.builtins.formatting.prettier,
-    null.builtins.formatting.stylua,
-  },
-  on_attach = function(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-      -- Format on save.
-      autocmd('BufWritePre', {
-        callback = function()
-          vim.lsp.buf.format()
-          vim.cmd('retab')
-        end,
-        buffer = bufnr,
-        group = augroup('lsp_format', { clear = false }),
-      })
-    end
-  end,
-}

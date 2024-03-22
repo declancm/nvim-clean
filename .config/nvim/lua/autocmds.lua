@@ -1,12 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local keymap = vim.keymap.set
-
--- Keep nvim config synced with remote.
-autocmd('VimEnter', {
-  command = "lua require('git-scripts').async_pull('~/.config/nvim')",
-  group = augroup('config_sync', {}),
-})
 
 -- Quickscope colors.
 autocmd('ColorScheme', {
@@ -19,13 +12,6 @@ autocmd('ColorScheme', {
 autocmd('TextYankPost', {
   command = "lua require('vim.highlight').on_yank { timeout = 150 }",
   group = augroup('highlight_yank', {}),
-})
-
--- Packer.
-autocmd('BufWritePost', {
-  command = 'source <afile> | PackerCompile',
-  pattern = '**/.config/nvim/lua/plugins.lua',
-  group = augroup('packer_user_config', {}),
 })
 
 -- Delete whitespace on the end of lines.
@@ -53,31 +39,6 @@ autocmd({ 'FileType', 'BufWritePost' }, {
     vim.opt.scl = 'yes:1'
   end,
   group = augroup('setting_options', {}),
-})
-
--- Opening nvim at a directory will open chadtree.
-autocmd('StdinReadPre', { command = 'let s:std_in=1', group = augroup('open_chadtree', {}) })
-autocmd('VimEnter', {
-  command = "if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exec 'CHADopen' | exec 'cd '.argv()[0] | endif",
-  group = augroup('open_chadtree', {}),
-})
-
--- Make the clipboard work in WSL.
-autocmd('VimEnter', {
-  callback = function()
-    if vim.fn.has('unix') then
-      local file = io.open('/proc/version', 'r')
-      local text = file:read('a')
-      if text:find('microsoft', 1, true) then
-        autocmd('TextYankPost', {
-          command = "call system('echo '.shellescape(join(v:event.regcontents, \"<CR>\")).' |  clip.exe')",
-          group = augroup('clipboard', {}),
-        })
-      end
-      file:close()
-    end
-  end,
-  group = augroup('clipboard', {}),
 })
 
 -- Setting jump points.

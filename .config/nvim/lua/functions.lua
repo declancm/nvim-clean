@@ -1,34 +1,5 @@
 local M = {}
 
--- NOTES:
-
--- Toggle your notes file and keep it synced with the github remote.
--- Requires 'declancm/git-scripts.nvim'.
-
-M.toggle_notes = function(notes_path)
-  notes_path = vim.fn.expand(notes_path)
-  local notes_directory = vim.fn.fnamemodify(notes_path, ':h')
-  if notes_path == vim.fn.expand('%') then
-    -- if vim.bo.modified or vim.b.__notes_modified == 1 then
-    --   vim.cmd 'write'
-    --   local notesTail = vim.fn.fnamemodify(notes_path, ':t')
-    --   print("Your changes to '" .. notesTail .. "' are being committed.")
-    --   require('git-scripts').async_commit('', notes_directory)
-    --   vim.b.__notes_modified = 0
-    -- end
-    vim.cmd('edit #')
-  else
-    require('git-scripts').async_pull(notes_directory)
-    -- vim.b.__notes_modified = 0
-    vim.cmd('edit ' .. notes_path)
-    -- autocmd('BufWritePre', {
-    --   command = 'if &modified | let b:__notes_modified = 1 | endif',
-    --   pattern = notes_path,
-    --   group = augroup('toggle_notes', {}),
-    -- })
-  end
-end
-
 -- CTRL-BS:
 
 -- Delete the start of the word.
@@ -73,22 +44,6 @@ M.delete_end_word = function(word)
     keys = vim.api.nvim_replace_termcodes('<Space><Esc>vEc', true, false, true)
   end
   vim.api.nvim_feedkeys(keys, 'm', false)
-end
-
--- IMPROVED_PASTE:
-
--- Paste from the global register '*'.
--- If pasting a visual line selection of text, perform automatic indentation.
-
-M.paste = function(paste_mode)
-  if vim.fn.getreg('*') == '' then
-    return
-  end
-  if vim.fn.getregtype('*') == 'V' then
-    vim.cmd('normal! "*' .. paste_mode .. '`[v`]=`]$')
-  else
-    vim.cmd('normal! "*' .. paste_mode)
-  end
 end
 
 -- SEARCH:
@@ -183,15 +138,15 @@ M.set_jump = function()
   local cursor = vim.fn.getcurpos()
   local buffer = vim.fn.bufnr()
   if
-    vim.bo.buftype == ''
-    and vim.b.__jump_text_changed == 1
-    and (
-      vim.b.__jump_prev_cursor == nil
-      or vim.b.__jump_prev_buffer == nil
-      or buffer ~= vim.b.__jump_prev_buffer
-      or cursor[2] < vim.b.__jump_prev_cursor[2] - 15
-      or cursor[2] > vim.b.__jump_prev_cursor[2] + 15
-    )
+      vim.bo.buftype == ''
+      and vim.b.__jump_text_changed == 1
+      and (
+        vim.b.__jump_prev_cursor == nil
+        or vim.b.__jump_prev_buffer == nil
+        or buffer ~= vim.b.__jump_prev_buffer
+        or cursor[2] < vim.b.__jump_prev_cursor[2] - 15
+        or cursor[2] > vim.b.__jump_prev_cursor[2] + 15
+      )
   then
     -- print 'Setting jump.'
     vim.b.__jump_prev_cursor = cursor
