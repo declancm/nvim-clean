@@ -108,10 +108,10 @@ require("lazy").setup({
 
   -- MISC:
 
-  'tpope/vim-surround',        -- change surrounding chars
-  'tpope/vim-dadbod',          -- database interaction
-  'tpope/vim-fugitive',        -- Git wrapper
-  'tpope/vim-obsession',       -- sessions
+  'tpope/vim-surround',  -- change surrounding chars
+  'tpope/vim-dadbod',    -- database interaction
+  'tpope/vim-fugitive',  -- Git wrapper
+  'tpope/vim-obsession', -- sessions
 
   -- MY_PLUGINS:
 
