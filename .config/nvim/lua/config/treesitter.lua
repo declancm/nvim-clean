@@ -44,10 +44,10 @@ local refactoring = require('refactoring')
 
 -- Debug operations:
 
-keymap('n', '<Leader>rf', function()
+keymap('n', '<Leader>rp', function()
   refactoring.debug.printf { below = false }
 end)
-keymap('v', '<Leader>rv', function()
+keymap({'x', 'n'}, '<Leader>rv', function()
   refactoring.debug.print_var {}
 end)
 keymap('n', '<Leader>rc', function()
