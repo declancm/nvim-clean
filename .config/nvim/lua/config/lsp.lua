@@ -6,17 +6,18 @@ local augroup = vim.api.nvim_create_augroup
 -- LSPCONFIG:
 
 local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentFormattingProvider then
-    -- Format on save.
-    autocmd('BufWritePre', {
-      callback = function()
-        vim.lsp.buf.format()
-        vim.cmd('retab')
-      end,
-      buffer = bufnr,
-      group = augroup('lsp_format', { clear = false }),
-    })
-  end
+  -- if client.server_capabilities.documentFormattingProvider then
+  --   -- Format on save.
+  --   autocmd('BufWritePre', {
+  --     callback = function()
+  --       vim.lsp.buf.format()
+  --       vim.cmd('retab')
+  --     end,
+  --     buffer = bufnr,
+  --     group = augroup('lsp_format', { clear = false }),
+  --   })
+  -- end
+
   -- Add diagnostics to location list.
   autocmd({ 'BufEnter', 'InsertLeave' }, {
     callback = function()
@@ -33,11 +34,11 @@ keymap('n', ']d', vim.diagnostic.goto_next)
 -- keymap('n', '<Leader>q', vim.diagnostic.setloclist)
 
 -- LSP buffer keymaps:
-keymap('n', 'gd', vim.lsp.buf.definition)
+-- keymap('n', 'gd', vim.lsp.buf.definition) -- Using telescope
+-- keymap('n', 'gr', vim.lsp.buf.references) -- Using telescope
+-- keymap('n', 'gi', vim.lsp.buf.implementation) -- Using telescope
+-- keymap('n', 'gt', vim.lsp.buf.type_definition) -- Using telescope
 keymap('n', 'gD', vim.lsp.buf.declaration)
-keymap('n', 'gt', vim.lsp.buf.type_definition)
-keymap('n', 'gr', vim.lsp.buf.references)
-keymap('n', 'gi', vim.lsp.buf.implementation)
 keymap('n', 'H', vim.lsp.buf.hover)
 keymap('n', '<C-h>', vim.lsp.buf.signature_help)
 keymap('n', '<Leader>rn', vim.lsp.buf.rename)

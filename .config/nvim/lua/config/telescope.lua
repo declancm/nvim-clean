@@ -72,10 +72,11 @@ keymap('n', '<Leader>fq', builtin.quickfix, {})
 keymap('n', '<Leader>fl', builtin.loclist, {})
 
 -- -- LSP pickers.
--- keymap('n', '<Leader>fd', builtin.diagnostics, {})
--- keymap('n', '<Leader>fr', builtin.lsp_references, {})
--- keymap('n', '<Leader>fi', builtin.lsp_implementations, {})
--- keymap('n', '<Leader>fa', builtin.lsp_code_actions, {})
+keymap('n', 'gd', builtin.lsp_definitions, {})
+keymap('n', 'gr', builtin.lsp_references, {})
+keymap('n', 'gi', builtin.lsp_implementations, {})
+keymap('n', 'gt', builtin.lsp_type_definitions, {})
+keymap('n', '<Leader>fd', builtin.diagnostics, {})
 
 -- Git:
 keymap('n', '<Leader>fs', builtin.git_status, {})
