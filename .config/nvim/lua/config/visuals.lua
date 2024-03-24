@@ -1,35 +1,18 @@
 local keymap = vim.keymap.set
 
--- THEME:
-
-local theme = require('user-config').theme
-
 vim.opt.background = 'dark'
 -- vim.opt.colorcolumn = '80'
 
--- GRUVBOX:
-
-if theme == 'gruvbox' then
-  vim.g.gruvbox_baby_transparent_mode = 1
-  -- vim.g.gruvbox_baby_comment_style = 'NONE'
-  vim.cmd([[colorscheme gruvbox-baby]])
-  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#3c3836]])
-  vim.cmd([[highlight LineNr guifg=#458588]])
-  vim.cmd([[highlight Pmenu ctermbg=0 guibg=#3c3836]])
-end
-
 -- TOKYONIGHT:
 
-if theme == 'tokyonight' then
-  vim.g.tokyonight_style = 'storm'
-  vim.g.tokyonight_transparent = true
-  vim.g.tokyonight_transparent_sidebar = true
-  -- vim.g.tokyonight_italic_comments = false
-  vim.g.tokyonight_colors = { bg_float = 'NONE' }
-  vim.cmd([[colorscheme tokyonight]])
-  vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#1f2335]])
-  vim.cmd([[highlight LineNr guifg=#3D59A1]])
-end
+vim.g.tokyonight_style = 'storm'
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
+-- vim.g.tokyonight_italic_comments = false
+vim.g.tokyonight_colors = { bg_float = 'NONE' }
+vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[highlight ColorColumn ctermbg=0 guibg=#1f2335]])
+vim.cmd([[highlight LineNr guifg=#3D59A1]])
 
 -- Highlight the line number.
 vim.cmd([[highlight CursorLineNr guifg=white]])
