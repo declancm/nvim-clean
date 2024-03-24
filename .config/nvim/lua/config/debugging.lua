@@ -101,9 +101,11 @@ end
 
 -- NVIM-DAP-UI:
 
+---@diagnostic disable: missing-fields
 require('dapui').setup {
   floating = { borders = 'rounded' },
 }
+---@diagnostic enable: missing-fields
 
 keymap('n', '<Leader>du', function()
   require('dapui').toggle()

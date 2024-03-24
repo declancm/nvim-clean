@@ -2,6 +2,7 @@ local keymap = vim.keymap.set
 
 -- TREESITTER:
 
+---@diagnostic disable: missing-fields
 require('nvim-treesitter.configs').setup {
   ensure_installed = 'all',
   highlight = {
@@ -31,6 +32,7 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 }
+---@diagnostic enable: missing-fields
 
 -- REFACTORING:
 
